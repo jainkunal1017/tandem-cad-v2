@@ -7,7 +7,8 @@ import {
   Users,
   LifeBuoy,
   ChevronDown,
-  PanelLeftClose
+  PanelLeftClose,
+  PanelLeftOpen
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
@@ -95,11 +96,19 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       {/* User Section */}
       <div className={cn("px-4 pb-4", collapsed && "px-2")}>
         {collapsed ? (
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-2">
             <Avatar className="h-8 w-8">
               <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onToggle}
+              className="h-8 w-8 hover:bg-accent/50"
+            >
+              <PanelLeftOpen className="h-4 w-4" />
+            </Button>
           </div>
         ) : (
           <div className="flex items-center justify-between">
