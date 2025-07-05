@@ -57,7 +57,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
           isActive 
             ? 'bg-accent/80 text-accent-foreground' 
             : 'text-muted-foreground',
-          collapsed ? 'justify-center' : 'w-full',
+          collapsed ? 'justify-center px-2' : 'w-full',
           isFooter && 'text-sm'
         )}
       >
@@ -76,7 +76,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       style={{ backgroundColor: '#F4F4F5' }}
     >
       {/* Header with Logo */}
-      <div className="p-4 flex items-center justify-between">
+      <div className={cn("p-4 flex items-center", collapsed ? "justify-center" : "justify-between")}>
         {collapsed ? (
           <img 
             src="/lovable-uploads/1b27103c-6057-451b-8485-9e865676ad9e.png" 
@@ -93,7 +93,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       </div>
 
       {/* User Section */}
-      <div className="px-4 pb-4">
+      <div className={cn("px-4 pb-4", collapsed && "px-2")}>
         {collapsed ? (
           <div className="flex justify-center">
             <Avatar className="h-8 w-8">
@@ -144,7 +144,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex flex-col space-y-1 px-2 py-2 flex-1">
+      <nav className={cn("flex flex-col space-y-1 py-2 flex-1", collapsed ? "px-1" : "px-2")}>
         {mainNavItems.map((item) => (
           <NavLink
             key={item.to}
@@ -156,7 +156,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       </nav>
       
       {/* Footer Navigation */}
-      <div className="px-2 py-4 space-y-1">
+      <div className={cn("py-4 space-y-1", collapsed ? "px-1" : "px-2")}>
         {footerItems.map((item) => (
           <NavLink
             key={item.to}
