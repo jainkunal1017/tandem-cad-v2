@@ -32,7 +32,7 @@ const DashboardLayout = () => {
   }, [isMobile]);
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-sidebar">
       {/* Desktop Sidebar */}
       {!isMobile && (
         <DashboardSidebar collapsed={collapsed} onToggle={toggleSidebar} />
@@ -42,7 +42,7 @@ const DashboardLayout = () => {
       {isMobile && (
         <>
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetContent side="left" className="p-0 w-64">
+            <SheetContent side="left" className="p-0 w-64 bg-sidebar">
               <DashboardSidebar collapsed={false} onToggle={() => setMobileMenuOpen(false)} />
             </SheetContent>
           </Sheet>
@@ -61,12 +61,19 @@ const DashboardLayout = () => {
         </>
       )}
       
-      {/* Main Content Area */}
+      {/* Main Content Area - Card Layout */}
       <div className="flex flex-col flex-1 overflow-hidden">
+        {/* Top Bar */}
         <DashboardTopBar />
-        <main className="flex-1 overflow-auto">
-          <Outlet />
-        </main>
+        
+        {/* Main Content Card */}
+        <div className="flex-1 p-6 overflow-auto">
+          <div className="bg-background rounded-lg shadow-sm border border-border h-full overflow-auto">
+            <main className="p-6">
+              <Outlet />
+            </main>
+          </div>
+        </div>
       </div>
     </div>
   );

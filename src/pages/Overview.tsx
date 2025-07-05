@@ -4,7 +4,7 @@ import ActivityTable from '@/components/dashboard/ActivityTable';
 
 const Overview = () => {
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto space-y-8">
       <OverviewHeroCard />
       <ActivityTable />
     </div>

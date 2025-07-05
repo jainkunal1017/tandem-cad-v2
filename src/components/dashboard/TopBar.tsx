@@ -8,12 +8,16 @@ const DashboardTopBar = () => {
 
   return (
     <>
-      <div className="h-14 border-b border-border bg-background flex items-center justify-end px-6">
+      <div className="h-14 bg-sidebar flex items-center justify-between px-6">
+        {/* Left side placeholder for potential future content */}
+        <div></div>
+        
+        {/* Right side with the connect button */}
         <Button 
           onClick={() => setIsConnectModalOpen(true)}
-          className="bg-primary text-primary-foreground hover:bg-primary/90"
+          className="bg-green-600 text-white hover:bg-green-700"
         >
-          Connect PDM / File Manager
+          Things to do
         </Button>
       </div>
       
