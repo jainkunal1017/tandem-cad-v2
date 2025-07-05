@@ -7,7 +7,6 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FileText, Wrench, GitBranch, Settings, RefreshCw } from 'lucide-react';
 
@@ -62,60 +61,59 @@ const ActivityTable = () => {
   ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">Activity history</CardTitle>
+    <div className="space-y-6">
+      <div>
+        <h2 className="text-xl font-semibold mb-2">Activity history</h2>
         <p className="text-sm text-muted-foreground">
           Showing history of updates made on your docs
         </p>
-      </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[200px]">Activity</TableHead>
-              <TableHead className="w-[120px]">Status</TableHead>
-              <TableHead>Changes</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {activities.map((activity) => {
-              const IconComponent = activity.icon;
-              return (
-                <TableRow key={activity.id}>
-                  <TableCell>
-                    <div className="flex items-start gap-3">
-                      <div className="p-2 bg-muted rounded-lg">
-                        <IconComponent className="w-4 h-4 text-muted-foreground" />
-                      </div>
-                      <div>
-                        <div className="font-medium text-sm">{activity.type}</div>
-                        <div className="text-sm text-muted-foreground">
-                          {activity.timestamp}
-                        </div>
+      </div>
+      
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[200px]">Activity</TableHead>
+            <TableHead className="w-[120px]">Status</TableHead>
+            <TableHead>Changes</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {activities.map((activity) => {
+            const IconComponent = activity.icon;
+            return (
+              <TableRow key={activity.id}>
+                <TableCell>
+                  <div className="flex items-start gap-3">
+                    <div className="p-2 bg-muted rounded-lg">
+                      <IconComponent className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <div>
+                      <div className="font-medium text-sm">{activity.type}</div>
+                      <div className="text-sm text-muted-foreground">
+                        {activity.timestamp}
                       </div>
                     </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge 
-                      variant="secondary" 
-                      className="bg-green-50 text-green-700 border-green-200"
-                    >
-                      {activity.status}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-sm text-muted-foreground">
-                      {activity.changes}
-                    </div>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </CardContent>
-    </Card>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <Badge 
+                    variant="secondary" 
+                    className="bg-green-50 text-green-700 border-green-200"
+                  >
+                    {activity.status}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <div className="text-sm text-muted-foreground">
+                    {activity.changes}
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

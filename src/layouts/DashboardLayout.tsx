@@ -68,8 +68,8 @@ const DashboardLayout = () => {
         
         {/* Main Content Card */}
         <div className="flex-1 p-6 overflow-auto">
-          <div className="bg-background rounded-lg shadow-sm border border-border h-full overflow-auto">
-            <main className="p-6">
+          <div className="bg-background rounded-2xl shadow-sm border border-border h-full overflow-auto">
+            <main className="p-8">
               <Outlet />
             </main>
           </div>
