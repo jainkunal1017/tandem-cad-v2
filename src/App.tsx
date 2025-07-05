@@ -2,59 +2,92 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from 'next-themes';
-import Index from './pages/Index';
-import Overview from './pages/Overview';
-import DocStudio from './pages/DocStudio';
-import LandingPage from './pages/LandingPage';
-import PartsListPage from './pages/PartsListPage';
-import ProjectDashboard from './pages/ProjectDashboard';
-import PasswordAuth from './pages/PasswordAuth';
-import NotFound from './pages/NotFound';
-import DashboardLayout from './layouts/DashboardLayout';
-import MainLayout from './layouts/MainLayout';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NotFound from "./pages/NotFound";
+import ProjectDashboard from "./pages/ProjectDashboard";
+import PartsListPage from "./pages/PartsListPage";
+import MainLayout from "./layouts/MainLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
+import LandingPage from "./pages/LandingPage";
+import PasswordAuth from "./pages/PasswordAuth";
+import Overview from "./pages/Overview";
+import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
 
-function App() {
+// Protected route wrapper component
+const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
+  const isAuthenticated = localStorage.getItem('tandem-auth') === 'true';
+  
+  if (!isAuthenticated) {
+    return <Navigate to="/auth" replace />;
+  }
+  
+  return children;
+};
+
+const App = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  
+  useEffect(() => {
+    // Check if user is authenticated on app load
+    const authStatus = localStorage.getItem('tandem-auth') === 'true';
+    setIsAuthenticated(authStatus);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <TooltipProvider>
-          <Router>
-            <Routes>
-              {/* Landing and Auth Routes */}
-              <Route path="/landing" element={<LandingPage />} />
-              <Route path="/auth" element={<PasswordAuth />} />
-              
-              {/* Dashboard Routes */}
-              <Route path="/dashboard" element={<DashboardLayout />}>
-                <Route index element={<Overview />} />
-                <Route path="overview" element={<Overview />} />
-              </Route>
-              
-              <Route path="/editor" element={<DashboardLayout />}>
-                <Route index element={<DocStudio />} />
-              </Route>
-              
-              {/* Main Layout Routes */}
-              <Route path="/" element={<MainLayout />}>
-                <Route index element={<Index />} />
-                <Route path="parts" element={<PartsListPage />} />
-                <Route path="project/:id" element={<ProjectDashboard />} />
-              </Route>
-              
-              {/* 404 Route */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-          <Toaster />
-          <Sonner />
-        </TooltipProvider>
-      </ThemeProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            {/* Landing page as default route */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<PasswordAuth />} />
+            <Route path="/landing" element={<Navigate to="/" replace />} />
+            
+            {/* New Dashboard Layout */}
+            <Route element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="/dashboard" element={<Overview />} />
+              <Route path="/editor" element={<div className="p-6">Editor Page (Coming Soon)</div>} />
+              <Route path="/settings" element={<div className="p-6">Settings Page (Coming Soon)</div>} />
+              <Route path="/documentation" element={<div className="p-6">Documentation Page (Coming Soon)</div>} />
+              <Route path="/invite" element={<div className="p-6">Invite Members Page (Coming Soon)</div>} />
+              <Route path="/support" element={<div className="p-6">Support Page (Coming Soon)</div>} />
+            </Route>
+            
+            {/* Legacy routes - keeping for backward compatibility */}
+            <Route element={
+              <ProtectedRoute>
+                <MainLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="/legacy-dashboard" element={<ProjectDashboard />} />
+              <Route path="/projects/:projectId" element={<PartsListPage />} />
+              {/* Old placeholder routes */}
+              <Route path="/shared" element={<div className="p-4">Shared with Me Page</div>} />
+              <Route path="/activity" element={<div className="p-4">Recent Activity Page</div>} />
+              <Route path="/approvals" element={<div className="p-4">Approvals Page</div>} />
+              <Route path="/favorites" element={<div className="p-4">Favorites Page</div>} />
+              <Route path="/archive" element={<div className="p-4">Archive Page</div>} />
+              <Route path="/notifications" element={<div className="p-4">Notifications Page</div>} />
+              <Route path="/help" element={<div className="p-4">Help & Feedback Page</div>} />
+            </Route>
+            
+            {/* Redirect /app to /dashboard */}
+            <Route path="/app" element={<Navigate to="/dashboard" replace />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
     </QueryClientProvider>
   );
-}
+};
 
 export default App;
