@@ -21,9 +21,12 @@ const FileBrowser = () => {
     level?: number, 
     iconColor?: string 
   }) => (
-    <div className={`flex items-center gap-2 px-3 py-1 text-sm hover:bg-gray-50 cursor-pointer`} style={{ paddingLeft: `${12 + level * 16}px` }}>
-      <Icon className={`h-4 w-4 ${iconColor}`} strokeWidth={1.5} />
-      <span className="text-gray-700 text-sm">{name}</span>
+    <div className={`flex items-center justify-between px-3 py-1 text-sm hover:bg-gray-50 cursor-pointer`} style={{ paddingLeft: `${12 + level * 16}px` }}>
+      <div className="flex items-center gap-2">
+        <Icon className={`h-4 w-4 ${iconColor}`} strokeWidth={1.5} />
+        <span className="text-gray-700 text-sm">{name}</span>
+      </div>
+      <ChevronRight className="h-4 w-4 text-gray-400 mr-2" strokeWidth={1.5} />
     </div>
   );
 
