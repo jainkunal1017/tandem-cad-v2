@@ -64,7 +64,7 @@ const DashboardLayout = () => {
       <div className="flex flex-col flex-1 overflow-hidden">
         {/* Main Content Card - moved to top */}
         <div className="flex-1 p-6 overflow-auto">
-          <div className="bg-background border border-border/20 rounded-2xl h-full overflow-auto">
+          <div className="bg-background border border-gray-300 rounded-2xl h-full overflow-auto">
             <main className="p-8">
               <Outlet />
             </main>
