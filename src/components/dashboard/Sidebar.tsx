@@ -78,41 +78,41 @@ const DashboardSidebar = ({
   return (
     <div 
       className={cn(
-        'transition-all duration-300 ease-in-out flex flex-col h-full bg-[#F4F4F5]',
+        'transition-all duration-300 ease-in-out flex flex-col h-full bg-sidebar border-r border-sidebar-border',
         collapsed ? 'w-16' : 'w-64'
       )}
     >
       {/* User Section */}
-      <div className={cn("px-4 py-4", collapsed && "px-2")}>
+      <div className={cn("px-3 py-3 border-b border-sidebar-border", collapsed && "px-2")}>
         {collapsed ? (
           <div className="flex flex-col items-center gap-2">
-            <Avatar className="h-8 w-8">
+            <Avatar className="h-6 w-6">
               <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-              <AvatarFallback className="bg-green-500 text-white">D</AvatarFallback>
+              <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
             </Avatar>
             <Button 
               variant="ghost" 
               size="icon" 
               onClick={onToggle} 
-              className="h-8 w-8 hover:bg-accent/50"
+              className="h-6 w-6 hover:bg-sidebar-accent"
             >
-              <PanelLeftOpen className="h-4 w-4" />
+              <PanelLeftOpen className="h-3 w-3" />
             </Button>
           </div>
         ) : (
           <div className="flex items-center justify-between">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-auto p-0 hover:bg-accent/50 rounded-lg">
+                <Button variant="ghost" className="h-auto p-0 hover:bg-sidebar-accent rounded-lg">
                   <div className="flex items-center gap-3 p-2">
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="h-6 w-6">
                       <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-                      <AvatarFallback className="bg-green-500 text-white">D</AvatarFallback>
+                      <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 text-left">
-                      <div className="text-sm font-medium">dreamslab</div>
+                      <div className="text-sm font-medium text-sidebar-foreground">dreamslab</div>
                     </div>
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                    <ChevronDown className="h-4 w-4 text-sidebar-foreground/70" />
                   </div>
                 </Button>
               </DropdownMenuTrigger>
@@ -133,9 +133,9 @@ const DashboardSidebar = ({
               variant="ghost" 
               size="icon" 
               onClick={onToggle} 
-              className="h-8 w-8 hover:bg-accent/50"
+              className="h-6 w-6 hover:bg-sidebar-accent"
             >
-              <PanelLeftClose className="h-4 w-4" />
+              <PanelLeftClose className="h-3 w-3" />
             </Button>
           </div>
         )}
@@ -149,7 +149,7 @@ const DashboardSidebar = ({
       </nav>
       
       {/* Footer Navigation */}
-      <div className={cn("py-4 space-y-1", collapsed ? "px-1" : "px-2")}>
+      <div className={cn("py-4 space-y-1 border-t border-sidebar-border", collapsed ? "px-1" : "px-2")}>
         {footerItems.map(item => (
           <NavLink key={item.to} to={item.to} icon={item.icon} label={item.label} isFooter={true} />
         ))}
