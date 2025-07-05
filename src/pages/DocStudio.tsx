@@ -4,14 +4,14 @@ import ActionCards from '@/components/dashboard/ActionCards';
 
 const DocStudio = () => {
   return (
-    <div className="h-full flex">
+    <div className="h-full flex bg-white">
       {/* File Browser - Left Side */}
-      <div className="w-64 border-r border-gray-200 bg-gray-50">
+      <div className="w-64 border-r border-gray-200 bg-white">
         <FileBrowser />
       </div>
       
       {/* Main Content - Right Side */}
-      <div className="flex-1 p-8 bg-white">
+      <div className="flex-1 bg-white">
         <ActionCards />
       </div>
     </div>
