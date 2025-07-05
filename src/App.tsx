@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +12,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import LandingPage from "./pages/LandingPage";
 import PasswordAuth from "./pages/PasswordAuth";
 import Overview from "./pages/Overview";
+import DocStudio from "./pages/DocStudio";
 import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
@@ -54,7 +56,7 @@ const App = () => {
               </ProtectedRoute>
             }>
               <Route path="/dashboard" element={<Overview />} />
-              <Route path="/editor" element={<div className="p-6">Editor Page (Coming Soon)</div>} />
+              <Route path="/editor" element={<DocStudio />} />
               <Route path="/settings" element={<div className="p-6">Settings Page (Coming Soon)</div>} />
               <Route path="/documentation" element={<div className="p-6">Documentation Page (Coming Soon)</div>} />
               <Route path="/invite" element={<div className="p-6">Invite Members Page (Coming Soon)</div>} />
