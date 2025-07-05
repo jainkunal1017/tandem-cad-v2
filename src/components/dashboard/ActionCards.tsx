@@ -1,5 +1,6 @@
+
 import { Card, CardContent } from '@/components/ui/card';
-import { FileText, PenTool } from 'lucide-react';
+import { Brain, PenTool } from 'lucide-react';
 
 const ActionCards = () => {
   return (
@@ -37,7 +38,7 @@ const ActionCards = () => {
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center gap-3">
                   <div className="p-2 bg-gray-100 rounded">
-                    <FileText className="h-5 w-5 text-gray-600" strokeWidth={1.5} />
+                    <Brain className="h-5 w-5 text-gray-600" strokeWidth={1.5} />
                   </div>
                   <div>
                     <h3 className="text-base font-medium text-gray-900">Tandem Assistant</h3>

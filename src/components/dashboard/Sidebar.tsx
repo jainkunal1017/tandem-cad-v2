@@ -1,5 +1,4 @@
-
-import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen, LogOut, Brain } from 'lucide-react';
+import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -27,10 +26,6 @@ const DashboardSidebar = ({
     to: '/editor',
     icon: Edit3,
     label: 'Doc Studio'
-  }, {
-    to: '/assistant',
-    icon: Brain,
-    label: 'Tandem Assistant'
   }, {
     to: '/settings',
     icon: Settings,
