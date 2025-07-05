@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import DashboardSidebar from '@/components/dashboard/Sidebar';
-import DashboardTopBar from '@/components/dashboard/TopBar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -63,10 +62,7 @@ const DashboardLayout = () => {
       
       {/* Main Content Area */}
       <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Top Bar */}
-        <DashboardTopBar />
-        
-        {/* Main Content Card */}
+        {/* Main Content Card - moved to top */}
         <div className="flex-1 p-6 overflow-auto">
           <div className="bg-background rounded-2xl h-full overflow-auto">
             <main className="p-8">

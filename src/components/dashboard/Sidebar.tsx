@@ -61,12 +61,12 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
   return (
     <div 
       className={cn(
-        'border-r border-border bg-sidebar transition-all duration-300 ease-in-out flex flex-col h-full',
+        'bg-sidebar transition-all duration-300 ease-in-out flex flex-col h-full',
         collapsed ? 'w-16' : 'w-64'
       )}
     >
       {/* Header */}
-      <div className="p-4 flex items-center justify-between border-b border-border">
+      <div className="p-4 flex items-center justify-between">
         {collapsed ? (
           <img 
             src="/lovable-uploads/1b27103c-6057-451b-8485-9e865676ad9e.png" 
@@ -95,7 +95,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       </nav>
       
       {/* Footer Navigation */}
-      <div className="border-t border-border px-2 py-4 space-y-1">
+      <div className="px-2 py-4 space-y-1">
         {footerItems.map((item) => (
           <NavLink
             key={item.to}
