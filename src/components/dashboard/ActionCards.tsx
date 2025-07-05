@@ -38,12 +38,10 @@ const ActionCards = () => {
                     <FileText className="h-5 w-5 text-gray-600" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="text-base font-medium text-gray-900">Create a Tandem Doc</h3>
+                    <h3 className="text-base font-medium text-gray-900">Tandem Assistant</h3>
                   </div>
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  Select files to create Diffs, Contextual Design Docs.
-                </p>
+                <p className="text-sm text-gray-600 leading-relaxed">Chat with Tandem about your designs and select files to create Diffs, Contextual Design Docs.</p>
               </div>
             </CardContent>
           </Card>
