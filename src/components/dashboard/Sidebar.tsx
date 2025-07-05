@@ -1,9 +1,10 @@
-import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen, LogOut } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { toast } from '@/hooks/use-toast';
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -15,6 +16,7 @@ const DashboardSidebar = ({
   onToggle
 }: DashboardSidebarProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
 
   const mainNavItems = [{
     to: '/dashboard',
@@ -43,6 +45,17 @@ const DashboardSidebar = ({
     icon: LifeBuoy,
     label: 'Support'
   }];
+
+  const handleLogout = () => {
+    // Clear authentication
+    localStorage.removeItem('tandem-auth');
+    
+    toast({
+      title: "Logged out successfully",
+      description: "You have been logged out of your account",
+    });
+    navigate("/");
+  };
 
   const NavLink = ({
     to,
@@ -152,6 +165,27 @@ const DashboardSidebar = ({
         {footerItems.map(item => (
           <NavLink key={item.to} to={item.to} icon={item.icon} label={item.label} isFooter={true} />
         ))}
+        
+        {/* Logout Button */}
+        {collapsed ? (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleLogout}
+            className="h-10 w-10 text-muted-foreground hover:text-accent-foreground hover:bg-accent/50"
+          >
+            <LogOut className="h-5 w-5" />
+          </Button>
+        ) : (
+          <Button
+            variant="ghost"
+            onClick={handleLogout}
+            className="w-full justify-start text-muted-foreground hover:text-accent-foreground hover:bg-accent/50 px-3 py-2 h-auto font-medium text-sm"
+          >
+            <LogOut className="h-5 w-5 shrink-0 mr-3" />
+            <span className="truncate">Log out</span>
+          </Button>
+        )}
       </div>
     </div>
   );
