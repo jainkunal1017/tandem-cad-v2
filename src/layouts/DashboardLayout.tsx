@@ -31,7 +31,7 @@ const DashboardLayout = () => {
   }, [isMobile]);
 
   return (
-    <div className="flex h-screen bg-sidebar">
+    <div className="flex h-screen" style={{ backgroundColor: '#F4F4F5' }}>
       {/* Desktop Sidebar */}
       {!isMobile && (
         <DashboardSidebar collapsed={collapsed} onToggle={toggleSidebar} />
