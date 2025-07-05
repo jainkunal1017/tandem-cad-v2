@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tandem</title>
+    <meta name="description" content="Design History On Autopilot" />
+    <meta name="author" content="Tandem Labs" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/lovable-uploads/8e72879a-270b-4ecc-a5c9-a19acc16217f.png" type="image/png">
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://tandemai.io">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tandem">
+    <meta property="og:description" content="Design History On Autopilot">
+    <meta property="og:image" content="/lovable-uploads/bc95c9da-5321-45c2-971f-cfd7ef79f1e6.png">
+    <meta property="og:image:alt" content="Tandem Logo">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="tandemai.io">
+    <meta property="twitter:url" content="https://tandemai.io">
+    <meta name="twitter:title" content="Tandem">
+    <meta name="twitter:description" content="Design History On Autopilot">
+    <meta name="twitter:image" content="/lovable-uploads/bc95c9da-5321-45c2-971f-cfd7ef79f1e6.png">
+    <meta name="twitter:image:alt" content="Tandem Logo">
+    
+    <!-- Apple specific meta tags for iMessage previews -->
+    <meta name="apple-mobile-web-app-title" content="Tandem">
+    <link rel="apple-touch-icon" href="/lovable-uploads/8e72879a-270b-4ecc-a5c9-a19acc16217f.png">
+    
+    <!-- Cal.com initialization script - proper initialization -->
+    <script type="text/javascript">
+      (function (C, A, L) { 
+        let p = function (a, ar) { a.q.push(ar); }; 
+        let d = C.document; 
+        C.Cal = C.Cal || function () { 
+          let cal = C.Cal; 
+          let ar = arguments; 
+          if (!cal.loaded) { 
+            cal.ns = {}; 
+            cal.q = cal.q || []; 
+            d.head.appendChild(d.createElement("script")).src = A; 
+            cal.loaded = true; 
+          } 
+          if (ar[0] === L) { 
+            const api = function () { p(api, arguments); }; 
+            const namespace = ar[1]; 
+            api.q = api.q || []; 
+            if(typeof namespace === "string"){
+              cal.ns[namespace] = cal.ns[namespace] || api;
+              p(cal.ns[namespace], ar);
+              p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar); 
+            return;
+          }
+          p(cal, ar); 
+        };
+      })(window, "https://app.cal.com/embed/embed.js", "init");
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

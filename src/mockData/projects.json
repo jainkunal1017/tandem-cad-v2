@@ -1,0 +1,419 @@
+[
+  {
+    "id": "ev-battery-v2",
+    "title": "EV Battery Pack V2",
+    "description": "Next-gen electric vehicle battery pack with improved thermal management",
+    "updatedAt": "2025-04-30T15:12:00Z",
+    "createdAt": "2025-03-15T09:30:00Z",
+    "status": "active",
+    "owner": "Alex Thompson",
+    "tags": ["automotive", "battery", "thermal"],
+    "collaborators": [
+      { "id": "u_alex", "name": "Alex", "avatar": "/avatars/alex.png" },
+      { "id": "u_maya", "name": "Maya", "avatar": "/avatars/maya.png" },
+      { "id": "u_lydia", "name": "Lydia", "avatar": "/avatars/lydia.png" }
+    ],
+    "parts": [
+      {
+        "partNumber": "BP-1234-01",
+        "title": "Battery Housing",
+        "updatedAt": "2025-04-29T13:00:00Z",
+        "difCount": 6,
+        "status": "review",
+        "lastEditedBy": {
+          "id": "u_maya",
+          "name": "Maya",
+          "avatar": "/avatars/maya.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-001",
+            "title": "Edge Fillet Update",
+            "createdAt": "2025-04-29T12:55:00Z",
+            "collaborators": [
+              { "id": "u_ken", "name": "Ken", "avatar": "/avatars/ken.png" },
+              { "id": "u_maya", "name": "Maya", "avatar": "/avatars/maya.png" }
+            ]
+          },
+          {
+            "id": "DIF-002",
+            "title": "Mount Hole Pattern Rev-B",
+            "createdAt": "2025-04-27T09:10:00Z",
+            "collaborators": [
+              { "id": "u_lydia", "name": "Lydia", "avatar": "/avatars/lydia.png" }
+            ]
+          },
+          {
+            "id": "DIF-003",
+            "title": "Material Change to Al-6061",
+            "createdAt": "2025-04-25T14:22:00Z",
+            "collaborators": [
+              { "id": "u_alex", "name": "Alex", "avatar": "/avatars/alex.png" },
+              { "id": "u_maya", "name": "Maya", "avatar": "/avatars/maya.png" }
+            ]
+          }
+        ]
+      },
+      {
+        "partNumber": "BP-1234-02",
+        "title": "Cooling Plate",
+        "updatedAt": "2025-04-27T09:15:00Z",
+        "difCount": 3,
+        "status": "active",
+        "lastEditedBy": {
+          "id": "u_alex",
+          "name": "Alex",
+          "avatar": "/avatars/alex.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-004",
+            "title": "Flow Channel Optimization",
+            "createdAt": "2025-04-27T09:15:00Z",
+            "collaborators": [
+              { "id": "u_alex", "name": "Alex", "avatar": "/avatars/alex.png" }
+            ]
+          },
+          {
+            "id": "DIF-005",
+            "title": "Thermal Simulation Results",
+            "createdAt": "2025-04-25T16:40:00Z",
+            "collaborators": [
+              { "id": "u_alex", "name": "Alex", "avatar": "/avatars/alex.png" },
+              { "id": "u_lydia", "name": "Lydia", "avatar": "/avatars/lydia.png" }
+            ]
+          }
+        ]
+      },
+      {
+        "partNumber": "BP-1234-03",
+        "title": "Cell Module Assembly",
+        "updatedAt": "2025-04-25T14:30:00Z",
+        "difCount": 8,
+        "status": "active",
+        "lastEditedBy": {
+          "id": "u_lydia",
+          "name": "Lydia",
+          "avatar": "/avatars/lydia.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-006",
+            "title": "Cell Spacing Adjustment",
+            "createdAt": "2025-04-25T14:30:00Z",
+            "collaborators": [
+              { "id": "u_lydia", "name": "Lydia", "avatar": "/avatars/lydia.png" }
+            ]
+          },
+          {
+            "id": "DIF-007",
+            "title": "BMS Integration Points",
+            "createdAt": "2025-04-24T11:20:00Z",
+            "collaborators": [
+              { "id": "u_maya", "name": "Maya", "avatar": "/avatars/maya.png" },
+              { "id": "u_ken", "name": "Ken", "avatar": "/avatars/ken.png" }
+            ]
+          },
+          {
+            "id": "DIF-008",
+            "title": "Temperature Sensors Layout",
+            "createdAt": "2025-04-22T09:15:00Z",
+            "collaborators": [
+              { "id": "u_lydia", "name": "Lydia", "avatar": "/avatars/lydia.png" },
+              { "id": "u_alex", "name": "Alex", "avatar": "/avatars/alex.png" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "drone-frame-lightweight",
+    "title": "Lightweight Drone Frame",
+    "description": "Carbon fiber drone frame with optimized weight-to-strength ratio",
+    "updatedAt": "2025-04-28T11:45:00Z",
+    "createdAt": "2025-02-10T14:22:00Z",
+    "status": "active",
+    "owner": "Morgan Chen",
+    "tags": ["aerospace", "carbon-fiber", "weight-reduction"],
+    "collaborators": [
+      { "id": "u_morgan", "name": "Morgan", "avatar": "/avatars/morgan.png" },
+      { "id": "u_james", "name": "James", "avatar": "/avatars/james.png" }
+    ],
+    "parts": [
+      {
+        "partNumber": "DF-7890-01",
+        "title": "Main Frame",
+        "updatedAt": "2025-04-28T11:45:00Z",
+        "difCount": 5,
+        "status": "active",
+        "lastEditedBy": {
+          "id": "u_morgan",
+          "name": "Morgan",
+          "avatar": "/avatars/morgan.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-009",
+            "title": "Carbon Fiber Layer Optimization",
+            "createdAt": "2025-04-28T11:45:00Z",
+            "collaborators": [
+              { "id": "u_morgan", "name": "Morgan", "avatar": "/avatars/morgan.png" }
+            ]
+          },
+          {
+            "id": "DIF-010",
+            "title": "Stiffness Analysis Results",
+            "createdAt": "2025-04-26T15:30:00Z",
+            "collaborators": [
+              { "id": "u_james", "name": "James", "avatar": "/avatars/james.png" },
+              { "id": "u_morgan", "name": "Morgan", "avatar": "/avatars/morgan.png" }
+            ]
+          }
+        ]
+      },
+      {
+        "partNumber": "DF-7890-02",
+        "title": "Motor Mount",
+        "updatedAt": "2025-04-26T16:20:00Z",
+        "difCount": 4,
+        "status": "review",
+        "lastEditedBy": {
+          "id": "u_james",
+          "name": "James",
+          "avatar": "/avatars/james.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-011",
+            "title": "Vibration Dampening Update",
+            "createdAt": "2025-04-26T16:20:00Z",
+            "collaborators": [
+              { "id": "u_james", "name": "James", "avatar": "/avatars/james.png" }
+            ]
+          }
+        ]
+      },
+      {
+        "partNumber": "DF-7890-03",
+        "title": "Camera Gimbal",
+        "updatedAt": "2025-04-24T10:15:00Z",
+        "difCount": 3,
+        "status": "paused",
+        "lastEditedBy": {
+          "id": "u_morgan",
+          "name": "Morgan",
+          "avatar": "/avatars/morgan.png"
+        },
+        "difs": [
+          {
+            "id": "DIF-012",
+            "title": "Bearing Selection Change",
+            "createdAt": "2025-04-24T10:15:00Z",
+            "collaborators": [
+              { "id": "u_morgan", "name": "Morgan", "avatar": "/avatars/morgan.png" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "medical-implant-v3",
+    "title": "Medical Implant V3",
+    "description": "Biocompatible titanium implant with improved osseointegration surface",
+    "updatedAt": "2025-04-25T09:18:00Z",
+    "createdAt": "2025-01-20T10:15:00Z",
+    "status": "active",
+    "owner": "Dr. Sarah Johnson",
+    "tags": ["medical", "implant", "titanium"],
+    "parts": [
+      {
+        "partNumber": "MI-4567-01",
+        "title": "Implant Base",
+        "updatedAt": "2025-04-25T09:18:00Z",
+        "difCount": 12,
+        "status": "active"
+      },
+      {
+        "partNumber": "MI-4567-02",
+        "title": "Surface Treatment",
+        "updatedAt": "2025-04-22T14:30:00Z",
+        "difCount": 9,
+        "status": "active"
+      },
+      {
+        "partNumber": "MI-4567-03",
+        "title": "Attachment Mechanism",
+        "updatedAt": "2025-04-20T11:45:00Z",
+        "difCount": 7,
+        "status": "review"
+      }
+    ]
+  },
+  {
+    "id": "robotic-arm-assembly",
+    "title": "Robotic Arm Assembly",
+    "description": "6-axis robotic arm with enhanced precision for manufacturing applications",
+    "updatedAt": "2025-04-22T16:30:00Z",
+    "createdAt": "2025-02-28T08:45:00Z",
+    "status": "active",
+    "owner": "Robert Lee",
+    "tags": ["robotics", "automation", "precision"],
+    "parts": [
+      {
+        "partNumber": "RA-2345-01",
+        "title": "Base Joint",
+        "updatedAt": "2025-04-22T16:30:00Z",
+        "difCount": 10,
+        "status": "active"
+      },
+      {
+        "partNumber": "RA-2345-02",
+        "title": "Extension Arm",
+        "updatedAt": "2025-04-20T09:15:00Z",
+        "difCount": 8,
+        "status": "active"
+      },
+      {
+        "partNumber": "RA-2345-03",
+        "title": "End Effector",
+        "updatedAt": "2025-04-19T14:45:00Z",
+        "difCount": 6,
+        "status": "review"
+      }
+    ]
+  },
+  {
+    "id": "solar-panel-mount",
+    "title": "Adjustable Solar Panel Mount",
+    "description": "Weather-resistant mounting system with 180° tracking capability",
+    "updatedAt": "2025-04-15T14:20:00Z",
+    "createdAt": "2025-03-05T11:30:00Z",
+    "status": "archived",
+    "owner": "Emily Rodriguez",
+    "tags": ["renewable", "solar", "mounting"],
+    "parts": [
+      {
+        "partNumber": "SP-6789-01",
+        "title": "Base Mount",
+        "updatedAt": "2025-04-15T14:20:00Z", 
+        "difCount": 4,
+        "status": "archived"
+      },
+      {
+        "partNumber": "SP-6789-02",
+        "title": "Tracking Mechanism",
+        "updatedAt": "2025-04-12T10:30:00Z",
+        "difCount": 5,
+        "status": "archived"
+      },
+      {
+        "partNumber": "SP-6789-03",
+        "title": "Panel Attachment",
+        "updatedAt": "2025-04-10T11:15:00Z",
+        "difCount": 3,
+        "status": "archived"
+      }
+    ]
+  },
+  {
+    "id": "hvac-airflow-optimizer",
+    "title": "HVAC Airflow Optimizer",
+    "description": "Energy-efficient air distribution component for commercial HVAC systems",
+    "updatedAt": "2025-04-10T10:05:00Z",
+    "createdAt": "2025-01-15T09:20:00Z",
+    "status": "active",
+    "owner": "Michael Washington",
+    "tags": ["hvac", "energy-efficiency", "airflow"],
+    "parts": [
+      {
+        "partNumber": "HV-3456-01",
+        "title": "Air Diffuser",
+        "updatedAt": "2025-04-10T10:05:00Z",
+        "difCount": 7,
+        "status": "active"
+      },
+      {
+        "partNumber": "HV-3456-02",
+        "title": "Flow Controller",
+        "updatedAt": "2025-04-08T14:20:00Z",
+        "difCount": 5,
+        "status": "paused"
+      },
+      {
+        "partNumber": "HV-3456-03",
+        "title": "Damper Assembly",
+        "updatedAt": "2025-04-05T09:45:00Z",
+        "difCount": 3,
+        "status": "active"
+      }
+    ]
+  },
+  {
+    "id": "electric-skateboard",
+    "title": "Electric Skateboard Drivetrain",
+    "description": "Compact high-torque drivetrain for electric skateboards",
+    "updatedAt": "2025-04-05T17:40:00Z",
+    "createdAt": "2025-02-20T13:15:00Z",
+    "status": "paused",
+    "owner": "Jamie Wilson",
+    "tags": ["transportation", "electric", "recreation"],
+    "parts": [
+      {
+        "partNumber": "ES-5678-01",
+        "title": "Motor Housing",
+        "updatedAt": "2025-04-05T17:40:00Z",
+        "difCount": 4,
+        "status": "paused"
+      },
+      {
+        "partNumber": "ES-5678-02",
+        "title": "Belt Drive System",
+        "updatedAt": "2025-04-03T11:25:00Z",
+        "difCount": 3,
+        "status": "paused"
+      },
+      {
+        "partNumber": "ES-5678-03",
+        "title": "Battery Mount",
+        "updatedAt": "2025-04-01T15:10:00Z",
+        "difCount": 2,
+        "status": "paused"
+      }
+    ]
+  },
+  {
+    "id": "satellite-antenna-array",
+    "title": "Satellite Antenna Array",
+    "description": "Deployable antenna array for low-earth orbit satellite communications",
+    "updatedAt": "2025-03-28T11:25:00Z",
+    "createdAt": "2025-01-10T08:30:00Z",
+    "status": "active",
+    "owner": "Dr. Aisha Patel",
+    "tags": ["space", "communication", "antenna"],
+    "parts": [
+      {
+        "partNumber": "SA-9012-01",
+        "title": "Main Reflector",
+        "updatedAt": "2025-03-28T11:25:00Z",
+        "difCount": 9,
+        "status": "active"
+      },
+      {
+        "partNumber": "SA-9012-02",
+        "title": "Feed System",
+        "updatedAt": "2025-03-25T14:40:00Z",
+        "difCount": 7,
+        "status": "active"
+      },
+      {
+        "partNumber": "SA-9012-03",
+        "title": "Deployment Mechanism",
+        "updatedAt": "2025-03-22T09:15:00Z",
+        "difCount": 6,
+        "status": "review"
+      }
+    ]
+  }
+]
