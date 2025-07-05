@@ -86,9 +86,9 @@ const DashboardSidebar = ({
       <div className={cn("px-4 py-4", collapsed && "px-2")}>
         {collapsed ? (
           <div className="flex flex-col items-center gap-2">
-            <Avatar className="h-8 w-8">
+            <Avatar className="h-6 w-6">
               <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-              <AvatarFallback className="bg-green-500 text-white">D</AvatarFallback>
+              <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
             </Avatar>
             <Button 
               variant="ghost" 
@@ -105,9 +105,9 @@ const DashboardSidebar = ({
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-auto p-0 hover:bg-accent/50 rounded-lg">
                   <div className="flex items-center gap-3 p-2">
-                    <Avatar className="h-8 w-8">
+                    <Avatar className="h-6 w-6">
                       <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-                      <AvatarFallback className="bg-green-500 text-white">D</AvatarFallback>
+                      <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 text-left">
                       <div className="text-sm font-medium">dreamslab</div>
