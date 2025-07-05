@@ -1,12 +1,16 @@
 
-import DocStudioHeroCard from '@/components/dashboard/DocStudioHeroCard';
-import FilesTable from '@/components/dashboard/FilesTable';
+import FileBrowser from '@/components/dashboard/FileBrowser';
+import ActionCards from '@/components/dashboard/ActionCards';
 
 const DocStudio = () => {
   return (
-    <div className="max-w-7xl mx-auto space-y-8">
-      <DocStudioHeroCard />
-      <FilesTable />
+    <div className="flex h-full">
+      <div className="w-64 border-r border-gray-200 dark:border-gray-700">
+        <FileBrowser />
+      </div>
+      <div className="flex-1 p-8">
+        <ActionCards />
+      </div>
     </div>
   );
 };
