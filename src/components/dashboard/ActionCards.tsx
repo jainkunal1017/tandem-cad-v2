@@ -14,7 +14,7 @@ const ActionCards = () => {
       <div className="flex-1 flex items-center justify-center p-6">
         <div className="grid grid-cols-2 gap-6 max-w-2xl w-full">
           {/* Design Session Card */}
-          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white">
+          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl">
             <CardContent className="p-6">
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center gap-3">
@@ -33,7 +33,7 @@ const ActionCards = () => {
           </Card>
 
           {/* Create a Tandem Doc Card */}
-          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white">
+          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl">
             <CardContent className="p-6">
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center gap-3">
