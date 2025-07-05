@@ -110,7 +110,7 @@ const FileBrowser = () => {
   return (
     <div className="h-full bg-white">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between h-16">
         <h2 className="text-lg font-medium text-gray-900">Files</h2>
         <div className="flex items-center gap-1">
           {/* Search Files */}

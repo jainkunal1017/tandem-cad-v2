@@ -1,9 +1,11 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { FileText, PenTool } from 'lucide-react';
+
 const ActionCards = () => {
-  return <div className="flex-1 flex flex-col bg-white">
+  return (
+    <div className="flex-1 flex flex-col bg-white">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-white">
+      <div className="px-6 py-4 border-b border-gray-200 bg-white h-16 flex items-center">
         <h1 className="text-lg font-medium text-gray-900">Doc Studio</h1>
       </div>
       
@@ -47,6 +49,8 @@ const ActionCards = () => {
           </Card>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default ActionCards;
