@@ -53,9 +53,9 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white relative">
+    <div className="flex-1 flex flex-col bg-white">
       {/* Header */}
-      <div className="px-6 py-4 bg-white h-16 flex items-center gap-3">
+      <div className="px-6 py-4 border-b border-gray-200 bg-white h-16 flex items-center gap-3">
         <Button 
           variant="ghost" 
           size="icon" 
@@ -68,10 +68,10 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
       </div>
       
       {/* Content Area */}
-      <div className="flex-1 flex flex-col pb-20">
+      <div className="flex-1 flex flex-col">
         {/* Selected Files Info */}
         {selectedFiles.length > 0 && (
-          <div className="px-6 py-3 bg-blue-50">
+          <div className="px-6 py-3 bg-blue-50 border-b border-blue-100">
             <p className="text-sm text-blue-700">
               {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected for analysis
             </p>
@@ -110,24 +110,21 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
             </div>
           )}
         </div>
-      </div>
 
-      {/* Fixed Input Bar at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gray-50 px-6 py-4">
-        <div className="flex gap-3 items-center">
-          <Input
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Start chatting with your technical files."
-            className="flex-1 bg-white"
-          />
-          <Button 
-            onClick={handleSendMessage} 
-            className="bg-gray-600 hover:bg-gray-700 text-white px-6"
-          >
-            Submit
-          </Button>
+        {/* Input Area */}
+        <div className="border-t border-gray-200 p-4">
+          <div className="flex gap-2">
+            <Input
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              onKeyPress={handleKeyPress}
+              placeholder="Ask about your technical files..."
+              className="flex-1"
+            />
+            <Button onClick={handleSendMessage} size="icon">
+              <Send className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
