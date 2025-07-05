@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,8 +7,10 @@ import NotFound from "./pages/NotFound";
 import ProjectDashboard from "./pages/ProjectDashboard";
 import PartsListPage from "./pages/PartsListPage";
 import MainLayout from "./layouts/MainLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 import LandingPage from "./pages/LandingPage";
 import PasswordAuth from "./pages/PasswordAuth";
+import Overview from "./pages/Overview";
 import { useEffect, useState } from "react";
 
 const queryClient = new QueryClient();
@@ -45,23 +46,39 @@ const App = () => {
             <Route path="/" element={<LandingPage />} />
             <Route path="/auth" element={<PasswordAuth />} />
             <Route path="/landing" element={<Navigate to="/" replace />} />
+            
+            {/* New Dashboard Layout */}
+            <Route element={
+              <ProtectedRoute>
+                <DashboardLayout />
+              </ProtectedRoute>
+            }>
+              <Route path="/dashboard" element={<Overview />} />
+              <Route path="/editor" element={<div className="p-6">Editor Page (Coming Soon)</div>} />
+              <Route path="/settings" element={<div className="p-6">Settings Page (Coming Soon)</div>} />
+              <Route path="/documentation" element={<div className="p-6">Documentation Page (Coming Soon)</div>} />
+              <Route path="/invite" element={<div className="p-6">Invite Members Page (Coming Soon)</div>} />
+              <Route path="/support" element={<div className="p-6">Support Page (Coming Soon)</div>} />
+            </Route>
+            
+            {/* Legacy routes - keeping for backward compatibility */}
             <Route element={
               <ProtectedRoute>
                 <MainLayout />
               </ProtectedRoute>
             }>
-              <Route path="/dashboard" element={<ProjectDashboard />} />
+              <Route path="/legacy-dashboard" element={<ProjectDashboard />} />
               <Route path="/projects/:projectId" element={<PartsListPage />} />
-              {/* Placeholder routes for sidebar navigation */}
+              {/* Old placeholder routes */}
               <Route path="/shared" element={<div className="p-4">Shared with Me Page</div>} />
               <Route path="/activity" element={<div className="p-4">Recent Activity Page</div>} />
               <Route path="/approvals" element={<div className="p-4">Approvals Page</div>} />
               <Route path="/favorites" element={<div className="p-4">Favorites Page</div>} />
               <Route path="/archive" element={<div className="p-4">Archive Page</div>} />
               <Route path="/notifications" element={<div className="p-4">Notifications Page</div>} />
-              <Route path="/settings" element={<div className="p-4">Settings Page</div>} />
               <Route path="/help" element={<div className="p-4">Help & Feedback Page</div>} />
             </Route>
+            
             {/* Redirect /app to /dashboard */}
             <Route path="/app" element={<Navigate to="/dashboard" replace />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
