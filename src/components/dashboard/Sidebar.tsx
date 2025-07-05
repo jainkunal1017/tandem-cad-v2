@@ -61,9 +61,10 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
   return (
     <div 
       className={cn(
-        'bg-sidebar transition-all duration-300 ease-in-out flex flex-col h-full',
+        'transition-all duration-300 ease-in-out flex flex-col h-full',
         collapsed ? 'w-16' : 'w-64'
       )}
+      style={{ backgroundColor: '#F4F4F5' }}
     >
       {/* Header */}
       <div className="p-4 flex items-center justify-between">
