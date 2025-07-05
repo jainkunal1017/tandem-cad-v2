@@ -2,7 +2,11 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Brain, PenTool } from 'lucide-react';
 
-const ActionCards = () => {
+interface ActionCardsProps {
+  onTandemAssistantClick: () => void;
+}
+
+const ActionCards = ({ onTandemAssistantClick }: ActionCardsProps) => {
   return (
     <div className="flex-1 flex flex-col bg-white">
       {/* Header */}
@@ -33,7 +37,10 @@ const ActionCards = () => {
           </Card>
 
           {/* Create a Tandem Doc Card */}
-          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl">
+          <Card 
+            className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl"
+            onClick={onTandemAssistantClick}
+          >
             <CardContent className="p-6">
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center gap-3">

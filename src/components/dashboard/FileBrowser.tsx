@@ -4,9 +4,17 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Checkbox } from '@/components/ui/checkbox';
 import FileUploadModal from './FileUploadModal';
+import { DocStudioMode } from '@/pages/DocStudio';
 
-const FileBrowser = () => {
+interface FileBrowserProps {
+  mode?: DocStudioMode;
+  selectedFiles?: string[];
+  onFileSelection?: (fileIds: string[]) => void;
+}
+
+const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: FileBrowserProps) => {
   const [expandedFolders, setExpandedFolders] = useState<Set<string>>(new Set());
   const [searchOpen, setSearchOpen] = useState(false);
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
@@ -19,6 +27,24 @@ const FileBrowser = () => {
   ]);
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
+
+  // Mock file data organized by categories
+  const fileCategories = {
+    'Parts & Assemblies': [
+      { id: 'battery-housing.stp', name: 'battery-housing.stp', icon: FileText, iconColor: 'text-blue-500' },
+      { id: 'cooling-plate-v2.sldprt', name: 'cooling-plate-v2.sldprt', icon: FileText, iconColor: 'text-blue-500' },
+      { id: 'cell-module-assembly.asm', name: 'cell-module-assembly.asm', icon: FileText, iconColor: 'text-blue-500' }
+    ],
+    'Context Files': [
+      { id: 'thermal-requirements.pdf', name: 'thermal-requirements.pdf', icon: FileText, iconColor: 'text-red-500' },
+      { id: 'material-specifications.docx', name: 'material-specifications.docx', icon: FileText, iconColor: 'text-blue-600' }
+    ],
+    'CAD Transcript': [
+      { id: 'housing-edit-session.swp', name: 'housing-edit-session.swp', icon: Code, iconColor: 'text-green-500' },
+      { id: 'assembly-changes.vba', name: 'assembly-changes.vba', icon: Code, iconColor: 'text-purple-500' },
+      { id: 'design-history.csv', name: 'design-history.csv', icon: File, iconColor: 'text-orange-500' }
+    ]
+  };
 
   const toggleFolder = (folderId: string) => {
     const newExpanded = new Set(expandedFolders);
@@ -47,18 +73,42 @@ const FileBrowser = () => {
     setNewFolderName('');
   };
 
-  const FileItem = ({ icon: Icon, name, level = 0, iconColor = "text-gray-500" }: { 
+  const handleFileToggle = (fileId: string) => {
+    if (!onFileSelection) return;
+    
+    const newSelected = selectedFiles.includes(fileId)
+      ? selectedFiles.filter(id => id !== fileId)
+      : [...selectedFiles, fileId];
+    
+    onFileSelection(newSelected);
+  };
+
+  const FileItem = ({ 
+    icon: Icon, 
+    name, 
+    level = 0, 
+    iconColor = "text-gray-500",
+    fileId 
+  }: { 
     icon: any, 
     name: string, 
     level?: number, 
-    iconColor?: string 
+    iconColor?: string,
+    fileId?: string
   }) => (
     <div className={`flex items-center justify-between px-3 py-1 text-sm hover:bg-gray-50 cursor-pointer`} style={{ paddingLeft: `${12 + level * 16}px` }}>
       <div className="flex items-center gap-2">
+        {mode === 'assistant' && fileId && (
+          <Checkbox
+            checked={selectedFiles.includes(fileId)}
+            onCheckedChange={() => handleFileToggle(fileId)}
+            className="mr-1"
+          />
+        )}
         <Icon className={`h-4 w-4 ${iconColor}`} strokeWidth={1.5} />
         <span className="text-gray-700 text-sm">{name}</span>
       </div>
-      <ChevronRight className="h-4 w-4 text-gray-400 mr-2" strokeWidth={1.5} />
+      {mode === 'default' && <ChevronRight className="h-4 w-4 text-gray-400 mr-2" strokeWidth={1.5} />}
     </div>
   );
 
@@ -112,59 +162,86 @@ const FileBrowser = () => {
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 flex items-center justify-between h-16">
         <h2 className="text-lg font-medium text-gray-900">Files</h2>
-        <div className="flex items-center gap-1">
-          {/* Search Files */}
-          <Popover open={searchOpen} onOpenChange={setSearchOpen}>
-            <PopoverTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <Search className="h-4 w-4" strokeWidth={1.5} />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-80 p-0" align="end">
-              <Command>
-                <CommandInput placeholder="Search files..." />
-                <CommandList>
-                  <CommandEmpty>No files found.</CommandEmpty>
-                  <CommandGroup heading="Files">
-                    {allFiles.map((file) => (
-                      <CommandItem key={file} onSelect={() => setSearchOpen(false)}>
-                        <FileText className="mr-2 h-4 w-4" />
-                        <span>{file}</span>
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+        {mode === 'default' && (
+          <div className="flex items-center gap-1">
+            {/* Search Files */}
+            <Popover open={searchOpen} onOpenChange={setSearchOpen}>
+              <PopoverTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8">
+                  <Search className="h-4 w-4" strokeWidth={1.5} />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80 p-0" align="end">
+                <Command>
+                  <CommandInput placeholder="Search files..." />
+                  <CommandList>
+                    <CommandEmpty>No files found.</CommandEmpty>
+                    <CommandGroup heading="Files">
+                      {allFiles.map((file) => (
+                        <CommandItem key={file} onSelect={() => setSearchOpen(false)}>
+                          <FileText className="mr-2 h-4 w-4" />
+                          <span>{file}</span>
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </PopoverContent>
+            </Popover>
 
-          {/* Create New Folder */}
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCreateFolder}>
-            <FolderPlus className="h-4 w-4" strokeWidth={1.5} />
-          </Button>
+            {/* Create New Folder */}
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={handleCreateFolder}>
+              <FolderPlus className="h-4 w-4" strokeWidth={1.5} />
+            </Button>
 
-          {/* Upload Files */}
-          <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setUploadModalOpen(true)}>
-            <Upload className="h-4 w-4" strokeWidth={1.5} />
-          </Button>
-        </div>
+            {/* Upload Files */}
+            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => setUploadModalOpen(true)}>
+              <Upload className="h-4 w-4" strokeWidth={1.5} />
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Files Section */}
       <div className="py-1">
         <div className="space-y-0">
-          {/* Folders */}
-          {folders.map((folder) => (
-            <FolderItem key={folder} name={folder} folderId={folder} />
-          ))}
-          
-          {/* Files */}
-          <FileItem icon={FileText} name="README.md" iconColor="text-orange-500" />
-          <FileItem icon={FileText} name="development.mdx" iconColor="text-orange-500" />
-          <FileItem icon={Code} name="docs.json" iconColor="text-blue-600" />
-          <FileItem icon={File} name="favicon.svg" iconColor="text-red-500" />
-          <FileItem icon={FileText} name="index.mdx" iconColor="text-orange-500" />
-          <FileItem icon={FileText} name="quickstart.mdx" iconColor="text-orange-500" />
+          {mode === 'assistant' ? (
+            // Assistant mode - show categorized files with checkboxes
+            <>
+              {Object.entries(fileCategories).map(([category, files]) => (
+                <div key={category}>
+                  <div className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide">
+                    {category}
+                  </div>
+                  {files.map((file) => (
+                    <FileItem 
+                      key={file.id}
+                      icon={file.icon} 
+                      name={file.name} 
+                      iconColor={file.iconColor}
+                      fileId={file.id}
+                    />
+                  ))}
+                </div>
+              ))}
+            </>
+          ) : (
+            // Default mode - show regular file browser
+            <>
+              {/* Folders */}
+              {folders.map((folder) => (
+                <FolderItem key={folder} name={folder} folderId={folder} />
+              ))}
+              
+              {/* Files */}
+              <FileItem icon={FileText} name="README.md" iconColor="text-orange-500" />
+              <FileItem icon={FileText} name="development.mdx" iconColor="text-orange-500" />
+              <FileItem icon={Code} name="docs.json" iconColor="text-blue-600" />
+              <FileItem icon={File} name="favicon.svg" iconColor="text-red-500" />
+              <FileItem icon={FileText} name="index.mdx" iconColor="text-orange-500" />
+              <FileItem icon={FileText} name="quickstart.mdx" iconColor="text-orange-500" />
+            </>
+          )}
         </div>
       </div>
 
