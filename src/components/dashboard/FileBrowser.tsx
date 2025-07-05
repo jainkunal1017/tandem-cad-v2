@@ -53,8 +53,8 @@ const FileBrowser = () => {
   return (
     <div className="h-full bg-white">
       {/* Header */}
-      <div className="px-3 py-3 border-b border-gray-200">
-        <h2 className="text-sm font-medium text-gray-900">Files</h2>
+      <div className="px-6 py-4 border-b border-gray-200">
+        <h2 className="text-lg font-medium text-gray-900">Files</h2>
       </div>
 
       {/* Files Section */}
