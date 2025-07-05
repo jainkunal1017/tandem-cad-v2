@@ -5,11 +5,20 @@ import {
   Settings,
   Book,
   Users,
-  LifeBuoy
+  LifeBuoy,
+  ChevronDown,
+  PanelLeftClose
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -66,7 +75,7 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
       )}
       style={{ backgroundColor: '#F4F4F5' }}
     >
-      {/* Header */}
+      {/* Header with Logo */}
       <div className="p-4 flex items-center justify-between">
         {collapsed ? (
           <img 
@@ -83,8 +92,59 @@ const DashboardSidebar = ({ collapsed, onToggle }: DashboardSidebarProps) => {
         )}
       </div>
 
+      {/* User Section */}
+      <div className="px-4 pb-4">
+        {collapsed ? (
+          <div className="flex justify-center">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="h-auto p-0 hover:bg-accent/50 rounded-lg">
+                  <div className="flex items-center gap-3 p-2">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
+                      <AvatarFallback>U</AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 text-left">
+                      <div className="text-sm font-medium">dreamslab</div>
+                    </div>
+                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  </div>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem>
+                  Switch Workspace
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Create New Workspace
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  Workspace Settings
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onToggle}
+              className="h-8 w-8 hover:bg-accent/50"
+            >
+              <PanelLeftClose className="h-4 w-4" />
+            </Button>
+          </div>
+        )}
+      </div>
+
       {/* Main Navigation */}
-      <nav className="flex flex-col space-y-1 px-2 py-4 flex-1">
+      <nav className="flex flex-col space-y-1 px-2 py-2 flex-1">
         {mainNavItems.map((item) => (
           <NavLink
             key={item.to}
