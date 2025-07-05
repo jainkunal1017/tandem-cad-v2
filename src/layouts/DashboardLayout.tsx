@@ -61,14 +61,14 @@ const DashboardLayout = () => {
         </>
       )}
       
-      {/* Main Content Area - Card Layout */}
+      {/* Main Content Area */}
       <div className="flex flex-col flex-1 overflow-hidden">
         {/* Top Bar */}
         <DashboardTopBar />
         
         {/* Main Content Card */}
         <div className="flex-1 p-6 overflow-auto">
-          <div className="bg-background rounded-2xl shadow-sm border border-border h-full overflow-auto">
+          <div className="bg-background rounded-2xl h-full overflow-auto">
             <main className="p-8">
               <Outlet />
             </main>
