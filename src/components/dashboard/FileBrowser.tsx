@@ -28,24 +28,6 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
 
-  // Mock file data organized by categories
-  const fileCategories = {
-    'Parts & Assemblies': [
-      { id: 'battery-housing.stp', name: 'battery-housing.stp', icon: FileText, iconColor: 'text-blue-500' },
-      { id: 'cooling-plate-v2.sldprt', name: 'cooling-plate-v2.sldprt', icon: FileText, iconColor: 'text-blue-500' },
-      { id: 'cell-module-assembly.asm', name: 'cell-module-assembly.asm', icon: FileText, iconColor: 'text-blue-500' }
-    ],
-    'Context Files': [
-      { id: 'thermal-requirements.pdf', name: 'thermal-requirements.pdf', icon: FileText, iconColor: 'text-red-500' },
-      { id: 'material-specifications.docx', name: 'material-specifications.docx', icon: FileText, iconColor: 'text-blue-600' }
-    ],
-    'CAD Transcript': [
-      { id: 'housing-edit-session.swp', name: 'housing-edit-session.swp', icon: Code, iconColor: 'text-green-500' },
-      { id: 'assembly-changes.vba', name: 'assembly-changes.vba', icon: Code, iconColor: 'text-purple-500' },
-      { id: 'design-history.csv', name: 'design-history.csv', icon: File, iconColor: 'text-orange-500' }
-    ]
-  };
-
   const toggleFolder = (folderId: string) => {
     const newExpanded = new Set(expandedFolders);
     if (newExpanded.has(folderId)) {
@@ -205,43 +187,18 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
       {/* Files Section */}
       <div className="py-1">
         <div className="space-y-0">
-          {mode === 'assistant' ? (
-            // Assistant mode - show categorized files with checkboxes
-            <>
-              {Object.entries(fileCategories).map(([category, files]) => (
-                <div key={category}>
-                  <div className="px-3 py-2 text-xs font-medium text-gray-500 uppercase tracking-wide">
-                    {category}
-                  </div>
-                  {files.map((file) => (
-                    <FileItem 
-                      key={file.id}
-                      icon={file.icon} 
-                      name={file.name} 
-                      iconColor={file.iconColor}
-                      fileId={file.id}
-                    />
-                  ))}
-                </div>
-              ))}
-            </>
-          ) : (
-            // Default mode - show regular file browser
-            <>
-              {/* Folders */}
-              {folders.map((folder) => (
-                <FolderItem key={folder} name={folder} folderId={folder} />
-              ))}
-              
-              {/* Files */}
-              <FileItem icon={FileText} name="README.md" iconColor="text-orange-500" />
-              <FileItem icon={FileText} name="development.mdx" iconColor="text-orange-500" />
-              <FileItem icon={Code} name="docs.json" iconColor="text-blue-600" />
-              <FileItem icon={File} name="favicon.svg" iconColor="text-red-500" />
-              <FileItem icon={FileText} name="index.mdx" iconColor="text-orange-500" />
-              <FileItem icon={FileText} name="quickstart.mdx" iconColor="text-orange-500" />
-            </>
-          )}
+          {/* Folders */}
+          {folders.map((folder) => (
+            <FolderItem key={folder} name={folder} folderId={folder} />
+          ))}
+          
+          {/* Files - same files in both modes */}
+          <FileItem icon={FileText} name="README.md" iconColor="text-orange-500" fileId="README.md" />
+          <FileItem icon={FileText} name="development.mdx" iconColor="text-orange-500" fileId="development.mdx" />
+          <FileItem icon={Code} name="docs.json" iconColor="text-blue-600" fileId="docs.json" />
+          <FileItem icon={File} name="favicon.svg" iconColor="text-red-500" fileId="favicon.svg" />
+          <FileItem icon={FileText} name="index.mdx" iconColor="text-orange-500" fileId="index.mdx" />
+          <FileItem icon={FileText} name="quickstart.mdx" iconColor="text-orange-500" fileId="quickstart.mdx" />
         </div>
       </div>
 
