@@ -82,8 +82,8 @@ const DashboardSidebar = ({
         collapsed ? 'w-16' : 'w-64'
       )}
     >
-      {/* User Section */}
-      <div className={cn("px-4 py-4", collapsed && "px-2")}>
+      {/* User Section - Fixed at top */}
+      <div className={cn("px-4 py-4 flex-shrink-0", collapsed && "px-2")}>
         {collapsed ? (
           <div className="flex flex-col items-center gap-2">
             <Avatar className="h-6 w-6">
@@ -141,15 +141,15 @@ const DashboardSidebar = ({
         )}
       </div>
 
-      {/* Main Navigation */}
-      <nav className={cn("flex flex-col space-y-1 py-2 flex-1", collapsed ? "px-1" : "px-2")}>
+      {/* Main Navigation - Scrollable */}
+      <nav className={cn("flex flex-col space-y-1 py-2 flex-1 overflow-y-auto", collapsed ? "px-1" : "px-2")}>
         {mainNavItems.map(item => (
           <NavLink key={item.to} to={item.to} icon={item.icon} label={item.label} />
         ))}
       </nav>
       
-      {/* Footer Navigation */}
-      <div className={cn("py-4 space-y-1", collapsed ? "px-1" : "px-2")}>
+      {/* Footer Navigation - Fixed at bottom */}
+      <div className={cn("py-4 space-y-1 flex-shrink-0 border-t border-border/40", collapsed ? "px-1" : "px-2")}>
         {footerItems.map(item => (
           <NavLink key={item.to} to={item.to} icon={item.icon} label={item.label} isFooter={true} />
         ))}
