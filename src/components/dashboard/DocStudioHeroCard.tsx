@@ -8,7 +8,7 @@ const DocStudioHeroCard = () => {
     <Card className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/20 dark:to-indigo-950/20 border-blue-200 dark:border-blue-800">
       <CardContent className="p-8">
         <div className="flex items-start justify-between">
-          <div className="space-y-4">
+          <div className="space-y-6">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
                 Doc Studio
@@ -36,8 +36,8 @@ const DocStudioHeroCard = () => {
           </div>
           
           <div className="hidden lg:block">
-            <div className="w-24 h-24 bg-blue-600/10 dark:bg-blue-400/10 rounded-2xl flex items-center justify-center">
-              <FileText className="w-12 h-12 text-blue-600 dark:text-blue-400" />
+            <div className="w-32 h-32 bg-blue-600/10 dark:bg-blue-400/10 rounded-2xl flex items-center justify-center">
+              <FileText className="w-16 h-16 text-blue-600 dark:text-blue-400" />
             </div>
           </div>
         </div>
