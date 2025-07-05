@@ -1,4 +1,3 @@
-
 import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation } from 'react-router-dom';
@@ -24,7 +23,7 @@ const DashboardSidebar = ({
   }, {
     to: '/editor',
     icon: Edit3,
-    label: 'Editor'
+    label: 'Doc Studio'
   }, {
     to: '/settings',
     icon: Settings,
