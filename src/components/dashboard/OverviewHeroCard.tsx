@@ -45,17 +45,6 @@ const OverviewHeroCard = () => {
             Welcome back to your documentation portal
           </p>
         </div>
-
-        {/* Right side - Documentation preview */}
-        <div className="lg:w-80">
-          <div className="bg-muted rounded-lg p-4 h-48 flex items-center justify-center">
-            <img 
-              src="/lovable-uploads/8eb43b44-8979-42aa-8074-4ca324911423.png" 
-              alt="Documentation site preview" 
-              className="max-w-full max-h-full object-contain rounded"
-            />
-          </div>
-        </div>
       </div>
     </div>
   );
