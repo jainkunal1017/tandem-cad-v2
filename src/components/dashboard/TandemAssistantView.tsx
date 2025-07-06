@@ -66,9 +66,9 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <section className="flex flex-1 flex-col min-h-0 bg-white">
+    <div className="flex flex-col h-full bg-white">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-white flex items-center gap-3 shrink-0">
+      <div className="px-6 py-4 border-b border-gray-200 bg-white flex items-center gap-3 flex-shrink-0">
         <Button 
           variant="ghost" 
           size="icon" 
@@ -82,24 +82,24 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
       
       {/* Selected Files Info */}
       {selectedFiles.length > 0 && (
-        <div className="px-6 py-3 bg-blue-50 border-b border-blue-100 shrink-0">
+        <div className="px-6 py-3 bg-blue-50 border-b border-blue-100 flex-shrink-0">
           <p className="text-sm text-blue-700">
             {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected for analysis
           </p>
         </div>
       )}
 
-      {/* Messages Area - Scrollable */}
-      <div className="flex-1 overflow-y-auto overscroll-contain">
+      {/* Messages Area - This will grow and shrink as needed */}
+      <div className="flex-1 overflow-hidden flex flex-col">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex-1 flex items-center justify-center">
             <div className="text-center text-sm text-muted-foreground">
               <p tabIndex={-1}>Start chatting with your technical files.</p>
               <p tabIndex={-1} className="mt-2">Select files from the left panel to begin analysis.</p>
             </div>
           </div>
         ) : (
-          <div className="p-6">
+          <div className="flex-1 overflow-y-auto p-6">
             <div className="space-y-4">
               {messages.map((message) => (
                 <div
@@ -124,8 +124,8 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         )}
       </div>
 
-      {/* Chat Input Bar - Always Visible at Bottom */}
-      <footer className="shrink-0 sticky bottom-0 bg-white border-t p-4 md:shadow-none shadow-inner">
+      {/* Chat Input Bar - Always visible at bottom */}
+      <div className="border-t p-4 bg-white flex-shrink-0">
         <div className="flex gap-2">
           <Input
             value={inputMessage}
@@ -138,8 +138,8 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
             <Send className="h-4 w-4" />
           </Button>
         </div>
-      </footer>
-    </section>
+      </div>
+    </div>
   );
 };
 
