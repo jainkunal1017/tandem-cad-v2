@@ -58,49 +58,63 @@ const testimonials = [
 
 const TestimonialSection = () => {
   const [api, setApi] = React.useState<CarouselApi>();
-  const [isPaused, setIsPaused] = React.useState(false);
-  const scrollAnimationRef = useRef<number | null>(null);
-  const scrollSpeedRef = useRef(0.0005); // Very slow continuous scroll
+  const [current, setCurrent] = React.useState(0);
+  const [count, setCount] = React.useState(0);
+  const intervalRef = useRef<NodeJS.Timeout>();
 
-  // Set up automatic scrolling
-  useEffect(() => {
-    if (!api) return;
-    const autoScroll = () => {
-      if (!isPaused) {
-        // Move the carousel forward a small amount
-        const currentPosition = api.scrollProgress();
-        api.scrollTo(currentPosition + scrollSpeedRef.current);
-      }
-
-      // Continue the animation loop
-      scrollAnimationRef.current = requestAnimationFrame(autoScroll);
-    };
-
-    // Start the animation
-    scrollAnimationRef.current = requestAnimationFrame(autoScroll);
-
-    // Pause/resume on hover
-    const handleMouseEnter = () => setIsPaused(true);
-    const handleMouseLeave = () => setIsPaused(false);
-
-    // Add event listeners to the carousel container
-    const carouselElement = document.querySelector('[role="region"][aria-roledescription="carousel"]');
-    if (carouselElement) {
-      carouselElement.addEventListener('mouseenter', handleMouseEnter);
-      carouselElement.addEventListener('mouseleave', handleMouseLeave);
+  React.useEffect(() => {
+    if (!api) {
+      return;
     }
 
-    // Cleanup
-    return () => {
-      if (scrollAnimationRef.current !== null) {
-        cancelAnimationFrame(scrollAnimationRef.current);
-      }
-      if (carouselElement) {
-        carouselElement.removeEventListener('mouseenter', handleMouseEnter);
-        carouselElement.removeEventListener('mouseleave', handleMouseLeave);
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
+  // Auto-scroll functionality
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    const startAutoScroll = () => {
+      intervalRef.current = setInterval(() => {
+        if (api.canScrollNext()) {
+          api.scrollNext();
+        } else {
+          api.scrollTo(0);
+        }
+      }, 4000);
+    };
+
+    const stopAutoScroll = () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
       }
     };
-  }, [api, isPaused]);
+
+    startAutoScroll();
+
+    // Pause on hover
+    const carousel = document.querySelector('[data-carousel]');
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAutoScroll);
+      carousel.addEventListener('mouseleave', startAutoScroll);
+    }
+
+    return () => {
+      stopAutoScroll();
+      if (carousel) {
+        carousel.removeEventListener('mouseenter', stopAutoScroll);
+        carousel.removeEventListener('mouseleave', startAutoScroll);
+      }
+    };
+  }, [api]);
+
   return (
     <section id="testimonials" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -108,22 +122,21 @@ const TestimonialSection = () => {
         
         <div className="relative">
           {/* Blurred edges */}
-          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent z-10"></div>
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
           
           <Carousel
             opts={{
               align: "start",
               loop: true,
-              skipSnaps: true,
-              dragFree: true
             }}
             setApi={setApi}
             className="w-full"
+            data-carousel
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3 transition-opacity duration-500">
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
                   <Card className="bg-background border shadow-sm h-full">
                     <CardContent className="pt-6 flex flex-col h-full">
                       <Quote className="h-8 w-8 text-primary/40 mb-4" />
@@ -149,9 +162,9 @@ const TestimonialSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center mt-8">
-              <CarouselPrevious className="relative static mx-2 left-0 translate-y-0" />
-              <CarouselNext className="relative static mx-2 right-0 translate-y-0" />
+            <div className="flex justify-center mt-8 gap-4">
+              <CarouselPrevious className="relative static mx-0 left-0 translate-y-0" />
+              <CarouselNext className="relative static mx-0 right-0 translate-y-0" />
             </div>
           </Carousel>
         </div>
