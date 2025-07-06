@@ -64,16 +64,11 @@ const DashboardLayout = () => {
         </>
       )}
       
-      {/* Main Content Area */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Main Content Card - conditional padding */}
-        <div className="flex-1 p-3 overflow-auto">
-          <div className="bg-background border-2 rounded-2xl h-full overflow-auto" style={{ borderColor: '#F2F2F3' }}>
-            <main className={isDocStudioRoute ? "h-full" : "p-8"}>
-              <Outlet />
-            </main>
-          </div>
-        </div>
+      {/* Main Content Area - Simplified to remove scroll */}
+      <div className="flex-1 h-screen overflow-hidden">
+        <main className="h-full bg-background">
+          <Outlet />
+        </main>
       </div>
     </div>
   );
