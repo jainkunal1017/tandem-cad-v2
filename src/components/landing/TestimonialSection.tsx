@@ -11,7 +11,7 @@ const testimonials = [
     title: "Product Data Professional",
     company: "Tonal",
     experience: "Ex: Facebook, Oculus, Google, Dropbox, and Boeing",
-    avatar: "/lovable-uploads/bc95c9da-5321-45c2-971f-cfd7ef79f1e6.png"
+    avatar: "/lovable-uploads/9508512a-49d5-4352-bfa7-02865a035457.png"
   },
   {
     quote: "Tandem changed how we document design decisions. Our audit prep time was reduced by 80%.",
