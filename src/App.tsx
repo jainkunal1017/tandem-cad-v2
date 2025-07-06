@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -14,6 +15,7 @@ import AuthCallback from "./pages/AuthCallback";
 import WaitlistConfirmation from "./pages/WaitlistConfirmation";
 import Overview from "./pages/Overview";
 import DocStudio from "./pages/DocStudio";
+import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
@@ -40,6 +42,7 @@ const App = () => {
             }>
               <Route path="/dashboard" element={<Overview />} />
               <Route path="/editor" element={<DocStudio />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/settings" element={<div className="p-6">Settings Page (Coming Soon)</div>} />
               <Route path="/documentation" element={<div className="p-6">Documentation Page (Coming Soon)</div>} />
               <Route path="/invite" element={<div className="p-6">Invite Members Page (Coming Soon)</div>} />
