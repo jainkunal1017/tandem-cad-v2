@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -22,12 +23,12 @@ const testimonials = [
     avatar: "/lovable-uploads/b648c8d7-a957-4a6c-ad8e-6c2ffbf5f345.png"
   },
   {
-    quote: "We've eliminated the tribal knowledge problem. New team members get up to speed in days, not months.",
-    author: "Michael Chen",
-    title: "Engineering Director",
-    company: "EV Motors",
+    quote: "I love to design for customers. But every review turns into proving I followed the rules. That's not why I became an engineer. If Tandem can take care of that, it's a game changer.",
+    author: "Andrew Shutte",
+    title: "Mechanical Engineer Consultant, Leader of the largest Solidworks User Group",
+    company: "",
     experience: "",
-    avatar: "/lovable-uploads/49eec77b-b23d-4b6c-99fe-fe72252525c6.png"
+    avatar: "/lovable-uploads/d982388e-eccf-4fa6-b6f0-063b74993b07.png"
   },
   {
     quote: "Communication with suppliers has never been clearer. No more back-and-forth explaining design intent.",
