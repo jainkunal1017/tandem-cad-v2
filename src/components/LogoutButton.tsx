@@ -3,15 +3,15 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { LogOut } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // Clear authentication
-    localStorage.removeItem('tandem-auth');
+  const handleLogout = async () => {
+    // Use Supabase auth signout
+    await supabase.auth.signOut();
     
-    // In a real app, this would handle auth logout
     toast({
       title: "Logged out successfully",
       description: "You have been logged out of your account",

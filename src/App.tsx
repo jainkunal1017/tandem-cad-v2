@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,33 +9,16 @@ import PartsListPage from "./pages/PartsListPage";
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import LandingPage from "./pages/LandingPage";
-import PasswordAuth from "./pages/PasswordAuth";
+import Auth from "./pages/Auth";
+import AuthCallback from "./pages/AuthCallback";
+import WaitlistConfirmation from "./pages/WaitlistConfirmation";
 import Overview from "./pages/Overview";
 import DocStudio from "./pages/DocStudio";
-import { useEffect, useState } from "react";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
-// Protected route wrapper component
-const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const isAuthenticated = localStorage.getItem('tandem-auth') === 'true';
-  
-  if (!isAuthenticated) {
-    return <Navigate to="/auth" replace />;
-  }
-  
-  return children;
-};
-
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-  useEffect(() => {
-    // Check if user is authenticated on app load
-    const authStatus = localStorage.getItem('tandem-auth') === 'true';
-    setIsAuthenticated(authStatus);
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
@@ -44,12 +26,13 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
-            {/* Landing page as default route */}
+            {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
-            <Route path="/auth" element={<PasswordAuth />} />
-            <Route path="/landing" element={<Navigate to="/" replace />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/waitlist-confirmation" element={<WaitlistConfirmation />} />
             
-            {/* New Dashboard Layout */}
+            {/* Protected Dashboard Layout */}
             <Route element={
               <ProtectedRoute>
                 <DashboardLayout />
@@ -63,7 +46,7 @@ const App = () => {
               <Route path="/support" element={<div className="p-6">Support Page (Coming Soon)</div>} />
             </Route>
             
-            {/* Legacy routes - keeping for backward compatibility */}
+            {/* Protected Legacy routes - keeping for backward compatibility */}
             <Route element={
               <ProtectedRoute>
                 <MainLayout />
@@ -71,7 +54,6 @@ const App = () => {
             }>
               <Route path="/legacy-dashboard" element={<ProjectDashboard />} />
               <Route path="/projects/:projectId" element={<PartsListPage />} />
-              {/* Old placeholder routes */}
               <Route path="/shared" element={<div className="p-4">Shared with Me Page</div>} />
               <Route path="/activity" element={<div className="p-4">Recent Activity Page</div>} />
               <Route path="/approvals" element={<div className="p-4">Approvals Page</div>} />
@@ -81,9 +63,11 @@ const App = () => {
               <Route path="/help" element={<div className="p-4">Help & Feedback Page</div>} />
             </Route>
             
-            {/* Redirect /app to /dashboard */}
+            {/* Redirect legacy routes */}
             <Route path="/app" element={<Navigate to="/dashboard" replace />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/landing" element={<Navigate to="/" replace />} />
+            
+            {/* Catch all - redirect to landing or 404 */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
