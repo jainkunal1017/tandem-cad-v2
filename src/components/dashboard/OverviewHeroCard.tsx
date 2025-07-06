@@ -30,10 +30,7 @@ const OverviewHeroCard = () => {
     enabled: !!user?.id,
   });
 
-  // Mock data - in real app this would come from props or API
   const displayName = profile?.first_name || profile?.full_name || "there";
-  const lastUpdated = "20 minutes ago";
-  const updatedBy = "Manual Update";
 
   return (
     <div className="space-y-8">
@@ -48,32 +45,7 @@ const OverviewHeroCard = () => {
             Welcome back to your documentation portal
           </p>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="flex flex-col lg:flex-row gap-8">
-        {/* Left side - Status and metadata */}
-        <div className="flex-1 space-y-6">
-          {/* Status Badge */}
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <Badge variant="secondary" className="bg-green-50 text-green-700">
-              Live
-            </Badge>
-          </div>
-          
-          {/* Last updated info */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <span>Last updated</span>
-            <span className="font-medium">{lastUpdated}</span>
-            <span>by</span>
-            <div className="flex items-center gap-1">
-              <User className="w-4 h-4" />
-              <span className="font-medium">{updatedBy}</span>
-            </div>
-          </div>
-        </div>
-        
         {/* Right side - Documentation preview */}
         <div className="lg:w-80">
           <div className="bg-muted rounded-lg p-4 h-48 flex items-center justify-center">
