@@ -124,8 +124,8 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         )}
       </div>
 
-      {/* Chat Input Bar - Fixed at bottom */}
-      <div className="border-t p-4 bg-white flex-shrink-0">
+      {/* Chat Input Bar - Fixed at bottom, no border */}
+      <div className="p-4 bg-white flex-shrink-0">
         <div className="flex gap-2">
           <Input
             value={inputMessage}
