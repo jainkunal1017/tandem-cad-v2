@@ -29,30 +29,6 @@ const testimonials = [
     company: "",
     experience: "",
     avatar: "/lovable-uploads/d982388e-eccf-4fa6-b6f0-063b74993b07.png"
-  },
-  {
-    quote: "Communication with suppliers has never been clearer. No more back-and-forth explaining design intent.",
-    author: "Alex Rivera",
-    title: "Supply Chain Manager",
-    company: "MedTech Solutions",
-    experience: "",
-    avatar: "/lovable-uploads/fa942f5a-e8a2-4c51-81b4-9411ed94c43a.png"
-  },
-  {
-    quote: "Tandem's DIF files have become our single source of truth. It's transformed our design review process.",
-    author: "Priya Patel",
-    title: "Quality Assurance Lead",
-    company: "Medical Devices Co.",
-    experience: "",
-    avatar: "/lovable-uploads/bc95c9da-5321-45c2-971f-cfd7ef79f1e6.png"
-  },
-  {
-    quote: "Our ISO audits used to take weeks of preparation. Now we just export from Tandem and we're ready.",
-    author: "David Wilson",
-    title: "Compliance Manager",
-    company: "Advanced Robotics",
-    experience: "",
-    avatar: "/lovable-uploads/49eec77b-b23d-4b6c-99fe-fe72252525c6.png"
   }
 ];
 
