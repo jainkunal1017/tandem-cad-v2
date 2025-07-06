@@ -14,12 +14,12 @@ const testimonials = [
     avatar: "/lovable-uploads/9508512a-49d5-4352-bfa7-02865a035457.png"
   },
   {
-    quote: "Tandem changed how we document design decisions. Our audit prep time was reduced by 80%.",
-    author: "Sarah Johnson",
-    title: "Lead Design Engineer",
-    company: "Aerospace Inc.",
-    experience: "",
-    avatar: "/lovable-uploads/bc95c9da-5321-45c2-971f-cfd7ef79f1e6.png"
+    quote: "The documentation needed in decision making is painful to find and create. So if you guys can hit that, that would be like a major quality of life improvement.",
+    author: "Louis Nguyen",
+    title: "Senior Design Engineer",
+    company: "Boeing",
+    experience: "Ex: Collins Aerospace",
+    avatar: "/lovable-uploads/b648c8d7-a957-4a6c-ad8e-6c2ffbf5f345.png"
   },
   {
     quote: "We've eliminated the tribal knowledge problem. New team members get up to speed in days, not months.",
