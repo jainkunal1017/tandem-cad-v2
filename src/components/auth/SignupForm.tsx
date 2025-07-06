@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -66,7 +65,7 @@ export default function SignupForm({ isLoading, setIsLoading, onToggleMode }: Si
       } else {
         toast({
           title: "Check your email",
-          description: "We've sent you a confirmation link.",
+          description: "We've sent you a confirmation link to complete your registration.",
         });
       }
     } catch (error: any) {
