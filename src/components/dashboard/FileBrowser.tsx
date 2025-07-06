@@ -18,11 +18,11 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   const [searchOpen, setSearchOpen] = useState(false);
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [folders, setFolders] = useState([
-    'api-reference',
-    'essentials', 
-    'images',
-    'logo',
-    'snippets'
+    'drone-gimbal-assembly',
+    'cad-models', 
+    'cad-models/exports',
+    'documentation',
+    'analysis'
   ]);
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
@@ -66,12 +66,29 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
 
   const allFiles = [
     ...folders,
-    'README.md',
-    'development.mdx',
-    'docs.json',
-    'favicon.svg',
-    'index.mdx',
-    'quickstart.mdx'
+    // drone-gimbal-assembly folder files
+    'design-intent.md',
+    'prd.md', 
+    'bom.csv',
+    // cad-models folder files
+    'base_mount.SLDPRT',
+    'gimbal_arm.SLDPRT',
+    'motor_housing.SLDPRT',
+    'camera_plate.SLDPRT',
+    'yaw_axis.SLDASM',
+    'fasteners_library.SLDPRT',
+    // cad-models/exports folder files
+    'gimbal_arm.STEP',
+    'yaw_axis.IGES',
+    // documentation folder files
+    'manufacturing-notes.md',
+    'assembly-instructions.pdf',
+    'compliance-checklist.md',
+    'revision-history.md',
+    // analysis folder files
+    'tolerance-analysis.xlsx',
+    'qa-inspection-sheet.xlsx',
+    'fea-summary.pdf'
   ];
 
   return (
@@ -104,63 +121,195 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
                 newFolderName={newFolderName}
                 setNewFolderName={setNewFolderName}
                 onFolderNameSubmit={handleFolderNameSubmit}
+                level={folder.includes('/') ? 1 : 0}
               />
             ))}
             
-            {/* Files - same files in both modes */}
+            {/* drone-gimbal-assembly files */}
             <FileItem 
               icon={FileText} 
-              name="README.md" 
-              iconColor="text-orange-500" 
-              fileId="README.md"
+              name="design-intent.md" 
+              iconColor="text-blue-500" 
+              fileId="design-intent.md"
               mode={mode}
               selectedFiles={selectedFiles}
               onFileToggle={handleFileToggle}
             />
             <FileItem 
               icon={FileText} 
-              name="development.mdx" 
-              iconColor="text-orange-500" 
-              fileId="development.mdx"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-            />
-            <FileItem 
-              icon={Code} 
-              name="docs.json" 
-              iconColor="text-blue-600" 
-              fileId="docs.json"
+              name="prd.md" 
+              iconColor="text-blue-500" 
+              fileId="prd.md"
               mode={mode}
               selectedFiles={selectedFiles}
               onFileToggle={handleFileToggle}
             />
             <FileItem 
               icon={File} 
-              name="favicon.svg" 
+              name="bom.csv" 
+              iconColor="text-green-500" 
+              fileId="bom.csv"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+            
+            {/* CAD model files */}
+            <FileItem 
+              icon={Code} 
+              name="base_mount.SLDPRT" 
+              iconColor="text-purple-600" 
+              fileId="base_mount.SLDPRT"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={Code} 
+              name="gimbal_arm.SLDPRT" 
+              iconColor="text-purple-600" 
+              fileId="gimbal_arm.SLDPRT"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={Code} 
+              name="motor_housing.SLDPRT" 
+              iconColor="text-purple-600" 
+              fileId="motor_housing.SLDPRT"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={Code} 
+              name="camera_plate.SLDPRT" 
+              iconColor="text-purple-600" 
+              fileId="camera_plate.SLDPRT"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={Code} 
+              name="yaw_axis.SLDASM" 
+              iconColor="text-indigo-600" 
+              fileId="yaw_axis.SLDASM"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={Code} 
+              name="fasteners_library.SLDPRT" 
+              iconColor="text-purple-600" 
+              fileId="fasteners_library.SLDPRT"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            
+            {/* CAD exports */}
+            <FileItem 
+              icon={File} 
+              name="gimbal_arm.STEP" 
+              iconColor="text-orange-500" 
+              fileId="gimbal_arm.STEP"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={2}
+            />
+            <FileItem 
+              icon={File} 
+              name="yaw_axis.IGES" 
+              iconColor="text-orange-500" 
+              fileId="yaw_axis.IGES"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={2}
+            />
+            
+            {/* Documentation files */}
+            <FileItem 
+              icon={FileText} 
+              name="manufacturing-notes.md" 
+              iconColor="text-blue-500" 
+              fileId="manufacturing-notes.md"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={File} 
+              name="assembly-instructions.pdf" 
               iconColor="text-red-500" 
-              fileId="favicon.svg"
+              fileId="assembly-instructions.pdf"
               mode={mode}
               selectedFiles={selectedFiles}
               onFileToggle={handleFileToggle}
+              level={1}
             />
             <FileItem 
               icon={FileText} 
-              name="index.mdx" 
-              iconColor="text-orange-500" 
-              fileId="index.mdx"
+              name="compliance-checklist.md" 
+              iconColor="text-blue-500" 
+              fileId="compliance-checklist.md"
               mode={mode}
               selectedFiles={selectedFiles}
               onFileToggle={handleFileToggle}
+              level={1}
             />
             <FileItem 
               icon={FileText} 
-              name="quickstart.mdx" 
-              iconColor="text-orange-500" 
-              fileId="quickstart.mdx"
+              name="revision-history.md" 
+              iconColor="text-blue-500" 
+              fileId="revision-history.md"
               mode={mode}
               selectedFiles={selectedFiles}
               onFileToggle={handleFileToggle}
+              level={1}
+            />
+            
+            {/* Analysis files */}
+            <FileItem 
+              icon={File} 
+              name="tolerance-analysis.xlsx" 
+              iconColor="text-green-600" 
+              fileId="tolerance-analysis.xlsx"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={File} 
+              name="qa-inspection-sheet.xlsx" 
+              iconColor="text-green-600" 
+              fileId="qa-inspection-sheet.xlsx"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
+            />
+            <FileItem 
+              icon={File} 
+              name="fea-summary.pdf" 
+              iconColor="text-red-500" 
+              fileId="fea-summary.pdf"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+              level={1}
             />
           </div>
         </div>
