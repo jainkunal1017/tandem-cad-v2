@@ -1,4 +1,5 @@
-import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen, LogOut } from 'lucide-react';
+
+import { LayoutDashboard, Edit3, Settings, Book, Users, LifeBuoy, ChevronDown, PanelLeftClose, PanelLeftOpen, LogOut, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -165,6 +166,27 @@ const DashboardSidebar = ({
         {footerItems.map(item => (
           <NavLink key={item.to} to={item.to} icon={item.icon} label={item.label} isFooter={true} />
         ))}
+        
+        {/* Profile Button */}
+        {collapsed ? (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => navigate('/profile')}
+            className="h-10 w-10 text-muted-foreground hover:text-accent-foreground hover:bg-accent/50"
+          >
+            <User className="h-5 w-5" />
+          </Button>
+        ) : (
+          <Button
+            variant="ghost"
+            onClick={() => navigate('/profile')}
+            className="w-full justify-start text-muted-foreground hover:text-accent-foreground hover:bg-accent/50 px-3 py-2 h-auto font-medium text-sm"
+          >
+            <User className="h-5 w-5 shrink-0 mr-3" />
+            <span className="truncate">Profile</span>
+          </Button>
+        )}
         
         {/* Logout Button */}
         {collapsed ? (
