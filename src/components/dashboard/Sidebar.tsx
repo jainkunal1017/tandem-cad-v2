@@ -4,6 +4,7 @@ import { useAuth } from '@/hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import UserSection from './UserSection';
+import WorkspaceSelector from './WorkspaceSelector';
 import NavigationSection from './NavigationSection';
 import FooterSection from './FooterSection';
 
@@ -59,6 +60,8 @@ const DashboardSidebar = ({
         avatarUrl={avatarUrl}
         avatarFallback={avatarFallback}
       />
+      
+      <WorkspaceSelector collapsed={collapsed} />
       
       <NavigationSection collapsed={collapsed} />
       
