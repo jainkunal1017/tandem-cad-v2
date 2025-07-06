@@ -44,10 +44,10 @@ const TestimonialSection = () => {
     }
 
     setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    setCurrent(api.selectedScrollSnap());
 
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
+      setCurrent(api.selectedScrollSnap());
     });
   }, [api]);
 
@@ -75,19 +75,8 @@ const TestimonialSection = () => {
 
     startAutoScroll();
 
-    // Pause on hover
-    const carousel = document.querySelector('[data-carousel]');
-    if (carousel) {
-      carousel.addEventListener('mouseenter', stopAutoScroll);
-      carousel.addEventListener('mouseleave', startAutoScroll);
-    }
-
     return () => {
       stopAutoScroll();
-      if (carousel) {
-        carousel.removeEventListener('mouseenter', stopAutoScroll);
-        carousel.removeEventListener('mouseleave', startAutoScroll);
-      }
     };
   }, [api]);
 
@@ -97,10 +86,6 @@ const TestimonialSection = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Engineers can't wait</h2>
         
         <div className="relative">
-          {/* Blurred edges */}
-          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none"></div>
-          
           <Carousel
             opts={{
               align: "start",
@@ -108,7 +93,6 @@ const TestimonialSection = () => {
             }}
             setApi={setApi}
             className="w-full"
-            data-carousel
           >
             <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
