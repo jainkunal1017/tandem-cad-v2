@@ -16,9 +16,9 @@ const ActionCards = ({ onTandemAssistantClick }: ActionCardsProps) => {
       
       {/* Cards Container */}
       <div className="flex-1 flex items-center justify-center p-6">
-        <div className="grid grid-cols-2 gap-6 max-w-2xl w-full">
+        <div className="grid grid-cols-2 gap-8 max-w-2xl w-full">
           {/* Design Session Card */}
-          <Card className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl">
+          <Card className="border border-gray-200 hover:bg-gray-50 hover:shadow-md transition-all duration-200 cursor-pointer bg-white rounded-xl">
             <CardContent className="p-6">
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center gap-3">
@@ -38,7 +38,7 @@ const ActionCards = ({ onTandemAssistantClick }: ActionCardsProps) => {
 
           {/* Create a Tandem Doc Card */}
           <Card 
-            className="border border-gray-200 hover:shadow-sm transition-shadow cursor-pointer bg-white rounded-xl"
+            className="border border-gray-200 hover:bg-gray-50 hover:shadow-md transition-all duration-200 cursor-pointer bg-white rounded-xl"
             onClick={onTandemAssistantClick}
           >
             <CardContent className="p-6">
