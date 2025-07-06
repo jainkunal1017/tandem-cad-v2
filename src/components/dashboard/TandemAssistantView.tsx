@@ -53,7 +53,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <div className="flex-1 flex flex-col bg-white">
+    <div className="flex-1 flex flex-col bg-white relative">
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 bg-white h-16 flex items-center gap-3">
         <Button 
@@ -68,7 +68,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
       </div>
       
       {/* Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col pb-20">
         {/* Selected Files Info */}
         {selectedFiles.length > 0 && (
           <div className="px-6 py-3 bg-blue-50 border-b border-blue-100">
@@ -110,21 +110,21 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
             </div>
           )}
         </div>
+      </div>
 
-        {/* Input Area */}
-        <div className="border-t border-gray-200 p-4">
-          <div className="flex gap-2">
-            <Input
-              value={inputMessage}
-              onChange={(e) => setInputMessage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              placeholder="Ask about your technical files..."
-              className="flex-1"
-            />
-            <Button onClick={handleSendMessage} size="icon">
-              <Send className="h-4 w-4" />
-            </Button>
-          </div>
+      {/* Input Area - Fixed at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 bg-white p-4">
+        <div className="flex gap-2">
+          <Input
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Ask about your technical files..."
+            className="flex-1"
+          />
+          <Button onClick={handleSendMessage} size="icon">
+            <Send className="h-4 w-4" />
+          </Button>
         </div>
       </div>
     </div>
