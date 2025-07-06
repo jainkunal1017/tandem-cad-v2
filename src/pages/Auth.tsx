@@ -2,19 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { ArrowLeft, Mail } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
+import SignupForm from "@/components/auth/SignupForm";
+import LoginForm from "@/components/auth/LoginForm";
 
 export default function Auth() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,63 +66,6 @@ export default function Auth() {
     }
   };
 
-  const handleEmailAuth = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback`
-          }
-        });
-        
-        if (error) {
-          if (error.message.includes('User already registered')) {
-            toast({
-              title: "Account exists",
-              description: "Account exists — try logging in.",
-              variant: "destructive",
-            });
-            setIsSignUp(false);
-          } else {
-            throw error;
-          }
-        } else {
-          toast({
-            title: "Check your email",
-            description: "We've sent you a confirmation link.",
-          });
-        }
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        
-        if (error) {
-          toast({
-            title: "Authentication Error",
-            description: error.message,
-            variant: "destructive",
-          });
-        }
-      }
-    } catch (error: any) {
-      console.error('Email auth error:', error);
-      toast({
-        title: "Authentication Error",
-        description: error.message || "Authentication failed",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-background">
       <div className="w-full max-w-md space-y-4">
@@ -171,45 +112,24 @@ export default function Auth() {
                 <Separator className="w-full" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">or create account</span>
+                <span className="bg-background px-2 text-muted-foreground">
+                  or {isSignUp ? 'create account' : 'sign in'}
+                </span>
               </div>
             </div>
 
-            <form onSubmit={handleEmailAuth} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
-              
-              <div className="space-y-2">
-                <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  required
-                />
-              </div>
-
-              <Button 
-                type="submit" 
-                disabled={isLoading}
-                className="w-full"
-                size="lg"
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                {isSignUp ? 'Sign Up' : 'Sign In'}
-              </Button>
-            </form>
+            {isSignUp ? (
+              <SignupForm 
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+                onToggleMode={() => setIsSignUp(false)}
+              />
+            ) : (
+              <LoginForm 
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            )}
 
             <div className="text-center">
               <Button

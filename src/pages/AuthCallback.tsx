@@ -42,17 +42,22 @@ export default function AuthCallback() {
             });
             navigate('/dashboard');
           } else {
-            // Auto-add to waitlist if not already there
+            // Auto-add to profiles if not already there (they'll be in profiles from signup)
             try {
-              await supabase.from('waitlist').upsert([
+              await supabase.from('profiles').upsert([
                 {
+                  id: data.session.user.id,
                   email: data.session.user.email,
-                  first_name: data.session.user.user_metadata?.full_name?.split(' ')[0] || '',
-                  last_name: data.session.user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
+                  first_name: data.session.user.user_metadata?.first_name || data.session.user.user_metadata?.full_name?.split(' ')[0] || '',
+                  last_name: data.session.user.user_metadata?.last_name || data.session.user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
+                  full_name: data.session.user.user_metadata?.full_name || data.session.user.user_metadata?.name || '',
+                  phone_number: data.session.user.user_metadata?.phone_number || '',
+                  job_title: data.session.user.user_metadata?.job_title || '',
+                  company: data.session.user.user_metadata?.company || '',
                 }
-              ], { onConflict: 'email' });
-            } catch (waitlistError) {
-              console.error('Error adding to waitlist:', waitlistError);
+              ], { onConflict: 'id' });
+            } catch (profileError) {
+              console.error('Error updating profile:', profileError);
             }
             
             navigate('/waitlist-confirmation');
