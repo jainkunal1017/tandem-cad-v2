@@ -52,8 +52,15 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
     }
   };
 
+  const getPlaceholderText = () => {
+    if (selectedFiles.length > 0 && messages.length === 0) {
+      return "Files selected. Type a prompt below to begin analysis.";
+    }
+    return "Ask about your technical files...";
+  };
+
   return (
-    <div className="flex-1 flex flex-col bg-white relative">
+    <div className="flex flex-col flex-1 overflow-hidden bg-white">
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 bg-white h-16 flex items-center gap-3">
         <Button 
@@ -67,66 +74,61 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         <h1 className="text-lg font-medium text-gray-900">Studio: Tandem Assistant</h1>
       </div>
       
-      {/* Content Area */}
-      <div className="flex-1 flex flex-col pb-20">
-        {/* Selected Files Info */}
-        {selectedFiles.length > 0 && (
-          <div className="px-6 py-3 bg-blue-50 border-b border-blue-100">
-            <p className="text-sm text-blue-700">
-              {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected for analysis
-            </p>
+      {/* Selected Files Info */}
+      {selectedFiles.length > 0 && (
+        <div className="px-6 py-3 bg-blue-50 border-b border-blue-100">
+          <p className="text-sm text-blue-700">
+            {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected for analysis
+          </p>
+        </div>
+      )}
+
+      {/* Messages Area */}
+      <div className="flex-1 overflow-y-auto overscroll-contain">
+        {messages.length === 0 ? (
+          <div className="flex flex-1 items-center justify-center text-center text-sm text-muted-foreground px-4 h-full">
+            <div className="flex flex-col items-center justify-center">
+              <p tabIndex={-1}>Start chatting with your technical files.</p>
+              <p tabIndex={-1} className="mt-2">Select files from the left panel to begin analysis.</p>
+            </div>
+          </div>
+        ) : (
+          <div className="p-6 space-y-4">
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+              >
+                <div
+                  className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                    message.sender === 'user'
+                      ? 'bg-blue-600 text-white'
+                      : 'bg-gray-100 text-gray-900'
+                  }`}
+                >
+                  <p className="text-sm">{message.content}</p>
+                </div>
+              </div>
+            ))}
           </div>
         )}
-
-        {/* Messages Area */}
-        <div className="flex-1 overflow-y-auto p-6">
-          {messages.length === 0 ? (
-            <div className="flex items-center justify-center h-full min-h-[400px]">
-              <div className="text-center">
-                <p className="text-gray-500 mb-4">Start chatting with your technical files.</p>
-                {selectedFiles.length === 0 && (
-                  <p className="text-sm text-gray-400">Select files from the left panel to begin analysis.</p>
-                )}
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                      message.sender === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
-                    }`}
-                  >
-                    <p className="text-sm">{message.content}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
       </div>
 
-      {/* Input Area - Fixed at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white p-4">
+      {/* Chat Input Bar - Sticky Bottom */}
+      <footer className="sticky bottom-0 bg-background border-t p-4 md:shadow-none shadow-inner">
         <div className="flex gap-2">
           <Input
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             onKeyPress={handleKeyPress}
-            placeholder="Ask about your technical files..."
+            placeholder={getPlaceholderText()}
             className="flex-1"
           />
           <Button onClick={handleSendMessage} size="icon">
             <Send className="h-4 w-4" />
           </Button>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };
