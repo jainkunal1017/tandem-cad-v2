@@ -27,6 +27,38 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
 
+  // Organize files by their parent folders
+  const fileStructure = {
+    'drone-gimbal-assembly': [
+      { name: 'design-intent.md', icon: FileText, color: 'text-blue-500' },
+      { name: 'prd.md', icon: FileText, color: 'text-blue-500' },
+      { name: 'bom.csv', icon: File, color: 'text-green-500' }
+    ],
+    'cad-models': [
+      { name: 'base_mount.SLDPRT', icon: Code, color: 'text-purple-600' },
+      { name: 'gimbal_arm.SLDPRT', icon: Code, color: 'text-purple-600' },
+      { name: 'motor_housing.SLDPRT', icon: Code, color: 'text-purple-600' },
+      { name: 'camera_plate.SLDPRT', icon: Code, color: 'text-purple-600' },
+      { name: 'yaw_axis.SLDASM', icon: Code, color: 'text-indigo-600' },
+      { name: 'fasteners_library.SLDPRT', icon: Code, color: 'text-purple-600' }
+    ],
+    'cad-models/exports': [
+      { name: 'gimbal_arm.STEP', icon: File, color: 'text-orange-500' },
+      { name: 'yaw_axis.IGES', icon: File, color: 'text-orange-500' }
+    ],
+    'documentation': [
+      { name: 'manufacturing-notes.md', icon: FileText, color: 'text-blue-500' },
+      { name: 'assembly-instructions.pdf', icon: File, color: 'text-red-500' },
+      { name: 'compliance-checklist.md', icon: FileText, color: 'text-blue-500' },
+      { name: 'revision-history.md', icon: FileText, color: 'text-blue-500' }
+    ],
+    'analysis': [
+      { name: 'tolerance-analysis.xlsx', icon: File, color: 'text-green-600' },
+      { name: 'qa-inspection-sheet.xlsx', icon: File, color: 'text-green-600' },
+      { name: 'fea-summary.pdf', icon: File, color: 'text-red-500' }
+    ]
+  };
+
   const toggleFolder = (folderId: string) => {
     const newExpanded = new Set(expandedFolders);
     if (newExpanded.has(folderId)) {
@@ -64,32 +96,61 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
     onFileSelection(newSelected);
   };
 
+  // Get all files for search
   const allFiles = [
     ...folders,
-    // drone-gimbal-assembly folder files
-    'design-intent.md',
-    'prd.md', 
-    'bom.csv',
-    // cad-models folder files
-    'base_mount.SLDPRT',
-    'gimbal_arm.SLDPRT',
-    'motor_housing.SLDPRT',
-    'camera_plate.SLDPRT',
-    'yaw_axis.SLDASM',
-    'fasteners_library.SLDPRT',
-    // cad-models/exports folder files
-    'gimbal_arm.STEP',
-    'yaw_axis.IGES',
-    // documentation folder files
-    'manufacturing-notes.md',
-    'assembly-instructions.pdf',
-    'compliance-checklist.md',
-    'revision-history.md',
-    // analysis folder files
-    'tolerance-analysis.xlsx',
-    'qa-inspection-sheet.xlsx',
-    'fea-summary.pdf'
+    ...Object.values(fileStructure).flat().map(file => file.name)
   ];
+
+  // Render folder and its contents recursively
+  const renderFolderContent = (folderPath: string, level: number = 0) => {
+    const isExpanded = expandedFolders.has(folderPath);
+    const folderFiles = fileStructure[folderPath as keyof typeof fileStructure] || [];
+    
+    return (
+      <div key={folderPath}>
+        <FolderItem 
+          name={folderPath} 
+          folderId={folderPath}
+          level={level}
+          isExpanded={isExpanded}
+          onToggleFolder={toggleFolder}
+          editingFolder={editingFolder}
+          newFolderName={newFolderName}
+          setNewFolderName={setNewFolderName}
+          onFolderNameSubmit={handleFolderNameSubmit}
+        />
+        
+        {isExpanded && (
+          <div>
+            {/* Render child folders */}
+            {folders
+              .filter(f => f.startsWith(folderPath + '/') && f !== folderPath)
+              .filter(f => f.split('/').length === folderPath.split('/').length + 1)
+              .map(childFolder => renderFolderContent(childFolder, level + 1))}
+            
+            {/* Render files in this folder */}
+            {folderFiles.map((file) => (
+              <FileItem 
+                key={file.name}
+                icon={file.icon} 
+                name={file.name} 
+                iconColor={file.color} 
+                fileId={file.name}
+                mode={mode}
+                selectedFiles={selectedFiles}
+                onFileToggle={handleFileToggle}
+                level={level + 1}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Get root level folders (no parent folder)
+  const rootFolders = folders.filter(folder => !folder.includes('/'));
 
   return (
     <div className="h-full bg-white flex flex-col min-h-0">
@@ -109,208 +170,7 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
       <div className="flex-1 overflow-y-auto min-h-0">
         <div className="py-1">
           <div className="space-y-0">
-            {/* Folders */}
-            {folders.map((folder) => (
-              <FolderItem 
-                key={folder} 
-                name={folder} 
-                folderId={folder}
-                isExpanded={expandedFolders.has(folder)}
-                onToggleFolder={toggleFolder}
-                editingFolder={editingFolder}
-                newFolderName={newFolderName}
-                setNewFolderName={setNewFolderName}
-                onFolderNameSubmit={handleFolderNameSubmit}
-                level={folder.includes('/') ? 1 : 0}
-              />
-            ))}
-            
-            {/* drone-gimbal-assembly files */}
-            <FileItem 
-              icon={FileText} 
-              name="design-intent.md" 
-              iconColor="text-blue-500" 
-              fileId="design-intent.md"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-            />
-            <FileItem 
-              icon={FileText} 
-              name="prd.md" 
-              iconColor="text-blue-500" 
-              fileId="prd.md"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-            />
-            <FileItem 
-              icon={File} 
-              name="bom.csv" 
-              iconColor="text-green-500" 
-              fileId="bom.csv"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-            />
-            
-            {/* CAD model files */}
-            <FileItem 
-              icon={Code} 
-              name="base_mount.SLDPRT" 
-              iconColor="text-purple-600" 
-              fileId="base_mount.SLDPRT"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={Code} 
-              name="gimbal_arm.SLDPRT" 
-              iconColor="text-purple-600" 
-              fileId="gimbal_arm.SLDPRT"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={Code} 
-              name="motor_housing.SLDPRT" 
-              iconColor="text-purple-600" 
-              fileId="motor_housing.SLDPRT"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={Code} 
-              name="camera_plate.SLDPRT" 
-              iconColor="text-purple-600" 
-              fileId="camera_plate.SLDPRT"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={Code} 
-              name="yaw_axis.SLDASM" 
-              iconColor="text-indigo-600" 
-              fileId="yaw_axis.SLDASM"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={Code} 
-              name="fasteners_library.SLDPRT" 
-              iconColor="text-purple-600" 
-              fileId="fasteners_library.SLDPRT"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            
-            {/* CAD exports */}
-            <FileItem 
-              icon={File} 
-              name="gimbal_arm.STEP" 
-              iconColor="text-orange-500" 
-              fileId="gimbal_arm.STEP"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={2}
-            />
-            <FileItem 
-              icon={File} 
-              name="yaw_axis.IGES" 
-              iconColor="text-orange-500" 
-              fileId="yaw_axis.IGES"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={2}
-            />
-            
-            {/* Documentation files */}
-            <FileItem 
-              icon={FileText} 
-              name="manufacturing-notes.md" 
-              iconColor="text-blue-500" 
-              fileId="manufacturing-notes.md"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={File} 
-              name="assembly-instructions.pdf" 
-              iconColor="text-red-500" 
-              fileId="assembly-instructions.pdf"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={FileText} 
-              name="compliance-checklist.md" 
-              iconColor="text-blue-500" 
-              fileId="compliance-checklist.md"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={FileText} 
-              name="revision-history.md" 
-              iconColor="text-blue-500" 
-              fileId="revision-history.md"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            
-            {/* Analysis files */}
-            <FileItem 
-              icon={File} 
-              name="tolerance-analysis.xlsx" 
-              iconColor="text-green-600" 
-              fileId="tolerance-analysis.xlsx"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={File} 
-              name="qa-inspection-sheet.xlsx" 
-              iconColor="text-green-600" 
-              fileId="qa-inspection-sheet.xlsx"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
-            <FileItem 
-              icon={File} 
-              name="fea-summary.pdf" 
-              iconColor="text-red-500" 
-              fileId="fea-summary.pdf"
-              mode={mode}
-              selectedFiles={selectedFiles}
-              onFileToggle={handleFileToggle}
-              level={1}
-            />
+            {rootFolders.map(folder => renderFolderContent(folder, 0))}
           </div>
         </div>
       </div>
