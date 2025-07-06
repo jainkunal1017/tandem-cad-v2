@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { FileText, Code, File } from 'lucide-react';
 import FileUploadModal from './FileUploadModal';
@@ -6,6 +5,7 @@ import FileBrowserHeader from './FileBrowserHeader';
 import FolderItem from './FolderItem';
 import FileItem from './FileItem';
 import { DocStudioMode } from '@/pages/DocStudio';
+import { useToast } from '@/hooks/use-toast';
 
 interface FileBrowserProps {
   mode?: DocStudioMode;
@@ -26,6 +26,7 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   ]);
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
+  const { toast } = useToast();
 
   // Organize files by their parent folders
   const fileStructure = {
@@ -79,11 +80,39 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   const handleFolderNameSubmit = (folderId: string) => {
     if (newFolderName.trim()) {
       setFolders(folders.map(f => f === folderId ? newFolderName.trim() : f));
+      toast({
+        title: "Folder renamed",
+        description: `Folder has been renamed successfully.`,
+      });
     } else {
       setFolders(folders.filter(f => f !== folderId));
     }
     setEditingFolder(null);
     setNewFolderName('');
+  };
+
+  const handleDeleteFolder = (folderId: string) => {
+    // Remove the folder and all its subfolders
+    const updatedFolders = folders.filter(folder => 
+      folder !== folderId && !folder.startsWith(folderId + '/')
+    );
+    setFolders(updatedFolders);
+    
+    // Also remove from expanded folders
+    const newExpanded = new Set(expandedFolders);
+    newExpanded.delete(folderId);
+    setExpandedFolders(newExpanded);
+
+    toast({
+      title: "Folder deleted",
+      description: `Folder and its contents have been deleted successfully.`,
+    });
+  };
+
+  const handleRenameFolder = (folderId: string) => {
+    const folderName = folderId.includes('/') ? folderId.split('/').pop() : folderId;
+    setEditingFolder(folderId);
+    setNewFolderName(folderName || '');
   };
 
   const handleFileToggle = (fileId: string) => {
@@ -119,6 +148,8 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
           newFolderName={newFolderName}
           setNewFolderName={setNewFolderName}
           onFolderNameSubmit={handleFolderNameSubmit}
+          onDeleteFolder={handleDeleteFolder}
+          onRenameFolder={handleRenameFolder}
         />
         
         {isExpanded && (
