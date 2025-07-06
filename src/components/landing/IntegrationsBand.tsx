@@ -1,4 +1,5 @@
 
+
 import { useState } from 'react';
 
 const IntegrationsBand = () => {
@@ -15,7 +16,7 @@ const IntegrationsBand = () => {
             <img 
               src="/lovable-uploads/e5550669-1cc4-43f2-8c6c-eb6f6b66553c.png" 
               alt="CAD Integrations Coming Soon" 
-              className="max-w-full h-auto object-contain" 
+              className="w-64 h-auto object-contain" 
             />
           </div>
         </div>
@@ -25,3 +26,4 @@ const IntegrationsBand = () => {
 };
 
 export default IntegrationsBand;
+
