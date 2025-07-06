@@ -60,9 +60,9 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <div className="flex flex-col flex-1 overflow-hidden bg-white">
+    <div className="h-full flex flex-col bg-white">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-white h-16 flex items-center gap-3">
+      <div className="px-6 py-4 border-b border-gray-200 bg-white flex items-center gap-3 flex-shrink-0">
         <Button 
           variant="ghost" 
           size="icon" 
@@ -76,46 +76,48 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
       
       {/* Selected Files Info */}
       {selectedFiles.length > 0 && (
-        <div className="px-6 py-3 bg-blue-50 border-b border-blue-100">
+        <div className="px-6 py-3 bg-blue-50 border-b border-blue-100 flex-shrink-0">
           <p className="text-sm text-blue-700">
             {selectedFiles.length} file{selectedFiles.length !== 1 ? 's' : ''} selected for analysis
           </p>
         </div>
       )}
 
-      {/* Messages Area */}
-      <div className="flex-1 overflow-y-auto overscroll-contain">
+      {/* Messages Area - Takes remaining space */}
+      <div className="flex-1 min-h-0 flex flex-col">
         {messages.length === 0 ? (
-          <div className="flex flex-1 items-center justify-center text-center text-sm text-muted-foreground px-4 h-full">
-            <div className="flex flex-col items-center justify-center">
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-center text-sm text-muted-foreground">
               <p tabIndex={-1}>Start chatting with your technical files.</p>
               <p tabIndex={-1} className="mt-2">Select files from the left panel to begin analysis.</p>
             </div>
           </div>
         ) : (
-          <div className="p-6 space-y-4">
-            {messages.map((message) => (
-              <div
-                key={message.id}
-                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
+          <div className="flex-1 overflow-y-auto overscroll-contain p-6">
+            <div className="space-y-4">
+              {messages.map((message) => (
                 <div
-                  className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                    message.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-900'
-                  }`}
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <p className="text-sm">{message.content}</p>
+                  <div
+                    className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                      message.sender === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-900'
+                    }`}
+                  >
+                    <p className="text-sm">{message.content}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </div>
 
       {/* Chat Input Bar - Sticky Bottom */}
-      <footer className="sticky bottom-0 bg-background border-t p-4 md:shadow-none shadow-inner">
+      <footer className="border-t p-4 bg-white flex-shrink-0 md:shadow-none shadow-inner">
         <div className="flex gap-2">
           <Input
             value={inputMessage}
