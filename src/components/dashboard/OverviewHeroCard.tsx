@@ -72,23 +72,6 @@ const OverviewHeroCard = () => {
               <span className="font-medium">{updatedBy}</span>
             </div>
           </div>
-
-          {/* Domain info */}
-          <div className="space-y-1">
-            <div className="text-sm font-medium">Domain</div>
-            <div className="text-sm text-muted-foreground">dreamslab.mintlify.app</div>
-          </div>
-
-          {/* Branch info */}
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <GitBranch className="w-4 h-4" />
-            <span>jainkuinal1017 / docs</span>
-          </div>
-          
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <GitBranch className="w-4 h-4" />
-            <span>branch main</span>
-          </div>
         </div>
         
         {/* Right side - Documentation preview */}
