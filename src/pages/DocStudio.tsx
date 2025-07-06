@@ -22,9 +22,9 @@ const DocStudio = () => {
   };
 
   return (
-    <div className="h-screen flex bg-white">
+    <div className="h-screen flex bg-white overflow-hidden">
       {/* File Browser - Left Side */}
-      <div className="w-64 border-r border-gray-200 bg-white">
+      <div className="w-64 border-r border-gray-200 bg-white flex-shrink-0">
         <FileBrowser 
           mode={mode}
           selectedFiles={selectedFiles}
@@ -33,7 +33,7 @@ const DocStudio = () => {
       </div>
       
       {/* Main Content - Right Side */}
-      <div className="flex-1 bg-white">
+      <div className="flex-1 h-full overflow-hidden">
         {mode === 'default' ? (
           <ActionCards onTandemAssistantClick={() => handleModeChange('assistant')} />
         ) : (

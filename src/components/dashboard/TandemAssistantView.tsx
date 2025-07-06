@@ -66,7 +66,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <div className="h-full flex flex-col bg-white overflow-hidden">
+    <div className="h-full w-full flex flex-col bg-white">
       {/* Header */}
       <div className="px-6 py-4 border-b border-gray-200 bg-white flex items-center gap-3 shrink-0">
         <Button 
@@ -89,7 +89,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         </div>
       )}
 
-      {/* Messages Area - Takes remaining space and scrolls only its content */}
+      {/* Messages Area - Takes remaining space and scrolls only when content overflows */}
       <div className="flex-1 min-h-0 flex flex-col">
         {messages.length === 0 ? (
           <div className="flex-1 flex items-center justify-center p-6">
@@ -124,7 +124,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         )}
       </div>
 
-      {/* Chat Input Bar - Always visible at bottom, never scrolls */}
+      {/* Chat Input Bar - Always visible at bottom */}
       <div className="border-t p-4 bg-white shrink-0">
         <div className="flex gap-2">
           <Input
