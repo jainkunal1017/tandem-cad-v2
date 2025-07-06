@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import DashboardSidebar from '@/components/dashboard/Sidebar';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Sheet, SheetContent } from '@/components/ui/sheet';
@@ -13,6 +13,7 @@ const DashboardLayout = () => {
   );
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile();
+  const location = useLocation();
 
   const toggleSidebar = () => {
     if (isMobile) {
@@ -29,6 +30,9 @@ const DashboardLayout = () => {
       setMobileMenuOpen(false);
     }
   }, [isMobile]);
+
+  // Check if current route is DocStudio to remove padding
+  const isDocStudioRoute = location.pathname === '/studio';
 
   return (
     <div className="flex h-screen" style={{ backgroundColor: '#F4F4F5' }}>
@@ -62,10 +66,10 @@ const DashboardLayout = () => {
       
       {/* Main Content Area */}
       <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Main Content Card - reduced padding */}
+        {/* Main Content Card - conditional padding */}
         <div className="flex-1 p-3 overflow-auto">
           <div className="bg-background border-2 rounded-2xl h-full overflow-auto" style={{ borderColor: '#F2F2F3' }}>
-            <main className="p-8">
+            <main className={isDocStudioRoute ? "h-full" : "p-8"}>
               <Outlet />
             </main>
           </div>
