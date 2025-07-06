@@ -1,48 +1,35 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import WaitlistForm from '@/components/landing/waitlist';
 import useCalCom from '@/hooks/useCalCom';
-
 const Hero = () => {
   const [showDemoForm, setShowDemoForm] = useState(false);
-  const { openCalCom } = useCalCom();
-
+  const {
+    openCalCom
+  } = useCalCom();
   const scrollToWaitlist = () => {
     const waitlistSection = document.getElementById('waitlist');
     if (waitlistSection) {
       waitlistSection.scrollIntoView({
         behavior: 'smooth',
-        block: 'start',
+        block: 'start'
       });
     }
   };
-
-  return (
-    <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-8 px-4 overflow-hidden">
+  return <section className="relative min-h-[70vh] flex flex-col justify-center items-center py-8 px-4 overflow-hidden">
       <div className="container mx-auto max-w-6xl flex flex-col items-center text-center relative z-10">
         <h1 className="text-4xl tracking-tight mb-4 animate-fade-in font-bold md:text-6xl">Design documentation on autopilot.</h1>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-6 max-w-3xl animate-fade-in">
-          Tandem captures every CAD decision—so reviews, hand-offs, and audits take minutes, not days.
-        </p>
+        <p className="text-xl text-muted-foreground mb-6 max-w-3xl animate-fade-in md:text-2xl">Tandem turns CAD decisions into contextual docs so reviews, hand-offs, and audits take minutes, not days.</p>
         
         <div className="flex flex-col items-center gap-4 mb-8 animate-fade-in">
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              onClick={() => setShowDemoForm(true)} 
-              className="transition-transform hover:scale-[1.02] w-full sm:w-auto text-slate-50 bg-blue-800 hover:bg-blue-700"
-            >
+            <Button size="lg" onClick={() => setShowDemoForm(true)} className="transition-transform hover:scale-[1.02] w-full sm:w-auto text-slate-50 bg-blue-800 hover:bg-blue-700">
               Request Demo
             </Button>
             
-            <Button 
-              size="lg" 
-              onClick={scrollToWaitlist} 
-              className="w-full sm:w-auto"
-            >
+            <Button size="lg" onClick={scrollToWaitlist} className="w-full sm:w-auto">
               Join the Waitlist
             </Button>
           </div>
@@ -78,29 +65,23 @@ const Hero = () => {
             <DialogTitle className="text-center text-2xl">Request a demo</DialogTitle>
           </DialogHeader>
           <div className="flex flex-col">
-            <WaitlistForm onSuccess={(userData) => {
-              setShowDemoForm(false);
-              openCalCom(userData);
-            }} />
+            <WaitlistForm onSuccess={userData => {
+            setShowDemoForm(false);
+            openCalCom(userData);
+          }} />
             
             {/* Bypass option for users already on the waitlist */}
             <div className="mt-4 pt-4 border-t text-center">
-              <Button 
-                variant="outline"
-                onClick={() => {
-                  setShowDemoForm(false);
-                  openCalCom();
-                }}
-                className="w-full"
-              >
+              <Button variant="outline" onClick={() => {
+              setShowDemoForm(false);
+              openCalCom();
+            }} className="w-full">
                 Skip to calendar
               </Button>
             </div>
           </div>
         </DialogContent>
       </Dialog>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;
