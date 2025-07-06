@@ -19,10 +19,10 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
   const [folders, setFolders] = useState([
     'drone-gimbal-assembly',
-    'cad-models', 
-    'cad-models/exports',
-    'documentation',
-    'analysis'
+    'drone-gimbal-assembly/cad-models', 
+    'drone-gimbal-assembly/cad-models/exports',
+    'drone-gimbal-assembly/documentation',
+    'drone-gimbal-assembly/analysis'
   ]);
   const [editingFolder, setEditingFolder] = useState<string | null>(null);
   const [newFolderName, setNewFolderName] = useState('');
@@ -34,7 +34,7 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
       { name: 'prd.md', icon: FileText, color: 'text-blue-500' },
       { name: 'bom.csv', icon: File, color: 'text-green-500' }
     ],
-    'cad-models': [
+    'drone-gimbal-assembly/cad-models': [
       { name: 'base_mount.SLDPRT', icon: Code, color: 'text-purple-600' },
       { name: 'gimbal_arm.SLDPRT', icon: Code, color: 'text-purple-600' },
       { name: 'motor_housing.SLDPRT', icon: Code, color: 'text-purple-600' },
@@ -42,17 +42,17 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
       { name: 'yaw_axis.SLDASM', icon: Code, color: 'text-indigo-600' },
       { name: 'fasteners_library.SLDPRT', icon: Code, color: 'text-purple-600' }
     ],
-    'cad-models/exports': [
+    'drone-gimbal-assembly/cad-models/exports': [
       { name: 'gimbal_arm.STEP', icon: File, color: 'text-orange-500' },
       { name: 'yaw_axis.IGES', icon: File, color: 'text-orange-500' }
     ],
-    'documentation': [
+    'drone-gimbal-assembly/documentation': [
       { name: 'manufacturing-notes.md', icon: FileText, color: 'text-blue-500' },
       { name: 'assembly-instructions.pdf', icon: File, color: 'text-red-500' },
       { name: 'compliance-checklist.md', icon: FileText, color: 'text-blue-500' },
       { name: 'revision-history.md', icon: FileText, color: 'text-blue-500' }
     ],
-    'analysis': [
+    'drone-gimbal-assembly/analysis': [
       { name: 'tolerance-analysis.xlsx', icon: File, color: 'text-green-600' },
       { name: 'qa-inspection-sheet.xlsx', icon: File, color: 'text-green-600' },
       { name: 'fea-summary.pdf', icon: File, color: 'text-red-500' }
@@ -149,7 +149,7 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
     );
   };
 
-  // Get root level folders (no parent folder)
+  // Get root level folders (drone-gimbal-assembly only)
   const rootFolders = folders.filter(folder => !folder.includes('/'));
 
   return (
