@@ -48,7 +48,9 @@ export type Database = {
           job_title: string | null
           last_name: string | null
           phone_number: string | null
+          preferred_cad: string | null
           updated_at: string
+          username: string | null
         }
         Insert: {
           avatar_url?: string | null
@@ -61,7 +63,9 @@ export type Database = {
           job_title?: string | null
           last_name?: string | null
           phone_number?: string | null
+          preferred_cad?: string | null
           updated_at?: string
+          username?: string | null
         }
         Update: {
           avatar_url?: string | null
@@ -74,7 +78,9 @@ export type Database = {
           job_title?: string | null
           last_name?: string | null
           phone_number?: string | null
+          preferred_cad?: string | null
           updated_at?: string
+          username?: string | null
         }
         Relationships: []
       }
