@@ -66,8 +66,8 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
   };
 
   return (
-    <div className="h-full max-h-screen flex flex-col bg-white">
-      {/* Header */}
+    <div className="h-full flex flex-col bg-white min-h-0">
+      {/* Header - Fixed at top */}
       <div className="px-6 py-4 border-b border-gray-200 bg-white flex items-center gap-3 flex-shrink-0">
         <Button 
           variant="ghost" 
@@ -80,7 +80,7 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         <h1 className="text-lg font-medium text-gray-900">Studio: Tandem Assistant</h1>
       </div>
       
-      {/* Selected Files Info */}
+      {/* Selected Files Info - Fixed below header */}
       {selectedFiles.length > 0 && (
         <div className="px-6 py-3 bg-blue-50 border-b border-blue-100 flex-shrink-0">
           <p className="text-sm text-blue-700">
@@ -89,17 +89,17 @@ const TandemAssistantView = ({ selectedFiles, onBackToStudio }: TandemAssistantV
         </div>
       )}
 
-      {/* Messages Area - Constrained height with internal scrolling */}
-      <div className="flex-1 overflow-hidden flex flex-col min-h-0">
+      {/* Messages Area - Scrollable content */}
+      <div className="flex-1 overflow-y-auto min-h-0">
         {messages.length === 0 ? (
-          <div className="flex-1 flex items-center justify-center p-6">
+          <div className="h-full flex items-center justify-center p-6">
             <div className="text-center text-sm text-muted-foreground">
               <p tabIndex={-1}>Start chatting with your technical files.</p>
               <p tabIndex={-1} className="mt-2">Select files from the left panel to begin analysis.</p>
             </div>
           </div>
         ) : (
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="p-6">
             <div className="space-y-4">
               {messages.map((message) => (
                 <div

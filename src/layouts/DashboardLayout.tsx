@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import DashboardSidebar from '@/components/dashboard/Sidebar';
@@ -31,11 +30,11 @@ const DashboardLayout = () => {
     }
   }, [isMobile]);
 
-  // Check if current route is DocStudio to remove padding
+  // Check if current route is DocStudio to remove outer padding/wrapper
   const isDocStudioRoute = location.pathname === '/studio';
 
   return (
-    <div className="flex h-screen" style={{ backgroundColor: '#F4F4F5' }}>
+    <div className="flex h-screen overflow-hidden" style={{ backgroundColor: '#F4F4F5' }}>
       {/* Desktop Sidebar */}
       {!isMobile && (
         <DashboardSidebar collapsed={collapsed} onToggle={toggleSidebar} />
@@ -65,15 +64,22 @@ const DashboardLayout = () => {
       )}
       
       {/* Main Content Area */}
-      <div className="flex flex-col flex-1 overflow-hidden">
-        {/* Main Content Card - conditional padding */}
-        <div className="flex-1 p-3 overflow-auto">
-          <div className="bg-background border-2 rounded-2xl h-full overflow-auto" style={{ borderColor: '#F2F2F3' }}>
-            <main className={isDocStudioRoute ? "h-full" : "p-8"}>
-              <Outlet />
-            </main>
+      <div className="flex flex-col flex-1 min-h-0 overflow-hidden">
+        {isDocStudioRoute ? (
+          // Doc Studio gets direct viewport access without wrapper padding
+          <main className="flex-1 min-h-0 overflow-hidden">
+            <Outlet />
+          </main>
+        ) : (
+          // Other routes get the card wrapper with independent scrolling
+          <div className="flex-1 p-3 min-h-0 overflow-hidden">
+            <div className="bg-background border-2 rounded-2xl h-full overflow-hidden flex flex-col" style={{ borderColor: '#F2F2F3' }}>
+              <main className="flex-1 p-8 overflow-auto">
+                <Outlet />
+              </main>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

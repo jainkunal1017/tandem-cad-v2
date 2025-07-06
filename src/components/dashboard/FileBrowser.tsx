@@ -75,90 +75,94 @@ const FileBrowser = ({ mode = 'default', selectedFiles = [], onFileSelection }: 
   ];
 
   return (
-    <div className="h-full bg-white">
-      {/* Header */}
-      <FileBrowserHeader
-        mode={mode}
-        searchOpen={searchOpen}
-        setSearchOpen={setSearchOpen}
-        onCreateFolder={handleCreateFolder}
-        onUploadFiles={() => setUploadModalOpen(true)}
-        allFiles={allFiles}
-      />
+    <div className="h-full bg-white flex flex-col min-h-0">
+      {/* Header - Fixed at top */}
+      <div className="flex-shrink-0">
+        <FileBrowserHeader
+          mode={mode}
+          searchOpen={searchOpen}
+          setSearchOpen={setSearchOpen}
+          onCreateFolder={handleCreateFolder}
+          onUploadFiles={() => setUploadModalOpen(true)}
+          allFiles={allFiles}
+        />
+      </div>
 
-      {/* Files Section */}
-      <div className="py-1">
-        <div className="space-y-0">
-          {/* Folders */}
-          {folders.map((folder) => (
-            <FolderItem 
-              key={folder} 
-              name={folder} 
-              folderId={folder}
-              isExpanded={expandedFolders.has(folder)}
-              onToggleFolder={toggleFolder}
-              editingFolder={editingFolder}
-              newFolderName={newFolderName}
-              setNewFolderName={setNewFolderName}
-              onFolderNameSubmit={handleFolderNameSubmit}
+      {/* Files Section - Scrollable content */}
+      <div className="flex-1 overflow-y-auto min-h-0">
+        <div className="py-1">
+          <div className="space-y-0">
+            {/* Folders */}
+            {folders.map((folder) => (
+              <FolderItem 
+                key={folder} 
+                name={folder} 
+                folderId={folder}
+                isExpanded={expandedFolders.has(folder)}
+                onToggleFolder={toggleFolder}
+                editingFolder={editingFolder}
+                newFolderName={newFolderName}
+                setNewFolderName={setNewFolderName}
+                onFolderNameSubmit={handleFolderNameSubmit}
+              />
+            ))}
+            
+            {/* Files - same files in both modes */}
+            <FileItem 
+              icon={FileText} 
+              name="README.md" 
+              iconColor="text-orange-500" 
+              fileId="README.md"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
             />
-          ))}
-          
-          {/* Files - same files in both modes */}
-          <FileItem 
-            icon={FileText} 
-            name="README.md" 
-            iconColor="text-orange-500" 
-            fileId="README.md"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
-          <FileItem 
-            icon={FileText} 
-            name="development.mdx" 
-            iconColor="text-orange-500" 
-            fileId="development.mdx"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
-          <FileItem 
-            icon={Code} 
-            name="docs.json" 
-            iconColor="text-blue-600" 
-            fileId="docs.json"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
-          <FileItem 
-            icon={File} 
-            name="favicon.svg" 
-            iconColor="text-red-500" 
-            fileId="favicon.svg"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
-          <FileItem 
-            icon={FileText} 
-            name="index.mdx" 
-            iconColor="text-orange-500" 
-            fileId="index.mdx"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
-          <FileItem 
-            icon={FileText} 
-            name="quickstart.mdx" 
-            iconColor="text-orange-500" 
-            fileId="quickstart.mdx"
-            mode={mode}
-            selectedFiles={selectedFiles}
-            onFileToggle={handleFileToggle}
-          />
+            <FileItem 
+              icon={FileText} 
+              name="development.mdx" 
+              iconColor="text-orange-500" 
+              fileId="development.mdx"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+            <FileItem 
+              icon={Code} 
+              name="docs.json" 
+              iconColor="text-blue-600" 
+              fileId="docs.json"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+            <FileItem 
+              icon={File} 
+              name="favicon.svg" 
+              iconColor="text-red-500" 
+              fileId="favicon.svg"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+            <FileItem 
+              icon={FileText} 
+              name="index.mdx" 
+              iconColor="text-orange-500" 
+              fileId="index.mdx"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+            <FileItem 
+              icon={FileText} 
+              name="quickstart.mdx" 
+              iconColor="text-orange-500" 
+              fileId="quickstart.mdx"
+              mode={mode}
+              selectedFiles={selectedFiles}
+              onFileToggle={handleFileToggle}
+            />
+          </div>
         </div>
       </div>
 
