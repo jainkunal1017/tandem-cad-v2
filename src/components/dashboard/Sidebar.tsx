@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { toast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 
 interface DashboardSidebarProps {
   collapsed: boolean;
@@ -18,6 +21,29 @@ const DashboardSidebar = ({
 }: DashboardSidebarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
+
+  // Fetch user profile data
+  const { data: profile } = useQuery({
+    queryKey: ['profile', user?.id],
+    queryFn: async () => {
+      if (!user?.id) return null;
+      
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .maybeSingle();
+      
+      if (error) {
+        console.error('Error fetching profile:', error);
+        return null;
+      }
+      
+      return data;
+    },
+    enabled: !!user?.id,
+  });
 
   const mainNavItems = [{
     to: '/dashboard',
@@ -88,6 +114,11 @@ const DashboardSidebar = ({
     );
   };
 
+  // Get display name and avatar
+  const displayName = profile?.username || profile?.first_name || user?.email?.split('@')[0] || 'User';
+  const avatarUrl = profile?.avatar_url;
+  const avatarFallback = profile?.first_name?.[0] || profile?.username?.[0] || user?.email?.[0]?.toUpperCase() || 'U';
+
   return (
     <div 
       className={cn(
@@ -100,8 +131,8 @@ const DashboardSidebar = ({
         {collapsed ? (
           <div className="flex flex-col items-center gap-2">
             <Avatar className="h-6 w-6">
-              <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-              <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
+              <AvatarImage src={avatarUrl} alt="User Avatar" />
+              <AvatarFallback className="bg-green-500 text-white text-xs">{avatarFallback}</AvatarFallback>
             </Avatar>
             <Button 
               variant="ghost" 
@@ -119,11 +150,11 @@ const DashboardSidebar = ({
                 <Button variant="ghost" className="h-auto p-0 hover:bg-accent/50 rounded-lg">
                   <div className="flex items-center gap-3 p-2">
                     <Avatar className="h-6 w-6">
-                      <AvatarImage src="/lovable-uploads/fe8e1f7d-4e8e-4272-947e-1b5714b77511.png" alt="User Avatar" />
-                      <AvatarFallback className="bg-green-500 text-white text-xs">D</AvatarFallback>
+                      <AvatarImage src={avatarUrl} alt="User Avatar" />
+                      <AvatarFallback className="bg-green-500 text-white text-xs">{avatarFallback}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1 text-left">
-                      <div className="text-sm font-medium">dreamslab</div>
+                      <div className="text-sm font-medium">{displayName}</div>
                     </div>
                     <ChevronDown className="h-4 w-4 text-muted-foreground" />
                   </div>
