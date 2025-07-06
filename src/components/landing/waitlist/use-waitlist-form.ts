@@ -6,7 +6,11 @@ import { toast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { waitlistFormSchema, type WaitlistFormValues } from './waitlist-schema';
 
-export function useWaitlistForm() {
+interface UseWaitlistFormProps {
+  onSuccess?: (userData?: WaitlistFormValues) => void;
+}
+
+export function useWaitlistForm({ onSuccess }: UseWaitlistFormProps = {}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<WaitlistFormValues>({
@@ -21,7 +25,7 @@ export function useWaitlistForm() {
     },
   });
 
-  const onSubmit = async (values: WaitlistFormValues, onSuccess?: (userData: WaitlistFormValues) => void) => {
+  const handleSubmit = form.handleSubmit(async (values: WaitlistFormValues) => {
     setIsSubmitting(true);
     
     try {
@@ -73,11 +77,11 @@ export function useWaitlistForm() {
     } finally {
       setIsSubmitting(false);
     }
-  };
+  });
 
   return {
     form,
-    onSubmit,
+    handleSubmit,
     isSubmitting,
   };
 }
