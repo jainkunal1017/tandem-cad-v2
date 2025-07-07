@@ -39,7 +39,7 @@ const testimonials = [
     avatar: "/lovable-uploads/15b9dd48-2103-48c9-b9a6-a2c4b7b5d327.png"
   },
   {
-    quote: "", // Placeholder - user needs to provide the quote
+    quote: "Every time I look at an old part, there's always something off, wrong descriptions, bad file names, or no clear build order. I end up digging through the model tree just trying to figure out what someone else did. And if things aren't labeled clearly, it becomes a guessing game. Change one feature and suddenly everything downstream breaks.",
     author: "Kyle Suh",
     title: "Mechanical Engineer + Project Engineer",
     company: "Johnson Controls",
