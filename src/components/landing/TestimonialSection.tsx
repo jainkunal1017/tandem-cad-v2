@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -36,6 +37,14 @@ const testimonials = [
     company: "Daylight Solutions, Herrick Laboratories",
     experience: "",
     avatar: "/lovable-uploads/15b9dd48-2103-48c9-b9a6-a2c4b7b5d327.png"
+  },
+  {
+    quote: "", // Placeholder - user needs to provide the quote
+    author: "Kyle Suh",
+    title: "Mechanical Engineer + Project Engineer",
+    company: "Johnson Controls",
+    experience: "",
+    avatar: "/lovable-uploads/fbe5e963-fb47-42a9-b117-b0325710bbbf.png"
   }
 ];
 
