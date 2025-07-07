@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -29,6 +28,14 @@ const testimonials = [
     company: "",
     experience: "",
     avatar: "/lovable-uploads/d982388e-eccf-4fa6-b6f0-063b74993b07.png"
+  },
+  {
+    quote: "A lot of people in the CAD review weren't looking at my file every day like I was... Having even a super concise doc, what the part is, why it's there, would help them come in familiar and actually contribute better. It shifts the review from just nodding along to real idea generation.",
+    author: "Josh Cox",
+    title: "Mechanical Engineer",
+    company: "Daylight Solutions, Herrick Laboratories",
+    experience: "",
+    avatar: "/lovable-uploads/15b9dd48-2103-48c9-b9a6-a2c4b7b5d327.png"
   }
 ];
 
