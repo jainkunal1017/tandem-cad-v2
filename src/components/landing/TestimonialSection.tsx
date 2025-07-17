@@ -45,6 +45,14 @@ const testimonials = [
     company: "Johnson Controls",
     experience: "",
     avatar: "/lovable-uploads/fbe5e963-fb47-42a9-b117-b0325710bbbf.png"
+  },
+  {
+    quote: "What you're building is spot on. Most organizations don't have the discipline, staff, or time to clean up design documentation, and it takes full time effort to do it right. I love your approach of using AI to trace design steps, connect related files, and surface what matters. Pulling in context like FEA runs or cut sheets, things that influenced key decisions, makes a huge difference.",
+    author: "Todd Mansfield",
+    title: "Director of Product",
+    company: "OneIPM",
+    experience: "ex COO of House of Design Robotics, ex VP of Eng ECCO Safety Group",
+    avatar: "/lovable-uploads/0386da4d-83c4-4035-948d-4121e6f00d74.png"
   }
 ];
 
