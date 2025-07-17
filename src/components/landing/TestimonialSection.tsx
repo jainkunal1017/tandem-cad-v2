@@ -96,7 +96,7 @@ const TestimonialSection = () => {
         } else {
           api.scrollTo(0);
         }
-      }, 4000);
+      }, 6000);
     };
 
     const stopAutoScroll = () => {
