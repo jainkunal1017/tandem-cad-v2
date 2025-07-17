@@ -55,7 +55,7 @@ const testimonials = [
     avatar: "/lovable-uploads/0386da4d-83c4-4035-948d-4121e6f00d74.png"
   },
   {
-    quote: "Our change process is extremely manual. We create a PDF to generate an engineering change number, fill out the entire form by hand, list all the part numbers, figure numbers, and revisions in a spreadsheet, then copy and paste it into PowerApp for approvals. Even small changes go through the same workflow. Writing up why the change is happening takes time, and the information often comes from back-and-forth with the plant or digging through past discussions. It's time-consuming, repetitive, and error-prone.",
+    quote: "Our change process is fully manual. We generate a PDF, fill out forms by hand, list part numbers and revisions in a spreadsheet, then paste it all into PowerApp for approval. Even small updates follow the same process. Writing up the rationale takes time and usually comes from scattered discussions. It's slow and easy to mess up.",
     author: "Odell Jimenez",
     title: "Product Development Engineer",
     company: "NIBCO INC.",
