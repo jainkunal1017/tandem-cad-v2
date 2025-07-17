@@ -53,6 +53,14 @@ const testimonials = [
     company: "OneIPM",
     experience: "ex COO of House of Design Robotics, ex VP of Eng ECCO Safety Group",
     avatar: "/lovable-uploads/0386da4d-83c4-4035-948d-4121e6f00d74.png"
+  },
+  {
+    quote: "Our change process is extremely manual. We create a PDF to generate an engineering change number, fill out the entire form by hand, list all the part numbers, figure numbers, and revisions in a spreadsheet, then copy and paste it into PowerApp for approvals. Even small changes go through the same workflow. Writing up why the change is happening takes time, and the information often comes from back-and-forth with the plant or digging through past discussions. It's time-consuming, repetitive, and error-prone.",
+    author: "Odell Jimenez",
+    title: "Product Development Engineer",
+    company: "NIBCO INC.",
+    experience: "",
+    avatar: "/lovable-uploads/56fb73a9-2b38-4dce-8a8d-8af75789449a.png"
   }
 ];
 
