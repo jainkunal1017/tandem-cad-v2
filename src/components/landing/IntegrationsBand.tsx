@@ -33,7 +33,7 @@ const IntegrationsBand = () => {
       <div className="max-w-6xl mx-auto px-6">
         {/* White card container */}
         <div className="bg-white rounded-3xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] max-w-[1200px] mx-auto">
-          <div className="px-16 py-18">
+          <div className="px-16 py-24">
             {/* Two-column grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               
