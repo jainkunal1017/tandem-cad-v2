@@ -29,24 +29,26 @@ const Hero = () => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column - Content */}
             <div className="lg:col-span-7 space-y-8 animate-fade-up">
-              {/* Built by section */}
-              <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
-                <span>Built by Mechanical & AI engineers at</span>
-                <div className="flex items-center space-x-4">
+              {/* Built by Section */}
+              <div className="space-y-4">
+                <p className="text-sm text-gray-400 font-medium">
+                  Built by Mechanical & AI engineers at
+                </p>
+                <div className="flex items-center space-x-8 opacity-60">
                   <img 
                     src="/lovable-uploads/fbe5e963-fb47-42a9-b117-b0325710bbbf.png" 
                     alt="Rolls Royce" 
-                    className="h-4 object-contain brightness-0 invert"
+                    className="h-8 object-contain filter brightness-0 invert"
                   />
                   <img 
                     src="/lovable-uploads/d1587fe7-24e3-4ec5-a704-627f8ca50802.png" 
                     alt="AWS" 
-                    className="h-4 object-contain brightness-0 invert"
+                    className="h-8 object-contain filter brightness-0 invert"
                   />
                   <img 
                     src="/lovable-uploads/abbb308e-a76a-4f3f-8896-9207cdac38a7.png" 
                     alt="Boeing" 
-                    className="h-4 object-contain brightness-0 invert"
+                    className="h-8 object-contain filter brightness-0 invert"
                   />
                 </div>
               </div>
