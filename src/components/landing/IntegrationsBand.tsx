@@ -43,7 +43,7 @@ const IntegrationsBand = () => {
                   {/* Tandem logo in center */}
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                     <img 
-                      src="/images/tandem-symbol.png" 
+                      src="/lovable-uploads/7628e1a6-b59d-4315-aba1-ae673d2921e6.png" 
                       alt="Tandem" 
                       className="w-16 h-16"
                     />
