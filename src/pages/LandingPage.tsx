@@ -12,6 +12,7 @@ import CtaFooter from '@/components/landing/CtaFooter';
 import ProductOverview from '@/components/landing/ProductOverview';
 import UseCases from '@/components/landing/UseCases';
 import TestimonialSection from '@/components/landing/TestimonialSection';
+import FeaturesSection from '@/components/landing/FeaturesSection';
 
 const LandingPage = () => {
   // Update document title when component mounts
@@ -26,6 +27,9 @@ const LandingPage = () => {
       
       {/* How it works section - moved down */}
       <HowItWorks />
+      
+      {/* Features section */}
+      <FeaturesSection />
       
       {/* Integrations band section */}
       <IntegrationsBand />
