@@ -24,11 +24,6 @@ const LandingPage = () => {
       {/* Main hero section */}
       <Hero />
       
-      {/* Product overview section - with ID for navigation */}
-      <section id="product">
-        <ProductOverview />
-      </section>
-      
       {/* How it works section - moved down */}
       <HowItWorks />
       
