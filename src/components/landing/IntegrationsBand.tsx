@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 const IntegrationsBand = () => {
   // Partner logos for the orbit animation
   const partnerLogos = [
-    "/lovable-uploads/f713ae55-0676-4205-8969-2c7dde623066.png", // connector icon
+    "/lovable-uploads/ad95a90e-baea-498a-9340-1ebc2b0e2aff.png", // FreeCAD logo
     "/lovable-uploads/e4dbaf6f-3040-49b1-9d47-42aaa3516252.png", // CATIA
     "/lovable-uploads/b766693c-c2f1-4b5e-b4f3-4e7330347cbb.png", // 3D viewer
     "/lovable-uploads/08660fa4-d479-4930-a581-c2a847bd5bd3.png", // V PRO
