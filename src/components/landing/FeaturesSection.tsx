@@ -48,7 +48,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-[#E4E6E8] rounded-lg overflow-hidden bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             const isLastInRow = (index + 1) % 3 === 0;
