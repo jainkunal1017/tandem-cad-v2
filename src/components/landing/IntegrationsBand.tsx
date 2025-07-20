@@ -45,7 +45,7 @@ const IntegrationsBand = () => {
                     <img 
                       src="/lovable-uploads/7628e1a6-b59d-4315-aba1-ae673d2921e6.png" 
                       alt="Tandem" 
-                      className="w-16 h-16"
+                      className="w-20 h-20"
                     />
                   </div>
                   
