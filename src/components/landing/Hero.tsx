@@ -57,10 +57,10 @@ const Hero = () => {
               {/* Headline */}
               <div className="space-y-2">
                 <h1 className="text-5xl lg:text-[4.25rem] font-extrabold leading-tight text-white">
-                  Document Designs
+                  Design documentation
                 </h1>
                 <h1 className="text-5xl lg:text-[4.25rem] font-extrabold leading-tight text-white">
-                  in <span className="text-emerald-bright">Minutes.</span>
+                  on <span className="text-emerald-bright">autopilot.</span>
                 </h1>
               </div>
 
