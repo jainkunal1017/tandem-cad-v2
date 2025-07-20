@@ -31,7 +31,7 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
   };
   
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
+    <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ backgroundColor: '#F7F8F9' }}>
       {/* Background design elements */}
       <BackgroundLines />
 
