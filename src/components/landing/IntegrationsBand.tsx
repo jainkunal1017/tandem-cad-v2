@@ -50,7 +50,7 @@ const IntegrationsBand = () => {
                   </div>
                   
                   {/* Orbiting logos container */}
-                  <div className="absolute inset-0 animate-[spin_25s_linear_infinite]">
+                  <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
                     {partnerLogos.map((logo, index) => (
                       <div
                         key={index}
@@ -60,7 +60,7 @@ const IntegrationsBand = () => {
                         <img 
                           src={logo} 
                           alt={`Partner ${index + 1}`}
-                          className="w-full h-full object-contain animate-[spin_25s_linear_infinite_reverse]"
+                          className="w-full h-full object-contain animate-[spin_40s_linear_infinite_reverse]"
                         />
                       </div>
                     ))}
