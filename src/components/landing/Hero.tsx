@@ -26,7 +26,7 @@ const Hero = () => {
         <div 
           className="w-full max-w-7xl mx-auto rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden relative"
           style={{ 
-            background: 'radial-gradient(ellipse at 30% 40%, #0D0D0D 0%, #112E24 40%, #06120D 100%)'
+            background: 'radial-gradient(ellipse at 20% 30%, #000000 0%, #0A0A0A 25%, #1a2f1f 60%, #18d47a 100%)'
           }}
         >
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
