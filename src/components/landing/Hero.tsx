@@ -87,25 +87,23 @@ const Hero = () => {
 
 
               {/* Perk Row */}
-              <div className="flex flex-col sm:flex-row gap-6 pt-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-bright/20 flex items-center justify-center">
+              <div className="flex flex-col sm:flex-row gap-8 pt-4">
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-emerald-bright/20 flex items-center justify-center mt-0.5">
                     <Zap className="w-3 h-3 text-emerald-bright" />
                   </div>
-                  <div className="text-sm text-gray-300">
-                    <span className="font-medium text-white">Built for engineers</span>
-                    <span className="mx-2">·</span>
-                    <span>Get started in minutes</span>
+                  <div className="space-y-1">
+                    <div className="text-sm font-medium text-white">Built for Speed</div>
+                    <div className="text-sm text-gray-300">Get started in minutes</div>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full bg-emerald-bright/20 flex items-center justify-center">
+                <div className="flex items-start space-x-3">
+                  <div className="w-6 h-6 rounded-full bg-emerald-bright/20 flex items-center justify-center mt-0.5">
                     <Hand className="w-3 h-3 text-emerald-bright" />
                   </div>
-                  <div className="text-sm text-gray-300">
-                    <span className="font-medium text-white">Integrated into your CAD</span>
-                    <span className="mx-2">·</span>
-                    <span>Launch and manage easily</span>
+                  <div className="space-y-1">
+                    <div className="text-sm font-medium text-white">No-Code Friendly</div>
+                    <div className="text-sm text-gray-300">Launch and manage easily</div>
                   </div>
                 </div>
               </div>
