@@ -25,7 +25,9 @@ const Hero = () => {
       <section className="min-h-[80vh] flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div 
           className="w-full max-w-7xl mx-auto rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden relative"
-          style={{ background: 'var(--hero-gradient)' }}
+          style={{ 
+            background: 'radial-gradient(ellipse at 30% 40%, #0D0D0D 0%, #112E24 40%, #06120D 100%)'
+          }}
         >
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Column - Content */}
@@ -114,9 +116,10 @@ const Hero = () => {
               <div className="relative">
                 {/* MacBook Frame */}
                 <div 
-                  className="bg-gray-800 rounded-xl p-1 shadow-2xl transform rotate-2"
+                  className="bg-gray-800 rounded-xl p-1 shadow-2xl"
                   style={{
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(24, 212, 122, 0.1)'
+                    transform: 'rotate(11deg) scale(1.1)',
+                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 60px rgba(24, 212, 122, 0.12)'
                   }}
                 >
                   <div className="bg-black rounded-lg overflow-hidden">
