@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -34,17 +35,17 @@ const Hero = () => {
                 <span>Built by Mechanical & AI engineers at</span>
                 <div className="flex items-center space-x-4">
                   <img 
-                    src="/lovable-uploads/fbe5e963-fb47-42a9-b117-b0325710bbbf.png" 
+                    src="/lovable-uploads/4b9cec9a-ee91-4d67-904d-636bd2be0171.png" 
                     alt="Rolls Royce" 
                     className="h-4 object-contain brightness-0 invert"
                   />
                   <img 
-                    src="/lovable-uploads/d1587fe7-24e3-4ec5-a704-627f8ca50802.png" 
+                    src="/lovable-uploads/32197b2b-4e31-4dbc-8cf8-19f78b0b823b.png" 
                     alt="AWS" 
                     className="h-4 object-contain brightness-0 invert"
                   />
                   <img 
-                    src="/lovable-uploads/abbb308e-a76a-4f3f-8896-9207cdac38a7.png" 
+                    src="/lovable-uploads/c5eb81bc-a7cb-4d44-b9d0-802ecabe5b5e.png" 
                     alt="Boeing" 
                     className="h-4 object-contain brightness-0 invert"
                   />
@@ -84,7 +85,6 @@ const Hero = () => {
                   Book a Demo
                 </Button>
               </div>
-
 
               {/* Perk Row */}
               <div className="flex flex-col sm:flex-row gap-8 pt-4">
