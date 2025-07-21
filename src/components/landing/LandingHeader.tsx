@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import DarkModeToggle from '@/components/DarkModeToggle';
 import { Menu, X, Lock } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 
@@ -91,9 +90,7 @@ const LandingHeader = ({ onShowWaitlist, onRequestDemo }: LandingHeaderProps) =>
           </nav>
         </div>
         
-        {/* Desktop actions */}
         <div className="hidden md:flex items-center gap-4">
-          <DarkModeToggle />
           <Button 
             variant="outline"
             className="border-primary text-primary hover:bg-primary/10 transition-transform hover:scale-[1.02]"
@@ -114,7 +111,6 @@ const LandingHeader = ({ onShowWaitlist, onRequestDemo }: LandingHeaderProps) =>
 
         {/* Mobile menu button */}
         <div className="flex md:hidden items-center gap-2">
-          <DarkModeToggle />
           <Button 
             variant="ghost" 
             size="icon" 
