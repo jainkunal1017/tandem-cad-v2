@@ -44,7 +44,7 @@ const HowItWorks = () => {
       title: '04. Generate Docs',
       description: 'One click outputs documentation tailored to specific needs, such as design reviews, audits, or technical analyses.',
       buttonText: 'Export Sample Report',
-      image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-3
+      image: '/lovable-uploads/7744b9bd-2f79-4319-a221-441f41fe98a3.png'
     }
   ];
 
