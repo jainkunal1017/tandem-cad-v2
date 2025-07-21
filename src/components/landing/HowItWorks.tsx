@@ -53,7 +53,7 @@ const HowItWorks = () => {
   };
 
   return (
-    <section className="w-full py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F7F8F9' }}>
+    <section id="product" className="w-full py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F7F8F9' }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Top Badge */}
         <div className="text-center mb-8">
