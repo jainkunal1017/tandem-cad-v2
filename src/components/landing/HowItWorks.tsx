@@ -24,7 +24,7 @@ const HowItWorks = () => {
       title: '02. Data Integration',
       description: 'Connects directly to your existing file storage (e.g., Google Drive) or PLM systems to access historical CAD files and engineering data.',
       buttonText: 'Connect Systems',
-      image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png'
+      image: '/lovable-uploads/ca3f218a-d9ed-4f25-9098-62319323fb88.png'
     },
     {
       id: 2,
