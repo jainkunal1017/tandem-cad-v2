@@ -63,31 +63,19 @@ const testimonials = [
 
 // Create testimonial card component
 const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
-  <div className="bg-[#131613] border-2 border-[#1E221E] rounded-xl p-6 min-h-[104px] relative overflow-hidden">
-    {/* Subtle diagonal noise overlay */}
-    <div 
-      className="absolute inset-0 opacity-10 pointer-events-none"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c0 8-8 8-8 16s8 8 8 16 8-8 16-8 8 8 16 8 8-8 8-16-8-8-8-16 8-8 16-8 8 8 16 8' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
-        backgroundSize: '32px 32px'
-      }}
-    />
-    
-    <p className="text-white text-sm leading-5 mb-4">
+  <div className="testi-card">
+    <p className="testi-quote">
       "{testimonial.quote}"
     </p>
     
-    <div className="flex items-center gap-3">
-      <Avatar className="w-8 h-8">
-        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-        <AvatarFallback className="text-xs">{testimonial.author.charAt(0)}</AvatarFallback>
-      </Avatar>
+    <div className="testi-footer">
+      <img src={testimonial.avatar} alt={testimonial.author} />
       <div>
-        <p className="text-white text-lg font-semibold">{testimonial.author}</p>
-        <p className="text-gray-400 text-sm">
+        <div className="testi-name">{testimonial.author}</div>
+        <div className="testi-role">
           {testimonial.title}
           {testimonial.company && ` · ${testimonial.company}`}
-        </p>
+        </div>
       </div>
     </div>
   </div>
@@ -103,13 +91,11 @@ const TestimonialSection = () => {
     <section 
       id="testimonials" 
       className="w-full pt-24 pb-30 px-4"
-      style={{
-        background: 'radial-gradient(ellipse at center, #0F2F23 0%, #0D0D0D 100%)'
-      }}
+      style={{ backgroundColor: '#F7F8F9' }}
     >
       <div className="container mx-auto max-w-6xl">
         {/* Header */}
-        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-gray-900">
           People Can't Stop{' '}
           <span className="italic font-serif">Talking</span>
           {' '}About Tandem
@@ -117,8 +103,8 @@ const TestimonialSection = () => {
         
         {/* Desktop: 3-column animated grid */}
         <div className="hidden sm:block">
-          <div className="overflow-hidden">
-            <div className="grid grid-cols-3 gap-8">
+          <div className="testi-wrapper">
+            <div className="testi-track">
               {/* Left Column */}
               <div className="carousel-col left">
                 {/* Duplicate for seamless loop */}
