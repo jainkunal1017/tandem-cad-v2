@@ -72,7 +72,13 @@ const HowItWorks = () => {
                 : 'text-gray-700'
             }`}>
               Watch
-            </span> and Assist
+            </span> and <span className={`transition-all duration-500 ${
+              activeTab === 2 || activeTab === 3 
+                ? 'text-emerald-bright drop-shadow-lg' 
+                : 'text-gray-700'
+            }`}>
+              Assist
+            </span>
           </h2>
         </div>
 
