@@ -136,7 +136,7 @@ const HowItWorks = () => {
                 <img
                   src={tabs[activeTab].image}
                   alt={tabs[activeTab].title}
-                  className="w-4/5 h-auto rounded-2xl shadow-lg object-contain max-sm:max-w-full mx-auto"
+                  className="w-2/3 h-auto rounded-2xl shadow-lg object-contain max-sm:max-w-full mx-auto"
                 />
               </div>
             </div>
