@@ -138,6 +138,36 @@
     scroll-margin-top: 72px;
   }
 
+  /* Testimonial carousel animations */
+  @keyframes scrollUp {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  @keyframes scrollDown {
+    0%   { transform: translateY(-50%); }
+    100% { transform: translateY(0); }
+  }
+
+  .carousel-col {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .carousel-col.left,
+  .carousel-col.right {
+    animation: scrollUp 42s linear infinite;
+  }
+
+  .carousel-col.middle {
+    animation: scrollDown 42s linear infinite;
+  }
+
+  .carousel-col:hover {
+    animation-play-state: paused;
+  }
+
   /* Global Mobile Rules */
   @media (max-width: 640px) {
     :root {

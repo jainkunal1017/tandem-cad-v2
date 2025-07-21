@@ -1,9 +1,6 @@
 
-import React, { useEffect, useRef } from "react";
-import { Card, CardContent } from "@/components/ui/card";
+import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Quote } from "lucide-react";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from "@/components/ui/carousel";
 
 const testimonials = [
   {
@@ -64,101 +61,98 @@ const testimonials = [
   }
 ];
 
+// Create testimonial card component
+const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
+  <div className="bg-[#131613] border-2 border-[#1E221E] rounded-xl p-6 min-h-[104px] relative overflow-hidden">
+    {/* Subtle diagonal noise overlay */}
+    <div 
+      className="absolute inset-0 opacity-10 pointer-events-none"
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M8 16c0 8-8 8-8 16s8 8 8 16 8-8 16-8 8 8 16 8 8-8 8-16-8-8-8-16 8-8 16-8 8 8 16 8' stroke='%23ffffff' stroke-width='0.5' fill='none'/%3E%3C/svg%3E")`,
+        backgroundSize: '32px 32px'
+      }}
+    />
+    
+    <p className="text-white text-sm leading-5 mb-4">
+      "{testimonial.quote}"
+    </p>
+    
+    <div className="flex items-center gap-3">
+      <Avatar className="w-8 h-8">
+        <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+        <AvatarFallback className="text-xs">{testimonial.author.charAt(0)}</AvatarFallback>
+      </Avatar>
+      <div>
+        <p className="text-white text-lg font-semibold">{testimonial.author}</p>
+        <p className="text-gray-400 text-sm">
+          {testimonial.title}
+          {testimonial.company && ` · ${testimonial.company}`}
+        </p>
+      </div>
+    </div>
+  </div>
+);
+
 const TestimonialSection = () => {
-  const [api, setApi] = React.useState<CarouselApi>();
-  const [current, setCurrent] = React.useState(0);
-  const [count, setCount] = React.useState(0);
-  const intervalRef = useRef<NodeJS.Timeout>();
-
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
-
-  // Auto-scroll functionality
-  React.useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    const startAutoScroll = () => {
-      intervalRef.current = setInterval(() => {
-        if (api.canScrollNext()) {
-          api.scrollNext();
-        } else {
-          api.scrollTo(0);
-        }
-      }, 6000);
-    };
-
-    const stopAutoScroll = () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-
-    startAutoScroll();
-
-    return () => {
-      stopAutoScroll();
-    };
-  }, [api]);
+  // Split testimonials into three columns
+  const leftColumn = [testimonials[0], testimonials[3], testimonials[6]];
+  const middleColumn = [testimonials[1], testimonials[4]];
+  const rightColumn = [testimonials[2], testimonials[5]];
 
   return (
-    <section id="testimonials" className="py-20 px-4">
+    <section 
+      id="testimonials" 
+      className="w-full pt-24 pb-30 px-4"
+      style={{
+        background: 'radial-gradient(ellipse at center, #0F2F23 0%, #0D0D0D 100%)'
+      }}
+    >
       <div className="container mx-auto max-w-6xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">Engineers can't wait</h2>
+        {/* Header */}
+        <h2 className="text-3xl md:text-4xl font-bold mb-16 text-center text-white">
+          People Can't Stop{' '}
+          <span className="italic font-serif">Talking</span>
+          {' '}About Tandem
+        </h2>
         
-        <div className="relative">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            setApi={setApi}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <Card className="bg-background border shadow-sm h-full">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <Quote className="h-8 w-8 text-primary/40 mb-4" />
-                      <p className="text-lg mb-6 flex-grow">
-                        "{testimonial.quote}"
-                      </p>
-                      <div className="flex items-start gap-3">
-                        <Avatar className="mt-1">
-                          <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
-                          <AvatarFallback>{testimonial.author.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                        <div className="flex-1">
-                          <p className="font-medium text-base">{testimonial.author}</p>
-                          <p className="text-sm text-muted-foreground font-medium">{testimonial.title}</p>
-                          <p className="text-sm font-semibold text-foreground">{testimonial.company}</p>
-                          {testimonial.experience && (
-                            <p className="text-xs text-muted-foreground mt-1">{testimonial.experience}</p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <div className="flex justify-center mt-8 gap-4">
-              <CarouselPrevious className="relative static mx-0 left-0 translate-y-0" />
-              <CarouselNext className="relative static mx-0 right-0 translate-y-0" />
+        {/* Desktop: 3-column animated grid */}
+        <div className="hidden sm:block">
+          <div className="overflow-hidden">
+            <div className="grid grid-cols-3 gap-8">
+              {/* Left Column */}
+              <div className="carousel-col left">
+                {/* Duplicate for seamless loop */}
+                {[...leftColumn, ...leftColumn].map((testimonial, index) => (
+                  <TestimonialCard key={`left-${index}`} testimonial={testimonial} />
+                ))}
+              </div>
+              
+              {/* Middle Column */}
+              <div className="carousel-col middle">
+                {/* Duplicate for seamless loop */}
+                {[...middleColumn, ...middleColumn].map((testimonial, index) => (
+                  <TestimonialCard key={`middle-${index}`} testimonial={testimonial} />
+                ))}
+              </div>
+              
+              {/* Right Column */}
+              <div className="carousel-col right">
+                {/* Duplicate for seamless loop */}
+                {[...rightColumn, ...rightColumn].map((testimonial, index) => (
+                  <TestimonialCard key={`right-${index}`} testimonial={testimonial} />
+                ))}
+              </div>
             </div>
-          </Carousel>
+          </div>
+        </div>
+
+        {/* Mobile: Simple vertical stack */}
+        <div className="sm:hidden">
+          <div className="space-y-6">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard key={`mobile-${index}`} testimonial={testimonial} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
