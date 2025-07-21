@@ -35,7 +35,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="w-full bg-[#F7F8F9] py-20">
+    <section id="features" className="w-full bg-[#F7F8F9] py-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
