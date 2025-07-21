@@ -129,7 +129,7 @@ const Hero = () => {
                     </div>
                     {/* Screenshot */}
                     <img
-                      src="/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png"
+                      src="/lovable-uploads/de9f29b2-5d34-4684-8c81-a13a30333cf6.png"
                       alt="Tandem Dashboard"
                       className="w-full h-auto object-contain"
                     />
