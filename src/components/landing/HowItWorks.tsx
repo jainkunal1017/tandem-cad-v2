@@ -14,7 +14,7 @@ const HowItWorks = () => {
       title: '01. Capture Actions',
       description: 'Tandem records every sketch, mate, feature, and parameter in real time with zero manual effort.',
       buttonText: 'Get Started',
-      image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-1
+      image: '/lovable-uploads/0034e2eb-b2dd-4b45-ab6a-1b4c219bae1e.png'
     },
     {
       id: 1,
