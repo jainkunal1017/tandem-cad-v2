@@ -22,7 +22,7 @@ const HowItWorks = () => {
       number: '02',
       icon: Database,
       title: '02. Data Integration',
-      description: 'Seamlessly connect with your existing PDM systems and CAD libraries to maintain data continuity.',
+      description: 'Connects directly to your existing file storage (e.g., Google Drive) or PLM systems to access historical CAD files and engineering data.',
       buttonText: 'Connect Systems',
       image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png'
     },
