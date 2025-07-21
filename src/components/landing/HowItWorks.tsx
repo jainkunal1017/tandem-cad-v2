@@ -34,7 +34,7 @@ const HowItWorks = () => {
       title: '03. Contextualize Intent',
       description: 'LLMs map your edits to functional intent, so you and future teammates know why each change exists.',
       buttonText: 'Next Step',
-      image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-2
+      image: '/lovable-uploads/fb17e26d-d58a-4f3d-bcaa-1a49f7c264f2.png'
     },
     {
       id: 3,
