@@ -10,7 +10,7 @@ import JoinWaitlist from '@/components/landing/JoinWaitlist';
 import FAQ from '@/components/landing/FAQ';
 import CtaFooter from '@/components/landing/CtaFooter';
 import ProductOverview from '@/components/landing/ProductOverview';
-import UseCases from '@/components/landing/UseCases';
+
 import TestimonialSection from '@/components/landing/TestimonialSection';
 import FeaturesSection from '@/components/landing/FeaturesSection';
 
@@ -34,8 +34,6 @@ const LandingPage = () => {
       {/* Integrations band section */}
       <IntegrationsBand />
       
-      {/* Use cases section - moved before waitlist */}
-      <UseCases />
       
       {/* Join waitlist section with ID for navigation */}
       <section id="waitlist">
