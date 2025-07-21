@@ -29,7 +29,7 @@ const Hero = () => {
             background: 'radial-gradient(ellipse at 20% 30%, #000000 0%, #0A0A0A 25%, #1a3a32 60%, #4ade80 100%)'
           }}
         >
-          <div className="flex flex-col items-start text-left space-y-8 animate-fade-up max-w-4xl">
+          <div className="flex flex-col items-center text-center space-y-8 animate-fade-up">
             {/* Built by section */}
             <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
               <span>Built by Mechanical & AI engineers at</span>
@@ -64,7 +64,7 @@ const Hero = () => {
 
             {/* Body Text */}
             <p className="text-xl text-gray-300 max-w-[560px] leading-relaxed">
-              Your CAD data explained
+              Tandem captures every sketch, mate, and feature so engineers stop writing and start engineering.
             </p>
 
             {/* CTA Buttons */}
@@ -87,7 +87,7 @@ const Hero = () => {
             </div>
 
             {/* Perk Row */}
-            <div className="flex flex-col sm:flex-row gap-8 pt-4 justify-start">
+            <div className="flex flex-col sm:flex-row gap-8 pt-4 justify-center">
               <div className="flex items-start space-x-3">
                 <div className="w-6 h-6 rounded-full bg-emerald-bright/20 flex items-center justify-center mt-0.5">
                   <Zap className="w-3 h-3 text-emerald-bright" />
