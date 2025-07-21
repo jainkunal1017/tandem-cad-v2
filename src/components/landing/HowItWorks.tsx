@@ -12,7 +12,7 @@ const HowItWorks = () => {
       number: '01',
       icon: RotateCcw,
       title: '01. Capture Actions',
-      description: 'Tandem records every sketch, mate, feature, and parameter in real time—zero manual effort.',
+      description: 'Tandem records every sketch, mate, feature, and parameter in real time with zero manual effort.',
       buttonText: 'Get Started',
       image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-1
     },
@@ -22,7 +22,7 @@ const HowItWorks = () => {
       number: '02',
       icon: Brain,
       title: '02. Contextualize Intent',
-      description: 'LLMs map your edits to functional intent, so you—and future teammates—know why each change exists.',
+      description: 'LLMs map your edits to functional intent, so you and future teammates know why each change exists.',
       buttonText: 'Next Step',
       image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-2
     },
