@@ -8,8 +8,8 @@ import {
 
 const faqs = [
   {
-    question: "What is a Design-Intent File (DIF)?",
-    answer: "A Design-Intent File (DIF) is a JSON/PDF package containing a timeline, rationale summary, screenshots, and metadata that captures the 'why' behind design decisions made during CAD sessions."
+    question: "How does Tandem capture my CAD work?",
+    answer: "Tandem adds a lightweight \"Watch Layer\" inside your CAD session. It listens for sketches, mates, feature edits, parameters, and file actions, then streams that data to our cloud. No macros to click, no exports to manage design normally, Tandem logs everything in the background."
   },
   {
     question: "How does Tandem integrate with my existing CAD software?",
