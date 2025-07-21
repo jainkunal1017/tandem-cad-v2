@@ -68,7 +68,7 @@ const HowItWorks = () => {
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-700 mt-2">
             <span className={`transition-all duration-500 ${
               activeTab === 0 || activeTab === 1 
-                ? 'text-emerald-bright drop-shadow-lg animate-pulse' 
+                ? 'text-emerald-bright drop-shadow-lg' 
                 : 'text-gray-700'
             }`}>
               Watch
