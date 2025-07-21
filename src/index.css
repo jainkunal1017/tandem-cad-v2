@@ -141,6 +141,39 @@
   /* Testimonial carousel animations */
   .testi-wrapper{
     max-width:1080px;margin:64px auto 0;overflow:hidden;height:360px;
+    position:relative;   /* establish containing block for pseudo-els */
+  }
+
+  /* TOP & BOTTOM fade */
+  .testi-wrapper::before,
+  .testi-wrapper::after{
+    content:"";
+    position:absolute; left:0; right:0;
+    height:60px;                  /* adjust thickness to taste */
+    pointer-events:none;          /* keep hover/scroll intact */
+    z-index:2;                    /* above cards */
+  }
+  .testi-wrapper::before{
+    top:0;
+    background:linear-gradient(to bottom,
+                #F7F8F9 0%,       /* section bg */
+                rgba(247,248,249,0) 100%);
+  }
+  .testi-wrapper::after{
+    bottom:0;
+    background:linear-gradient(to top,
+                #F7F8F9 0%,
+                rgba(247,248,249,0) 100%);
+  }
+
+  /* WebKit-only mask fallback (optional, iOS Safari) */
+  @supports (-webkit-mask-image:none){
+    .testi-wrapper{
+      -webkit-mask-image:linear-gradient(to bottom,
+         transparent 0%, #000 10%, #000 90%, transparent 100%);
+              mask-image:linear-gradient(to bottom,
+         transparent 0%, #000 10%, #000 90%, transparent 100%);
+    }
   }
 
   .testi-track{
