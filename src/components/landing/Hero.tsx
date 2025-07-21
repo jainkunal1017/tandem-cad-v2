@@ -118,7 +118,7 @@ const Hero = () => {
                 <div 
                   className="bg-gray-800 rounded-xl p-1 shadow-2xl"
                   style={{
-                    transform: 'rotate(11deg) scale(1.1)',
+                    transform: 'scale(1.3)',
                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 60px rgba(24, 212, 122, 0.12)'
                   }}
                 >
