@@ -59,14 +59,14 @@ const HowItWorks = () => {
 
         {/* Interactive Card */}
         <div 
-          className="bg-white rounded-3xl p-10 lg:p-14 relative overflow-hidden"
+          className="bg-white rounded-3xl p-10 lg:p-14 relative overflow-hidden max-sm:rounded-2xl"
           style={{
             boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)'
           }}
         >
           {/* Tab Bar */}
           <div className="relative mb-12">
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide max-sm:overflow-x-auto max-sm:scrollbar-width-none">
               {/* Background pill that slides */}
               <div 
                 className="absolute h-12 bg-gray-100 rounded-full transition-all duration-500 ease-in-out hidden sm:block"
@@ -101,10 +101,21 @@ const HowItWorks = () => {
           {/* Content Panel */}
           <div 
             key={activeTab}
-            className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center animate-fade-in"
+            className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center animate-fade-in max-sm:flex max-sm:flex-col"
           >
+            {/* Mobile: Image first, then text */}
+            <div className="lg:col-span-3 order-first max-sm:order-1">
+              <div className="relative">
+                <img
+                  src={tabs[activeTab].image}
+                  alt={tabs[activeTab].title}
+                  className="w-full h-auto rounded-2xl shadow-lg object-contain max-sm:max-w-full"
+                />
+              </div>
+            </div>
+
             {/* Left Column - Text (40%) */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-6 max-sm:order-2">
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
                 {tabs[activeTab].title}
               </h3>
@@ -119,17 +130,6 @@ const HowItWorks = () => {
               >
                 {tabs[activeTab].buttonText}
               </Button>
-            </div>
-
-            {/* Right Column - Image (60%) */}
-            <div className="lg:col-span-3 order-first lg:order-last">
-              <div className="relative">
-                <img
-                  src={tabs[activeTab].image}
-                  alt={tabs[activeTab].title}
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                />
-              </div>
             </div>
           </div>
         </div>

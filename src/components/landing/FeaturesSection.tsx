@@ -48,7 +48,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-sm:grid-cols-1">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             const isLastInRow = (index + 1) % 3 === 0;
@@ -59,17 +59,18 @@ const FeaturesSection = () => {
                 key={feature.title}
                 className={`
                   group relative px-8 py-12 text-center transition-all duration-200 hover:-translate-y-1
-                  ${!isLastInRow && 'md:border-r border-[#E4E6E8]'}
+                  ${!isLastInRow && 'md:border-r border-[#E4E6E8] max-sm:border-r-0'}
                   ${!isBottomRow && 'border-b border-[#E4E6E8]'}
+                  max-sm:py-8 max-sm:pt-8 max-sm:pb-7
                 `}
               >
                 <div className="flex flex-col items-center">
                   <Icon 
                     size={24} 
                     strokeWidth={2} 
-                    className="text-gray-900 group-hover:text-emerald-bright transition-colors duration-200 mb-4"
+                    className="text-gray-900 group-hover:text-emerald-bright transition-colors duration-200 mb-4 max-sm:w-7 max-sm:h-7"
                   />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6 group-hover:-translate-y-1 transition-transform duration-200">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 group-hover:-translate-y-1 transition-transform duration-200 max-sm:text-[18px] max-sm:mb-3">
                     {feature.title}
                   </h3>
                   <p className="text-base text-gray-600 max-w-[31ch] leading-relaxed">

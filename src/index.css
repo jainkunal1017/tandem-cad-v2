@@ -137,4 +137,43 @@
   section[id] {
     scroll-margin-top: 72px;
   }
+
+  /* Global Mobile Rules */
+  @media (max-width: 640px) {
+    :root {
+      --h1-size: clamp(32px, 8vw, 40px);
+      --h2-size: clamp(26px, 7vw, 34px);
+      --body-size: 15px;
+      --pad-vert: 48px;
+      --pad-side: 20px;
+    }
+    
+    h1 { 
+      font-size: var(--h1-size) !important; 
+      line-height: 1.15 !important; 
+    }
+    
+    h2 { 
+      font-size: var(--h2-size) !important; 
+      line-height: 1.2 !important; 
+    }
+    
+    p, li, button { 
+      font-size: var(--body-size) !important; 
+    }
+    
+    section { 
+      padding: var(--pad-vert) var(--pad-side) !important; 
+    }
+    
+    /* Hide scrollbars for horizontal scroll areas */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Shorten animation delays for snappier feel */
+    .animate-fade-in {
+      animation-delay: 0ms !important;
+    }
+  }
 }

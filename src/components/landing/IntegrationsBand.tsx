@@ -34,12 +34,12 @@ const IntegrationsBand = () => {
         {/* White card container */}
         <div className="bg-white rounded-3xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] max-w-[1200px] mx-auto">
           <div className="px-16 py-24">
-            {/* Two-column grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Two-column grid - Mobile: stacked with logo wheel first */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-sm:flex max-sm:flex-col max-sm:gap-8">
               
               {/* Left Column - Animated Logo Wheel */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="relative w-[420px] h-[420px] sm:w-[280px] sm:h-[280px] lg:w-[420px] lg:h-[420px]">
+              <div className="flex justify-center lg:justify-start max-sm:order-1">
+                <div className="relative w-[420px] h-[420px] sm:w-[280px] sm:h-[280px] lg:w-[420px] lg:h-[420px] max-sm:w-[280px] max-sm:h-[280px]">
                   {/* Tandem logo in center */}
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                     <img 
@@ -51,25 +51,40 @@ const IntegrationsBand = () => {
                   
                   {/* Orbiting logos container */}
                   <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
-                    {partnerLogos.map((logo, index) => (
-                      <div
-                        key={index}
-                        className="absolute w-16 h-16"
-                        style={getLogoPosition(index, partnerLogos.length)}
-                      >
-                        <img 
-                          src={logo} 
-                          alt={`Partner ${index + 1}`}
-                          className="w-full h-full object-contain animate-[spin_40s_linear_infinite_reverse]"
-                        />
-                      </div>
-                    ))}
+                    {partnerLogos.map((logo, index) => {
+                      // Mobile: smaller orbit radius
+                      const getMobileLogoPosition = (index: number, total: number) => {
+                        const angle = (index * 360) / total;
+                        const radian = (angle * Math.PI) / 180;
+                        const radius = window.innerWidth <= 640 ? 120 : 180;
+                        const x = Math.cos(radian) * radius;
+                        const y = Math.sin(radian) * radius;
+                        return {
+                          left: `calc(50% + ${x}px - 32px)`,
+                          top: `calc(50% + ${y}px - 32px)`,
+                        };
+                      };
+
+                      return (
+                        <div
+                          key={index}
+                          className="absolute w-16 h-16"
+                          style={window.innerWidth <= 640 ? getMobileLogoPosition(index, partnerLogos.length) : getLogoPosition(index, partnerLogos.length)}
+                        >
+                          <img 
+                            src={logo} 
+                            alt={`Partner ${index + 1}`}
+                            className="w-full h-full object-contain animate-[spin_40s_linear_infinite_reverse]"
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
 
               {/* Right Column - Copy + CTA */}
-              <div className="text-center lg:text-left">
+              <div className="text-center lg:text-left max-sm:order-2">
                 {/* Badge */}
                 <div className="inline-block bg-gray-100 px-3 py-1 rounded-full mb-6">
                   <span className="text-xs font-medium tracking-[0.08em] text-gray-600 uppercase">
@@ -94,6 +109,16 @@ const IntegrationsBand = () => {
                 >
                   Explore Features
                 </Button>
+
+                {/* Mobile: Integration tiles row (horizontally scrollable) */}
+                <div className="hidden max-sm:flex gap-3 overflow-x-auto mt-8 scrollbar-hide">
+                  {['SolidWorks', 'AutoCAD', 'Fusion 360', 'Inventor'].map((tool, index) => (
+                    <div key={index} className="min-w-[220px] bg-gray-50 rounded-2xl px-6 py-5 text-center">
+                      <div className="text-sm font-medium text-gray-700">{tool}</div>
+                      <div className="text-xs text-gray-500 mt-1">Ready to use</div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
