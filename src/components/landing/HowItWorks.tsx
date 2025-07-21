@@ -55,6 +55,9 @@ const HowItWorks = () => {
           <h1 className="text-5xl lg:text-[4.25rem] font-extrabold leading-tight text-gray-900">
             How it works?
           </h1>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-700 mt-2">
+            Watch and Assist
+          </h2>
         </div>
 
         {/* Interactive Card */}
