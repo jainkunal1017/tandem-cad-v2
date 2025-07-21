@@ -67,9 +67,9 @@ const HowItWorks = () => {
           {/* Tab Bar */}
           <div className="relative mb-12">
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-0 overflow-x-auto snap-x snap-mandatory scrollbar-hide max-sm:overflow-x-auto max-sm:scrollbar-width-none">
-              {/* Background pill that slides - show on mobile too */}
+              {/* Background pill that slides */}
               <div 
-                className="absolute h-12 bg-gray-100 rounded-full transition-all duration-500 ease-in-out sm:block max-sm:block"
+                className="absolute h-12 bg-gray-100 rounded-full transition-all duration-500 ease-in-out hidden sm:block"
                 style={{
                   width: `${100 / tabs.length}%`,
                   transform: `translateX(${activeTab * 100}%)`
@@ -84,26 +84,14 @@ const HowItWorks = () => {
                     onClick={() => handleTabClick(index)}
                     className={`relative z-10 flex items-center justify-center sm:justify-start space-x-3 px-6 py-3 rounded-full transition-all duration-300 flex-1 snap-center whitespace-nowrap min-w-fit ${
                       activeTab === index 
-                        ? 'text-gray-900 sm:bg-transparent max-sm:bg-transparent' 
+                        ? 'text-gray-900 bg-gray-100 sm:bg-transparent' 
                         : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
                     }`}
                   >
                     <Icon className="w-4 h-4" />
-                    <span className="font-medium max-sm:whitespace-pre-line max-sm:text-center max-sm:leading-tight">
-                      {/* Mobile: wrap second word */}
-                      <span className="sm:hidden">
-                        {tab.label.split(' ').map((word, i) => (
-                          <span key={i}>
-                            {word}
-                            {i === 0 && '\n'}
-                          </span>
-                        ))}
-                      </span>
-                      {/* Desktop: normal text */}
-                      <span className="hidden sm:inline">{tab.label}</span>
-                    </span>
-                    <span className="text-sm text-gray-400 max-sm:hidden">·</span>
-                    <span className="text-sm text-gray-400 max-sm:hidden">{tab.number}</span>
+                    <span className="font-medium">{tab.label}</span>
+                    <span className="text-sm text-gray-400">·</span>
+                    <span className="text-sm text-gray-400">{tab.number}</span>
                   </button>
                 );
               })}
