@@ -55,7 +55,7 @@ const Hero = () => {
             {/* Headline */}
             <div className="space-y-2">
               <h1 className="text-5xl lg:text-[4.25rem] font-extrabold leading-tight text-white">
-                Your CAD data <span className="text-emerald-bright">explained</span>
+                Your CAD data, <span className="text-emerald-bright">explained.</span>
               </h1>
             </div>
 
