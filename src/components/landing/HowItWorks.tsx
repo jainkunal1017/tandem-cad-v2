@@ -42,7 +42,7 @@ const HowItWorks = () => {
       number: '04',
       icon: FileText,
       title: '04. Generate Docs',
-      description: 'One click outputs FAA-ready PDFs, changelogs, and interactive timelines you can share anywhere.',
+      description: 'One click outputs documentation tailored to specific needs, such as design reviews, audits, or technical analyses.',
       buttonText: 'Export Sample Report',
       image: '/lovable-uploads/dd18cf98-ec4e-41e5-b80f-89d90248b2bd.png' // placeholder - will use IMG-HOW-3
     }
