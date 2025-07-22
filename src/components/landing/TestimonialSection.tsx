@@ -90,7 +90,7 @@ const TestimonialSection = () => {
   return (
     <section 
       id="testimonials" 
-      className="w-full pt-24 pb-30 px-4"
+      className="testimonial-section w-full pt-24 pb-30 px-4"
       style={{ backgroundColor: '#F7F8F9' }}
     >
       <div className="container mx-auto max-w-6xl">
@@ -132,10 +132,11 @@ const TestimonialSection = () => {
           </div>
         </div>
 
-        {/* Mobile: Simple vertical stack */}
+        {/* Mobile: Auto-scrolling horizontal carousel */}
         <div className="sm:hidden">
-          <div className="space-y-6">
-            {testimonials.map((testimonial, index) => (
+          <div className="mobile-carousel">
+            {/* Duplicate testimonials for seamless loop */}
+            {[...testimonials, ...testimonials].map((testimonial, index) => (
               <TestimonialCard key={`mobile-${index}`} testimonial={testimonial} />
             ))}
           </div>

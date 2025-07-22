@@ -244,10 +244,80 @@
     }
     
     @media(max-width:640px){
-      .testi-wrapper{height:400px;}
-      .testi-track {column-gap:20px;}
-      .testi-card  {padding:20px 24px;}
-      .testi-quote {font-size:14px;}
+      /* 1. Hide the current 3-column layout */
+      .testi-track,
+      .carousel-col { 
+        display: none !important; 
+      }
+
+      /* 2. Create a single horizontal carousel */
+      .mobile-carousel {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 0 24px;
+        animation: autoSlide 32s linear infinite;
+        -webkit-overflow-scrolling: touch;
+      }
+      .mobile-carousel::-webkit-scrollbar { 
+        display: none; 
+      }
+
+      /* 3. Each card */
+      .mobile-carousel .testi-card {
+        flex: 0 0 80%;
+        min-width: 80%;
+        max-width: 80%;
+        scroll-snap-align: center;
+        background: #FFFFFF;
+        border-radius: 16px;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        padding: 24px 28px;
+      }
+
+      /* 4. Auto-scroll keyframes */
+      @keyframes autoSlide {
+        0%   { transform: translateX(0);  }
+        100% { transform: translateX(calc(-100% - 20px)); }
+      }
+      /* Pause on touch */
+      .mobile-carousel:active { 
+        animation-play-state: paused; 
+      }
+
+      /* 5. Edge-blur masks */
+      .testimonial-section {
+        position: relative;
+      }
+      .testimonial-section::before,
+      .testimonial-section::after {
+        content:"";
+        position:absolute; 
+        top:0; 
+        bottom:0; 
+        width:48px; 
+        z-index:2;
+        pointer-events:none;
+      }
+      .testimonial-section::before {
+        left:0;
+        background:linear-gradient(to right, #F7F8F9 0%, rgba(247,248,249,0) 100%);
+      }
+      .testimonial-section::after {
+        right:0;
+        background:linear-gradient(to left, #F7F8F9 0%, rgba(247,248,249,0) 100%);
+      }
+
+      /* 6. Typography tweaks */
+      .testi-quote { 
+        font-size:15px; 
+        line-height:1.45; 
+      }
+      .testi-footer { 
+        margin-top:20px; 
+        gap:12px; 
+      }
     }
     
     /* Shorten animation delays for snappier feel */
