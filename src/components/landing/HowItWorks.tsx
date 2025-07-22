@@ -91,10 +91,10 @@ const HowItWorks = () => {
         >
           {/* Tab Bar */}
           <div className="relative mb-12 flex justify-center">
-            <div className="relative flex bg-gray-50 rounded-full p-1.5 max-w-fit">
-              {/* Background pill that slides */}
+            <div className="relative flex bg-gray-50 rounded-full p-1.5 max-w-fit max-sm:overflow-x-auto max-sm:gap-5 max-sm:px-4 max-sm:py-3 max-sm:scrollbar-hide max-sm:snap-x max-sm:snap-mandatory max-sm:max-w-full">
+              {/* Background pill that slides - hidden on mobile */}
               <div 
-                className="absolute h-[calc(100%-12px)] bg-white rounded-full transition-all duration-500 ease-in-out shadow-sm"
+                className="absolute h-[calc(100%-12px)] bg-white rounded-full transition-all duration-500 ease-in-out shadow-sm max-sm:hidden"
                 style={{
                   width: `calc(${100 / tabs.length}% - 4px)`,
                   left: '6px',
@@ -113,10 +113,10 @@ const HowItWorks = () => {
                       activeTab === index 
                         ? 'text-gray-900' 
                         : 'text-gray-600 hover:text-gray-900'
-                    }`}
+                    } max-sm:flex-col max-sm:space-x-0 max-sm:space-y-1 max-sm:min-w-[100px] max-sm:text-sm max-sm:snap-start max-sm:flex-shrink-0`}
                   >
-                    <Icon className="w-4 h-4" />
-                    <span className="font-medium text-sm">
+                    <Icon className="w-4 h-4 max-sm:w-5 max-sm:h-5" />
+                    <span className="font-medium text-sm max-sm:text-center max-sm:text-xs">
                       {tab.label}
                     </span>
                   </button>
