@@ -132,13 +132,15 @@ const TestimonialSection = () => {
           </div>
         </div>
 
-        {/* Mobile: Auto-scrolling horizontal carousel */}
+        {/* Mobile: Auto-scrolling horizontal slider */}
         <div className="sm:hidden">
-          <div className="mobile-carousel">
-            {/* Duplicate testimonials for seamless loop */}
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
-              <TestimonialCard key={`mobile-${index}`} testimonial={testimonial} />
-            ))}
+          <div className="testi-slider">
+            <div className="testi-slider-track">
+              {/* Duplicate testimonials for seamless loop */}
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <TestimonialCard key={`mobile-${index}`} testimonial={testimonial} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

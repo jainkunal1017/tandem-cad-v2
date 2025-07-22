@@ -244,79 +244,91 @@
     }
     
     @media(max-width:640px){
-      /* 1. Hide the current 3-column layout */
+      /* 0. Hide any previous mobile carousel / 3-column code */
       .testi-track,
+      .mobile-carousel,
       .carousel-col { 
-        display: none !important; 
+        display:none !important; 
       }
 
-      /* 2. Create a single horizontal carousel */
-      .mobile-carousel {
-        display: flex;
-        gap: 20px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        padding: 0 24px;
-        animation: autoSlide 32s linear infinite;
-        -webkit-overflow-scrolling: touch;
+      /* 1. Slider shell */
+      .testi-slider { 
+        position:relative; 
+        overflow:hidden; 
+        height:260px; 
       }
-      .mobile-carousel::-webkit-scrollbar { 
-        display: none; 
+      .testi-slider-track {
+        display:flex; 
+        gap:24px;
+        animation:slideLoop 30s linear infinite;
+        will-change: transform;
       }
 
-      /* 3. Each card */
-      .mobile-carousel .testi-card {
-        flex: 0 0 80%;
-        min-width: 80%;
-        max-width: 80%;
-        scroll-snap-align: center;
-        background: #FFFFFF;
-        border-radius: 16px;
-        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-        padding: 24px 28px;
+      /* 2. Card */
+      .testi-slider .testi-card{
+        flex:0 0 80%;
+        max-width:80%;
+        background:#FFFFFF;
+        border-radius:16px;
+        box-shadow:0 4px 14px rgba(0,0,0,.06);
+        padding:24px 28px;
+        display:flex; 
+        flex-direction:column; 
+        justify-content:space-between;
+      }
+      .testi-quote { 
+        font-size:15px; 
+        line-height:1.45; 
+        color:#111; 
+      }
+      .testi-footer{ 
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-top:20px;
+        font-size:14px; 
+      }
+      .testi-footer img{ 
+        width:40px;
+        height:40px;
+        border-radius:50%; 
       }
 
       /* 4. Auto-scroll keyframes */
-      @keyframes autoSlide {
-        0%   { transform: translateX(0);  }
-        100% { transform: translateX(calc(-100% - 20px)); }
+      @keyframes slideLoop{
+        0%   { transform:translateX(0); }
+        100% { transform:translateX(calc(-100% - 24px)); }
       }
-      /* Pause on touch */
-      .mobile-carousel:active { 
-        animation-play-state: paused; 
-      }
+      .testi-slider-track:hover{ 
+        animation-play-state:paused; 
+      }   /* pause on touch */
 
-      /* 5. Edge-blur masks */
-      .testimonial-section {
-        position: relative;
+      /* 5. Soft edge blur */
+      .testimonial-section{ 
+        position:relative; 
       }
       .testimonial-section::before,
-      .testimonial-section::after {
-        content:"";
+      .testimonial-section::after{
+        content:""; 
         position:absolute; 
         top:0; 
         bottom:0; 
         width:48px; 
+        pointer-events:none; 
         z-index:2;
-        pointer-events:none;
       }
-      .testimonial-section::before {
+      .testimonial-section::before{
         left:0;
-        background:linear-gradient(to right, #F7F8F9 0%, rgba(247,248,249,0) 100%);
+        background:linear-gradient(to right,#F7F8F9 0%,rgba(247,248,249,0)100%);
       }
-      .testimonial-section::after {
+      .testimonial-section::after{
         right:0;
-        background:linear-gradient(to left, #F7F8F9 0%, rgba(247,248,249,0) 100%);
+        background:linear-gradient(to left,#F7F8F9 0%,rgba(247,248,249,0)100%);
       }
 
-      /* 6. Typography tweaks */
-      .testi-quote { 
-        font-size:15px; 
-        line-height:1.45; 
-      }
-      .testi-footer { 
-        margin-top:20px; 
-        gap:12px; 
+      /* 6. Tighten header spacing */
+      .testimonial-section h2{ 
+        margin-bottom:32px; 
       }
     }
     
