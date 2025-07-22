@@ -29,11 +29,11 @@ const IntegrationsBand = () => {
   };
 
   return (
-    <section className="w-full bg-[#F7F8F9] py-20">
+    <section className="w-full bg-[#F7F8F9] py-20 max-sm:py-16">
       <div className="max-w-6xl mx-auto px-6">
         {/* White card container */}
         <div className="bg-white rounded-3xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] max-w-[1200px] mx-auto">
-          <div className="px-16 py-24">
+          <div className="px-16 py-24 max-sm:px-4 max-sm:py-16">
             {/* Two-column grid - Mobile: stacked with logo wheel first */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-sm:flex max-sm:flex-col max-sm:gap-8">
               
@@ -86,34 +86,34 @@ const IntegrationsBand = () => {
               {/* Right Column - Copy + CTA */}
               <div className="text-center lg:text-left max-sm:order-2">
                 {/* Badge */}
-                <div className="inline-block bg-gray-100 px-3 py-1 rounded-full mb-6">
+                <div className="inline-block bg-gray-100 px-3 py-1 rounded-full mb-6 max-sm:mb-4">
                   <span className="text-xs font-medium tracking-[0.08em] text-gray-600 uppercase">
                     WORK WITH YOUR TOOLS
                   </span>
                 </div>
 
                 {/* Heading */}
-                <h2 className="text-[48px] lg:text-[52px] font-semibold leading-tight text-gray-900 mb-6">
+                <h2 className="text-[48px] lg:text-[52px] font-semibold leading-tight text-gray-900 mb-6 max-sm:text-3xl max-sm:mt-4 max-sm:mb-3">
                   Seamless Integrations,<br />
                   Zero Hassle
                 </h2>
 
                 {/* Body copy */}
-                <p className="text-base text-gray-600 max-w-[420px] mx-auto lg:mx-0 mb-8">
+                <p className="text-base text-gray-600 max-w-[420px] mx-auto lg:mx-0 mb-8 max-sm:text-[15px] max-sm:leading-[1.5] max-sm:mb-6">
                   Connect your favorite tools in seconds—Tandem agents work wherever your engineers do.
                 </p>
 
                 {/* CTA Button */}
                 <Button 
-                  className="bg-black text-white hover:bg-gray-800 rounded-full h-11 px-8 text-sm font-medium"
+                  className="bg-black text-white hover:bg-gray-800 rounded-full h-11 px-8 text-sm font-medium max-sm:mx-auto max-sm:mb-8 max-sm:py-3 max-sm:px-6 max-sm:text-[15px] max-sm:block"
                 >
                   Explore Features
                 </Button>
 
-                {/* Mobile: Integration tiles row (horizontally scrollable) */}
-                <div className="hidden max-sm:flex gap-3 overflow-x-auto mt-8 scrollbar-hide">
+                {/* Mobile: Integration tiles column stack */}
+                <div className="hidden max-sm:flex max-sm:flex-col max-sm:gap-4 max-sm:px-4">
                   {['SolidWorks', 'AutoCAD', 'Fusion 360', 'Inventor'].map((tool, index) => (
-                    <div key={index} className="min-w-[220px] bg-gray-50 rounded-2xl px-6 py-5 text-center">
+                    <div key={index} className="w-full bg-gray-50 rounded-2xl px-5 py-5 text-center shadow-[0_4px_14px_rgba(0,0,0,0.04)]">
                       <div className="text-sm font-medium text-gray-700">{tool}</div>
                       <div className="text-xs text-gray-500 mt-1">Ready to use</div>
                     </div>
