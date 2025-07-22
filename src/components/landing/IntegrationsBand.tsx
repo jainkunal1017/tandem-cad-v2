@@ -52,24 +52,13 @@ const IntegrationsBand = () => {
                   {/* Orbiting logos container */}
                   <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
                     {partnerLogos.map((logo, index) => {
-                      // Mobile: smaller orbit radius
-                      const getMobileLogoPosition = (index: number, total: number) => {
-                        const angle = (index * 360) / total;
-                        const radian = (angle * Math.PI) / 180;
-                        const radius = window.innerWidth <= 640 ? 120 : 180;
-                        const x = Math.cos(radian) * radius;
-                        const y = Math.sin(radian) * radius;
-                        return {
-                          left: `calc(50% + ${x}px - 32px)`,
-                          top: `calc(50% + ${y}px - 32px)`,
-                        };
-                      };
-
+                      const position = getLogoPosition(index, partnerLogos.length);
+                      
                       return (
                         <div
                           key={index}
                           className="absolute w-16 h-16"
-                          style={window.innerWidth <= 640 ? getMobileLogoPosition(index, partnerLogos.length) : getLogoPosition(index, partnerLogos.length)}
+                          style={position}
                         >
                           <img 
                             src={logo} 
