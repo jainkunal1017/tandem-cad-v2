@@ -31,8 +31,8 @@ const Hero = () => {
         >
           <div className="flex flex-col items-start text-left space-y-8 animate-fade-up">
             {/* Built by section */}
-            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10 sm:flex-row sm:space-x-3 sm:space-y-0 flex-col space-y-2 sm:px-4 px-4 sm:py-2 py-3 max-w-full sm:max-w-none text-center sm:text-left">
-              <span className="sm:text-sm text-[14px]">Built by Mechanical & AI engineers at</span>
+            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10 sm:flex-row sm:space-x-3 sm:space-y-0 flex-col space-y-2 sm:px-4 px-6 sm:py-2 py-3 sm:max-w-none max-w-[280px] text-center sm:text-left">
+              <span className="sm:text-sm text-[14px] whitespace-nowrap">Built by Mechanical & AI engineers at</span>
               <div className="flex items-center space-x-4 flex-wrap justify-center sm:justify-start">
                 <img 
                   src="/lovable-uploads/4b9cec9a-ee91-4d67-904d-636bd2be0171.png" 
