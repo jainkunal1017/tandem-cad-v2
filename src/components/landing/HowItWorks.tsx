@@ -91,10 +91,11 @@ const HowItWorks = () => {
         >
           {/* Tab Bar */}
           <div className="relative mb-12 flex justify-center">
-            <div className="relative flex bg-gray-50 rounded-full p-1.5 max-w-fit max-sm:overflow-x-auto max-sm:gap-5 max-sm:px-4 max-sm:py-3 max-sm:scrollbar-hide max-sm:snap-x max-sm:snap-mandatory max-sm:max-w-full">
-              {/* Background pill that slides - hidden on mobile */}
+            {/* Desktop: Full tab bar */}
+            <div className="hidden sm:flex relative bg-gray-50 rounded-full p-1.5 max-w-fit">
+              {/* Background pill that slides */}
               <div 
-                className="absolute h-[calc(100%-12px)] bg-white rounded-full transition-all duration-500 ease-in-out shadow-sm max-sm:hidden"
+                className="absolute h-[calc(100%-12px)] bg-white rounded-full transition-all duration-500 ease-in-out shadow-sm"
                 style={{
                   width: `calc(${100 / tabs.length}% - 4px)`,
                   left: '6px',
@@ -113,15 +114,48 @@ const HowItWorks = () => {
                       activeTab === index 
                         ? 'text-gray-900' 
                         : 'text-gray-600 hover:text-gray-900'
-                    } max-sm:flex-col max-sm:space-x-0 max-sm:space-y-1 max-sm:min-w-[100px] max-sm:text-sm max-sm:snap-start max-sm:flex-shrink-0`}
+                    }`}
                   >
-                    <Icon className="w-4 h-4 max-sm:w-5 max-sm:h-5" />
-                    <span className="font-medium text-sm max-sm:text-center max-sm:text-xs">
+                    <Icon className="w-4 h-4" />
+                    <span className="font-medium text-sm">
                       {tab.label}
                     </span>
                   </button>
                 );
               })}
+            </div>
+
+            {/* Mobile: Navigation dots + current tab indicator */}
+            <div className="sm:hidden flex flex-col items-center space-y-4">
+              {/* Current tab display */}
+              <div className="flex items-center space-x-3 bg-gray-50 rounded-full px-6 py-3">
+                {(() => {
+                  const Icon = tabs[activeTab].icon;
+                  return (
+                    <>
+                      <Icon className="w-5 h-5 text-gray-700" />
+                      <span className="font-medium text-sm text-gray-900">
+                        {tabs[activeTab].label}
+                      </span>
+                    </>
+                  );
+                })()}
+              </div>
+              
+              {/* Navigation dots */}
+              <div className="flex space-x-2">
+                {tabs.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      activeTab === index 
+                        ? 'bg-emerald-bright' 
+                        : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
