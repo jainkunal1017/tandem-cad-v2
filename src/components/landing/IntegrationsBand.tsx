@@ -1,7 +1,10 @@
 
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const IntegrationsBand = () => {
+  const isMobile = useIsMobile();
+  
   // Partner logos for the orbit animation
   const partnerLogos = [
     "/lovable-uploads/ad95a90e-baea-498a-9340-1ebc2b0e2aff.png", // FreeCAD logo
@@ -15,16 +18,17 @@ const IntegrationsBand = () => {
     "/lovable-uploads/c3b46d51-f4db-4ae4-b37f-19dd552d8a8b.png", // SolidWorks
   ];
 
-  // Calculate positions for logos on a circle (180px radius)
-  const getLogoPosition = (index: number, total: number) => {
+  // Calculate positions for logos on a circle (responsive radius)
+  const getLogoPosition = (index: number, total: number, isMobile: boolean = false) => {
     const angle = (index * 360) / total;
     const radian = (angle * Math.PI) / 180;
-    const radius = 180;
+    const radius = isMobile ? 100 : 180; // Smaller radius for mobile
     const x = Math.cos(radian) * radius;
     const y = Math.sin(radian) * radius;
+    const logoSize = isMobile ? 24 : 32; // Smaller logos on mobile
     return {
-      left: `calc(50% + ${x}px - 32px)`, // 32px = half of 64px logo size
-      top: `calc(50% + ${y}px - 32px)`,
+      left: `calc(50% + ${x}px - ${logoSize}px)`,
+      top: `calc(50% + ${y}px - ${logoSize}px)`,
     };
   };
 
@@ -37,27 +41,27 @@ const IntegrationsBand = () => {
             {/* Desktop: Two-column grid, Mobile: stacked */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               
-              {/* Left Column - Animated Logo Wheel (Desktop only side-by-side) */}
-              <div className="flex justify-center">
-                <div className="relative w-[420px] h-[420px] max-sm:w-[280px] max-sm:h-[280px]">
+              {/* Left Column - Animated Logo Wheel */}
+              <div className="flex justify-center max-sm:mb-8">
+                <div className="relative w-[420px] h-[420px] max-sm:w-[280px] max-sm:h-[280px] max-sm:overflow-hidden">
                   {/* Tandem logo in center */}
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                     <img 
                       src="/lovable-uploads/7628e1a6-b59d-4315-aba1-ae673d2921e6.png" 
                       alt="Tandem" 
-                      className="w-24 h-24"
+                      className="w-24 h-24 max-sm:w-16 max-sm:h-16"
                     />
                   </div>
                   
                   {/* Orbiting logos container */}
                   <div className="absolute inset-0 animate-[spin_40s_linear_infinite]">
                     {partnerLogos.map((logo, index) => {
-                      const position = getLogoPosition(index, partnerLogos.length);
+                      const position = getLogoPosition(index, partnerLogos.length, isMobile);
                       
                       return (
                         <div
                           key={index}
-                          className="absolute w-16 h-16"
+                          className="absolute w-16 h-16 max-sm:w-12 max-sm:h-12"
                           style={position}
                         >
                           <img 
