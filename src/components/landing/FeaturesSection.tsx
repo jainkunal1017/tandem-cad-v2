@@ -86,37 +86,19 @@ const FeaturesSection = () => {
 
         {/* Mobile: Carousel with navigation */}
         <div className="sm:hidden">
-          {/* Current feature display */}
-          <div className="flex flex-col items-center mb-8">
-            {/* Current feature pill */}
-            <div className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 mb-6 shadow-sm">
-              {(() => {
-                const Icon = features[activeFeature].icon;
-                return (
-                  <>
-                    <Icon className="w-5 h-5 text-gray-700" />
-                    <span className="font-medium text-sm text-gray-900">
-                      {features[activeFeature].title}
-                    </span>
-                  </>
-                );
-              })()}
-            </div>
-            
-            {/* Navigation dots */}
-            <div className="flex space-x-2">
-              {features.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveFeature(index)}
-                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                    activeFeature === index 
-                      ? 'bg-emerald-bright' 
-                      : 'bg-gray-300'
-                  }`}
-                />
-              ))}
-            </div>
+          {/* Navigation dots */}
+          <div className="flex justify-center space-x-2 mb-8">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveFeature(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  activeFeature === index 
+                    ? 'bg-emerald-bright' 
+                    : 'bg-gray-300'
+                }`}
+              />
+            ))}
           </div>
 
           {/* Current feature content */}
