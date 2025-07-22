@@ -41,7 +41,7 @@ const FeaturesSection = () => {
     <section id="features" className="w-full bg-[#F7F8F9] py-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 max-sm:mb-10">
           <div className="inline-block bg-white rounded-full px-4 py-2 text-xs font-medium tracking-[0.08em] text-gray-600 uppercase mb-6">
             Game-Changing Features
           </div>
