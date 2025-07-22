@@ -257,6 +257,35 @@
         overflow:hidden; 
         height:290px; 
       }
+
+      /* Attach fades to the slider wrapper */
+      .testi-slider::before,
+      .testi-slider::after{
+        content:"";
+        position:absolute;
+        top:0; bottom:0; width:48px;        /* width of the blur band */
+        pointer-events:none;
+        z-index:3;                          /* above cards, below header */
+      }
+
+      /* Left fade   */
+      .testi-slider::before{
+        left:0;
+        background:linear-gradient(
+            to right,
+            #F7F8F9   0%,                  /* section bg colour */
+            rgba(247,248,249,0) 100%);
+      }
+
+      /* Right fade  */
+      .testi-slider::after{
+        right:0;
+        background:linear-gradient(
+            to left,
+            #F7F8F9   0%,
+            rgba(247,248,249,0) 100%);
+      }
+
       .testi-slider-track {
         display:flex; 
         gap:24px;
