@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { RotateCw, Brain, FileText, Search, ShieldCheck, Globe } from 'lucide-react';
 
 const features = [
@@ -34,6 +35,8 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const [activeFeature, setActiveFeature] = useState(0);
+
   return (
     <section id="features" className="w-full bg-[#F7F8F9] py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -42,13 +45,13 @@ const FeaturesSection = () => {
           <div className="inline-block bg-white rounded-full px-4 py-2 text-xs font-medium tracking-[0.08em] text-gray-600 uppercase mb-6">
             Game-Changing Features
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 max-sm:text-3xl">
             Discover Tandem's game-changing features
           </h1>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 max-sm:grid-cols-1">
+        {/* Desktop: Features Grid */}
+        <div className="hidden sm:grid grid-cols-1 md:grid-cols-3 gap-0">
           {features.map((feature, index) => {
             const Icon = feature.icon;
             const isLastInRow = (index + 1) % 3 === 0;
@@ -59,18 +62,17 @@ const FeaturesSection = () => {
                 key={feature.title}
                 className={`
                   group relative px-8 py-12 text-center transition-all duration-200 hover:-translate-y-1
-                  ${!isLastInRow && 'md:border-r border-[#E4E6E8] max-sm:border-r-0'}
+                  ${!isLastInRow && 'md:border-r border-[#E4E6E8]'}
                   ${!isBottomRow && 'border-b border-[#E4E6E8]'}
-                  max-sm:py-8 max-sm:pt-8 max-sm:pb-7
                 `}
               >
                 <div className="flex flex-col items-center">
                   <Icon 
                     size={24} 
                     strokeWidth={2} 
-                    className="text-gray-900 group-hover:text-emerald-bright transition-colors duration-200 mb-4 max-sm:w-7 max-sm:h-7"
+                    className="text-gray-900 group-hover:text-emerald-bright transition-colors duration-200 mb-4"
                   />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6 group-hover:-translate-y-1 transition-transform duration-200 max-sm:text-[18px] max-sm:mb-3">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 group-hover:-translate-y-1 transition-transform duration-200">
                     {feature.title}
                   </h3>
                   <p className="text-base text-gray-600 max-w-[31ch] leading-relaxed">
@@ -80,6 +82,67 @@ const FeaturesSection = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Mobile: Carousel with navigation */}
+        <div className="sm:hidden">
+          {/* Current feature display */}
+          <div className="flex flex-col items-center mb-8">
+            {/* Current feature pill */}
+            <div className="flex items-center space-x-3 bg-white rounded-full px-6 py-3 mb-6 shadow-sm">
+              {(() => {
+                const Icon = features[activeFeature].icon;
+                return (
+                  <>
+                    <Icon className="w-5 h-5 text-gray-700" />
+                    <span className="font-medium text-sm text-gray-900">
+                      {features[activeFeature].title}
+                    </span>
+                  </>
+                );
+              })()}
+            </div>
+            
+            {/* Navigation dots */}
+            <div className="flex space-x-2">
+              {features.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveFeature(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                    activeFeature === index 
+                      ? 'bg-emerald-bright' 
+                      : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Current feature content */}
+          <div 
+            key={activeFeature}
+            className="bg-white rounded-2xl p-8 text-center animate-fade-in shadow-sm"
+          >
+            {(() => {
+              const Icon = features[activeFeature].icon;
+              return (
+                <div className="flex flex-col items-center">
+                  <Icon 
+                    size={28} 
+                    strokeWidth={2} 
+                    className="text-gray-900 mb-4"
+                  />
+                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                    {features[activeFeature].title}
+                  </h3>
+                  <p className="text-base text-gray-600 leading-relaxed">
+                    {features[activeFeature].description}
+                  </p>
+                </div>
+              );
+            })()}
+          </div>
         </div>
       </div>
     </section>
