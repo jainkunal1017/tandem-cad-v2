@@ -109,16 +109,6 @@ const IntegrationsBand = () => {
                 >
                   Explore Features
                 </Button>
-
-                {/* Mobile: Integration tiles column stack */}
-                <div className="hidden max-sm:flex max-sm:flex-col max-sm:gap-4 max-sm:px-4">
-                  {['SolidWorks', 'AutoCAD', 'Fusion 360', 'Inventor'].map((tool, index) => (
-                    <div key={index} className="w-full bg-gray-50 rounded-2xl px-5 py-5 text-center shadow-[0_4px_14px_rgba(0,0,0,0.04)]">
-                      <div className="text-sm font-medium text-gray-700">{tool}</div>
-                      <div className="text-xs text-gray-500 mt-1">Ready to use</div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
