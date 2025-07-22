@@ -34,11 +34,11 @@ const IntegrationsBand = () => {
         {/* White card container */}
         <div className="bg-white rounded-3xl shadow-[0_8px_24px_rgba(0,0,0,0.06)] max-w-[1200px] mx-auto">
           <div className="px-16 py-24 max-sm:px-4 max-sm:py-16">
-            {/* Two-column grid - Mobile: stacked with logo wheel first */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Desktop: Two-column grid, Mobile: stacked */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               
-              {/* Left Column - Animated Logo Wheel */}
-              <div className="flex justify-center lg:justify-start">
+              {/* Left Column - Animated Logo Wheel (Desktop only side-by-side) */}
+              <div className="flex justify-center">
                 <div className="relative w-[420px] h-[420px] max-sm:w-[280px] max-sm:h-[280px]">
                   {/* Tandem logo in center */}
                   <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
@@ -73,7 +73,7 @@ const IntegrationsBand = () => {
               </div>
 
               {/* Right Column - Copy + CTA */}
-              <div className="text-center lg:text-left">
+              <div className="text-center lg:text-left lg:pl-8">
                 {/* Badge */}
                 <div className="inline-block bg-gray-100 px-3 py-1 rounded-full mb-6 max-sm:mb-4">
                   <span className="text-xs font-medium tracking-[0.08em] text-gray-600 uppercase">
