@@ -31,23 +31,23 @@ const Hero = () => {
         >
           <div className="flex flex-col items-start text-left space-y-8 animate-fade-up">
             {/* Built by section */}
-            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
-              <span>Built by Mechanical & AI engineers at</span>
-              <div className="flex items-center space-x-4">
+            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10 sm:flex-row sm:space-x-3 sm:space-y-0 flex-col space-y-2 sm:px-4 px-4 sm:py-2 py-3 max-w-full sm:max-w-none text-center sm:text-left">
+              <span className="sm:text-sm text-[14px]">Built by Mechanical & AI engineers at</span>
+              <div className="flex items-center space-x-4 flex-wrap justify-center sm:justify-start">
                 <img 
                   src="/lovable-uploads/4b9cec9a-ee91-4d67-904d-636bd2be0171.png" 
                   alt="Rolls Royce" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="sm:h-4 h-5 object-contain brightness-0 invert max-w-6"
                 />
                 <img 
                   src="/lovable-uploads/32197b2b-4e31-4dbc-8cf8-19f78b0b823b.png" 
                   alt="AWS" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="sm:h-4 h-5 object-contain brightness-0 invert max-w-6"
                 />
                 <img 
                   src="/lovable-uploads/c5eb81bc-a7cb-4d44-b9d0-802ecabe5b5e.png" 
                   alt="Boeing" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="sm:h-4 h-5 object-contain brightness-0 invert max-w-6"
                 />
               </div>
             </div>
