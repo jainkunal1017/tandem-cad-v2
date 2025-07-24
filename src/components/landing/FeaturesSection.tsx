@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { RotateCw, Brain, FileText, Search, ShieldCheck, Globe } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselApi } from '@/components/ui/carousel';
 
 const features = [
   {
@@ -37,6 +37,15 @@ const features = [
 
 const FeaturesSection = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    api.on('select', () => {
+      setActiveFeature(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
     <section id="features" className="w-full bg-[#F7F8F9] py-20">
@@ -87,8 +96,27 @@ const FeaturesSection = () => {
 
         {/* Mobile: Swipeable Carousel */}
         <div className="sm:hidden">
+          {/* Navigation dots */}
+          <div className="flex justify-center space-x-2 mb-8">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  setActiveFeature(index);
+                  api?.scrollTo(index);
+                }}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  activeFeature === index 
+                    ? 'bg-emerald-bright' 
+                    : 'bg-gray-300'
+                }`}
+              />
+            ))}
+          </div>
+
           <Carousel 
             className="w-full"
+            setApi={setApi}
             opts={{
               align: "center",
               loop: true,

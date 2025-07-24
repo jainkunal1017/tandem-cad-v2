@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { RotateCcw, Brain, FileText, Database } from 'lucide-react';
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselApi } from '@/components/ui/carousel';
 
 const HowItWorks = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
 
   const tabs = [
     {
@@ -51,7 +52,16 @@ const HowItWorks = () => {
 
   const handleTabClick = (tabIndex: number) => {
     setActiveTab(tabIndex);
+    api?.scrollTo(tabIndex);
   };
+
+  useEffect(() => {
+    if (!api) return;
+
+    api.on('select', () => {
+      setActiveTab(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
     <section id="product" className="w-full py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: '#F7F8F9' }}>
@@ -127,7 +137,8 @@ const HowItWorks = () => {
             </div>
 
             {/* Mobile: Swipeable Carousel Header */}
-            <div className="sm:hidden flex justify-center">
+            <div className="sm:hidden flex flex-col items-center space-y-4">
+              {/* Current tab display */}
               <div className="flex items-center space-x-3 bg-gray-50 rounded-full px-6 py-3">
                 {(() => {
                   const Icon = tabs[activeTab].icon;
@@ -140,6 +151,21 @@ const HowItWorks = () => {
                     </>
                   );
                 })()}
+              </div>
+              
+              {/* Navigation dots */}
+              <div className="flex space-x-2">
+                {tabs.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleTabClick(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                      activeTab === index 
+                        ? 'bg-emerald-bright' 
+                        : 'bg-gray-300'
+                    }`}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -185,6 +211,7 @@ const HowItWorks = () => {
           <div className="sm:hidden">
             <Carousel 
               className="w-full"
+              setApi={setApi}
               opts={{
                 align: "center",
                 loop: true,
