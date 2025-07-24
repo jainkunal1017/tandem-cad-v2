@@ -22,49 +22,56 @@ const CtaFooter = () => {
   
   return (
     <>
-      <section className="py-16 px-4 text-primary-foreground bg-black">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 dark:text-white">
-            Ready to design, decide, and deliver in Tandem?
-          </h2>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              size="lg" 
-              className="bg-white text-primary hover:bg-white/90 transition-transform hover:scale-[1.02] h-12 px-8 dark:text-black" 
-              onClick={() => setShowDemoForm(true)}
-            >
-              Request Demo
-            </Button>
+      <section className="py-16 px-4 sm:px-6 lg:px-8">
+        <div 
+          className="w-full max-w-7xl mx-auto rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden relative"
+          style={{ 
+            background: 'radial-gradient(ellipse at 20% 30%, #000000 0%, #0A0A0A 25%, #1a3a32 60%, #4ade80 100%)'
+          }}
+        >
+          <div className="text-center space-y-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-white">
+              Ready to design, decide, and deliver in Tandem?
+            </h2>
             
-            <Button 
-              size="lg" 
-              variant="outline" 
-              className="bg-transparent border-white text-white hover:bg-white/10 transition-transform hover:scale-[1.02] h-12 px-8"
-              onClick={scrollToWaitlist}
-            >
-              Join the Waitlist
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Button 
+                size="lg" 
+                className="bg-white text-black hover:bg-gray-100 h-11 px-8 rounded-full font-medium text-base" 
+                onClick={() => setShowDemoForm(true)}
+              >
+                Request Demo
+              </Button>
+              
+              <Button 
+                size="lg" 
+                variant="ghost"
+                className="text-white border border-white/20 hover:bg-white/10 h-11 px-8 rounded-full font-medium text-base"
+                onClick={scrollToWaitlist}
+              >
+                Join the Waitlist
+              </Button>
+            </div>
             
-            {/* Built by engineers badge - Boeing logo moved to the end */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700 shadow-sm">
-              <span className="text-sm text-gray-700 dark:text-gray-300">Built by mechanical &amp; AI engineers at</span>
-              <div className="flex items-center">
-                <div className="h-6 flex items-center">
-                  {/* Use different logos based on dark mode */}
-                  <img alt="Rolls Royce Logo" className="h-full object-contain hidden dark:block" src="/lovable-uploads/8c9ad3e3-5241-4b6b-a090-667209abfd44.png" />
-                  <img alt="Rolls Royce Logo" className="h-full object-contain dark:hidden" src="/lovable-uploads/6ac61aab-1b56-4d2f-b957-2f99f3452b3f.png" />
-                </div>
-                <div className="h-5 flex items-center mx-2">
-                  {/* Use different AWS logos based on dark mode */}
-                  <img alt="AWS Logo" className="h-full object-contain hidden dark:block" src="/lovable-uploads/978993a1-0308-4440-bd20-b4e32762d56e.png" />
-                  <img alt="AWS Logo" className="h-full object-contain dark:hidden" src="/lovable-uploads/f459a07d-11ba-4cf8-a527-5ea7d7d9ab56.png" />
-                </div>
-                <div className="h-7 flex items-center">
-                  {/* Use different Boeing logos based on dark mode */}
-                  <img alt="Boeing Logo" className="h-full object-contain hidden dark:block" src="/lovable-uploads/6ba3b3bc-6b23-4cc6-8bf4-0fbdb160e907.png" />
-                  <img alt="Boeing Logo" className="h-full object-contain dark:hidden" src="/lovable-uploads/c52196ce-e4cb-4055-8d2a-f95151917d27.png" />
-                </div>
+            {/* Built by engineers badge */}
+            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
+              <span className="whitespace-nowrap">Built by mechanical & AI engineers at</span>
+              <div className="flex items-center space-x-4">
+                <img 
+                  src="/lovable-uploads/4b9cec9a-ee91-4d67-904d-636bd2be0171.png" 
+                  alt="Rolls Royce" 
+                  className="h-4 object-contain brightness-0 invert"
+                />
+                <img 
+                  src="/lovable-uploads/32197b2b-4e31-4dbc-8cf8-19f78b0b823b.png" 
+                  alt="AWS" 
+                  className="h-4 object-contain brightness-0 invert"
+                />
+                <img 
+                  src="/lovable-uploads/c5eb81bc-a7cb-4d44-b9d0-802ecabe5b5e.png" 
+                  alt="Boeing" 
+                  className="h-4 object-contain brightness-0 invert"
+                />
               </div>
             </div>
           </div>
