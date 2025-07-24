@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { RotateCcw, Brain, FileText, Database } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const HowItWorks = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -125,9 +126,8 @@ const HowItWorks = () => {
               })}
             </div>
 
-            {/* Mobile: Navigation dots + current tab indicator */}
-            <div className="sm:hidden flex flex-col items-center space-y-4">
-              {/* Current tab display */}
+            {/* Mobile: Swipeable Carousel Header */}
+            <div className="sm:hidden flex justify-center">
               <div className="flex items-center space-x-3 bg-gray-50 rounded-full px-6 py-3">
                 {(() => {
                   const Icon = tabs[activeTab].icon;
@@ -141,57 +141,93 @@ const HowItWorks = () => {
                   );
                 })()}
               </div>
-              
-              {/* Navigation dots */}
-              <div className="flex space-x-2">
-                {tabs.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleTabClick(index)}
-                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                      activeTab === index 
-                        ? 'bg-emerald-bright' 
-                        : 'bg-gray-300'
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </div>
 
           {/* Content Panel */}
-          <div 
-            key={activeTab}
-            className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center animate-fade-in max-sm:flex max-sm:flex-col"
-          >
-            {/* Mobile: Image first, then text */}
-            <div className="lg:col-span-3 order-first max-sm:order-1">
-              <div className="relative">
-                <img
-                  src={tabs[activeTab].image}
-                  alt={tabs[activeTab].title}
-                  className="w-full h-auto rounded-2xl shadow-lg object-contain max-sm:max-w-full mx-auto"
-                />
+          <div className="hidden sm:block">
+            <div 
+              key={activeTab}
+              className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center animate-fade-in"
+            >
+              {/* Mobile: Image first, then text */}
+              <div className="lg:col-span-3 order-first">
+                <div className="relative">
+                  <img
+                    src={tabs[activeTab].image}
+                    alt={tabs[activeTab].title}
+                    className="w-full h-auto rounded-2xl shadow-lg object-contain mx-auto"
+                  />
+                </div>
+              </div>
+
+              {/* Left Column - Text (40%) */}
+              <div className="lg:col-span-2 space-y-6">
+                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                  {tabs[activeTab].title}
+                </h3>
+                
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  {tabs[activeTab].description}
+                </p>
+                
+                <Button
+                  size="lg"
+                  className="bg-emerald-bright text-white hover:bg-emerald-bright/90 h-11 px-8 rounded-full font-medium text-base"
+                >
+                  {tabs[activeTab].buttonText}
+                </Button>
               </div>
             </div>
+          </div>
 
-            {/* Left Column - Text (40%) */}
-            <div className="lg:col-span-2 space-y-6 max-sm:order-2">
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
-                {tabs[activeTab].title}
-              </h3>
-              
-              <p className="text-lg text-gray-600 leading-relaxed">
-                {tabs[activeTab].description}
-              </p>
-              
-              <Button
-                size="lg"
-                className="bg-emerald-bright text-white hover:bg-emerald-bright/90 h-11 px-8 rounded-full font-medium text-base"
-              >
-                {tabs[activeTab].buttonText}
-              </Button>
-            </div>
+          {/* Mobile: Swipeable Carousel */}
+          <div className="sm:hidden">
+            <Carousel 
+              className="w-full"
+              opts={{
+                align: "center",
+                loop: true,
+              }}
+            >
+              <CarouselContent>
+                {tabs.map((tab, index) => {
+                  const Icon = tab.icon;
+                  return (
+                    <CarouselItem key={index}>
+                      <div className="flex flex-col space-y-6">
+                        {/* Image */}
+                        <div className="relative">
+                          <img
+                            src={tab.image}
+                            alt={tab.title}
+                            className="w-full h-auto rounded-2xl shadow-lg object-contain mx-auto"
+                          />
+                        </div>
+
+                        {/* Text */}
+                        <div className="space-y-4 text-center">
+                          <h3 className="text-xl font-bold text-gray-900">
+                            {tab.title}
+                          </h3>
+                          
+                          <p className="text-base text-gray-600 leading-relaxed">
+                            {tab.description}
+                          </p>
+                          
+                          <Button
+                            size="lg"
+                            className="bg-emerald-bright text-white hover:bg-emerald-bright/90 h-11 px-8 rounded-full font-medium text-base"
+                          >
+                            {tab.buttonText}
+                          </Button>
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  );
+                })}
+              </CarouselContent>
+            </Carousel>
           </div>
         </div>
       </div>

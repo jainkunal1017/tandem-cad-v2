@@ -204,9 +204,9 @@
   @keyframes scrollDown {0%{transform:translateY(-50%)}100%{transform:translateY(0)}}
 
   .carousel-col.left,
-  .carousel-col.right {animation:scrollUp 40s linear infinite;}
+  .carousel-col.right {animation:scrollUp 20s linear infinite;}
 
-  .carousel-col.middle {animation:scrollDown 40s linear infinite;}
+  .carousel-col.middle {animation:scrollDown 25s linear infinite;}
 
   .testi-wrapper:hover .carousel-col{animation-play-state:paused;}
 
@@ -289,7 +289,7 @@
       .testi-slider-track {
         display:flex; 
         gap:24px;
-        animation:slideLoop 30s linear infinite;
+        animation:slideLoop 15s linear infinite;
         will-change: transform;
         overflow: visible;
       }

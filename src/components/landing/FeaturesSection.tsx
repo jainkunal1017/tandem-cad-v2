@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { RotateCw, Brain, FileText, Search, ShieldCheck, Globe } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
 const features = [
   {
@@ -84,47 +85,40 @@ const FeaturesSection = () => {
           })}
         </div>
 
-        {/* Mobile: Carousel with navigation */}
+        {/* Mobile: Swipeable Carousel */}
         <div className="sm:hidden">
-          {/* Navigation dots */}
-          <div className="flex justify-center space-x-2 mb-8">
-            {features.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveFeature(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                  activeFeature === index 
-                    ? 'bg-emerald-bright' 
-                    : 'bg-gray-300'
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Current feature content */}
-          <div 
-            key={activeFeature}
-            className="bg-white rounded-2xl p-8 text-center animate-fade-in shadow-sm"
+          <Carousel 
+            className="w-full"
+            opts={{
+              align: "center",
+              loop: true,
+            }}
           >
-            {(() => {
-              const Icon = features[activeFeature].icon;
-              return (
-                <div className="flex flex-col items-center">
-                  <Icon 
-                    size={28} 
-                    strokeWidth={2} 
-                    className="text-gray-900 mb-4"
-                  />
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                    {features[activeFeature].title}
-                  </h3>
-                  <p className="text-base text-gray-600 leading-relaxed">
-                    {features[activeFeature].description}
-                  </p>
-                </div>
-              );
-            })()}
-          </div>
+            <CarouselContent>
+              {features.map((feature, index) => {
+                const Icon = feature.icon;
+                return (
+                  <CarouselItem key={index}>
+                    <div className="bg-white rounded-2xl p-8 text-center shadow-sm">
+                      <div className="flex flex-col items-center">
+                        <Icon 
+                          size={28} 
+                          strokeWidth={2} 
+                          className="text-gray-900 mb-4"
+                        />
+                        <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                          {feature.title}
+                        </h3>
+                        <p className="text-base text-gray-600 leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </section>
