@@ -4,7 +4,6 @@ import useCalCom from '@/hooks/useCalCom';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import WaitlistForm from '@/components/landing/waitlist';
 import LandingHeader from '@/components/landing/LandingHeader';
-import LandingFooter from '@/components/landing/LandingFooter';
 import BackgroundLines from '@/components/landing/BackgroundLines';
 import { Button } from '@/components/ui/button';
 
@@ -74,9 +73,6 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
       <main className="flex-1 relative z-10">
         {children}
       </main>
-      
-      {/* Footer */}
-      <LandingFooter />
     </div>
   );
 };

@@ -74,6 +74,22 @@ const CtaFooter = () => {
                 />
               </div>
             </div>
+
+            {/* Footer content */}
+            <div className="border-t border-white/10 pt-8 mt-12">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                {/* Logo */}
+                <div className="flex items-center gap-2 justify-center sm:justify-start">
+                  <img src="/lovable-uploads/1b27103c-6057-451b-8485-9e865676ad9e.png" alt="Tandem Symbol" className="h-6 w-6 brightness-0 invert" />
+                  <span className="text-lg font-bold text-white">Tandem</span>
+                </div>
+                
+                {/* Copyright */}
+                <div className="text-sm text-gray-300 text-center sm:text-right">
+                  © 2025 Tandem AI
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
