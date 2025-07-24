@@ -22,9 +22,9 @@ const CtaFooter = () => {
   
   return (
     <>
-      <section className="py-16 px-4 sm:px-6 lg:px-8">
+      <section className="py-8 sm:py-16 px-4 sm:px-6 lg:px-8">
         <div 
-          className="w-full max-w-7xl mx-auto rounded-3xl p-8 sm:p-12 lg:p-16 overflow-hidden relative"
+          className="w-full max-w-7xl mx-auto rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 overflow-hidden relative"
           style={{ 
             background: 'radial-gradient(ellipse at 20% 30%, #000000 0%, #0A0A0A 25%, #1a3a32 60%, #4ade80 100%)'
           }}

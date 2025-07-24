@@ -343,9 +343,12 @@
         0%   { transform:translateX(0); }
         100% { transform:translateX(calc(-100% - 24px)); }
       }
-      .testi-slider-track:hover{ 
-        animation-play-state:paused; 
-      }   /* pause on touch */
+      /* Mobile testimonials should never pause */
+      @media (min-width: 641px) {
+        .testi-slider-track:hover{ 
+          animation-play-state:paused; 
+        }   /* pause on hover only on desktop */
+      }
 
       /* 5. Soft edge blur */
       .testimonial-section{ 
