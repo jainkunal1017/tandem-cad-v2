@@ -208,7 +208,7 @@
 
   .carousel-col.middle {animation:scrollDown 25s linear infinite;}
 
-  .testi-wrapper:hover .carousel-col{animation-play-state:paused;}
+  
 
   /* Global Mobile Rules */
   @media (max-width: 640px) {
