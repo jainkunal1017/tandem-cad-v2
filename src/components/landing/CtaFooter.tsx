@@ -54,23 +54,23 @@ const CtaFooter = () => {
             </div>
             
             {/* Built by engineers badge */}
-            <div className="inline-flex items-center space-x-3 text-sm text-gray-300 bg-white/5 rounded-full px-4 py-2 border border-white/10">
-              <span className="whitespace-nowrap">Built by mechanical & AI engineers at</span>
-              <div className="flex items-center space-x-4">
+            <div className="inline-flex items-center space-x-2 sm:space-x-3 text-xs sm:text-sm text-gray-300 bg-white/5 rounded-full px-3 sm:px-4 py-2 border border-white/10 flex-col sm:flex-row space-y-1 sm:space-y-0">
+              <span className="whitespace-nowrap text-center sm:text-left">Built by engineers at</span>
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 <img 
                   src="/lovable-uploads/4b9cec9a-ee91-4d67-904d-636bd2be0171.png" 
                   alt="Rolls Royce" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="h-3 sm:h-4 object-contain brightness-0 invert"
                 />
                 <img 
                   src="/lovable-uploads/32197b2b-4e31-4dbc-8cf8-19f78b0b823b.png" 
                   alt="AWS" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="h-3 sm:h-4 object-contain brightness-0 invert"
                 />
                 <img 
                   src="/lovable-uploads/c5eb81bc-a7cb-4d44-b9d0-802ecabe5b5e.png" 
                   alt="Boeing" 
-                  className="h-4 object-contain brightness-0 invert"
+                  className="h-3 sm:h-4 object-contain brightness-0 invert"
                 />
               </div>
             </div>
