@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, Lock } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 
 interface LandingHeaderProps {
@@ -97,15 +97,6 @@ const LandingHeader = ({ onShowWaitlist, onRequestDemo }: LandingHeaderProps) =>
             onClick={() => scrollToSection('waitlist')}
           >
             Join the Waitlist
-          </Button>
-          <Button 
-            className="bg-primary text-primary-foreground hover:bg-primary/90 transition-transform hover:scale-[1.02]"
-            asChild
-          >
-            <Link to="/auth">
-              <Lock className="h-4 w-4" />
-              Login
-            </Link>
           </Button>
         </div>
 
